@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Apple-Logo-black.png' %}" type="image/x-icon"/>
+
+    {% block header %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#my-navbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Mam</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="my-navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="navbar-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">UserName</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" class="hidden-sm"><i class="fa fa-user"></i> User </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hidden-sm"><i class="fa fa-heart"></i> Pin </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hidden-sm"><i class="fa fa-star-o"></i> Become a cook </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{% block content %}
+{% endblock %}
+
+<div class="container" id="footer">
+    <hr>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div id="copyright">Copyright &copy; 2016. Made with <i class="fa fa-heart" aria-hidden="true"></i> by
+                    <b>Mam</b>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <br>
+</div>
+
+{% block footer %}
+{% endblock %}
+{#<script>#}
+{#    /* Show dropdown when hover */#}
+{#    $('ul.nav li.dropdown').hover(function () {#}
+{#        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);#}
+{#    }, function () {#}
+{#        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);#}
+{#    });#}
+{#</script>#}
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>

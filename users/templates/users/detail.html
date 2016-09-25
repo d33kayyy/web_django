@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    <div class="container">
+        {% if object.avatar %}
+            <img src="{{ object.avatar.url }}"/>
+        {% endif %}
+        <p>{{ object.name }}</p>
+        <p>{{ object.address }}</p>
+        <p>{{ object.phone }}</p>
+        <p>{{ object.email }}</p>
+        <p>{{ object.info }}</p>
+        <p>{{ object.join_date }}</p>
+
+        {% if object.item_set.all %}
+            <ul>
+                {% for item in object.item_set.all %}
+                    <a href="{% url 'item:detail' item.id %}">
+                        <img src="{{ item.image.url }}"/>
+                    </a>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No items are available.</p>
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    <div class="container">
+        {% if list_users %}
+            <ul>
+                {% for u in list_users %}
+                    <li><a href="{% url 'users:detail' u.id %}">{{ u }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No users are available.</p>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

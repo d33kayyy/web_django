@@ -1,0 +1,14 @@
+{% load humanize %}
+<div class="col-sm-4">
+    <div class="col-item border-no">
+        <div class="photo">
+            <a href="{% url 'item:detail' item.id %}">
+                <img src="{{ item.image.url }}" class="img-responsive" alt="a"/>
+            </a>
+        </div>
+        <div class="separator clear-left">
+            <h5 class="color">{{ item.name }}</h5>
+            <h4 class="price-text-color">{{ item.price|intcomma }} VNĐ</h4>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+{% extends 'layout/base.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block title %}
+    Cook with us!
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>Let's go</h2>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'account_logout' %}" class="pull-right">Logout</a>
+            {% if user.first_name or user.last_name %}
+                {{ user.first_name }}
+                {{ user.last_name }}
+                {{ user.email }}
+                {{ user.password }}
+                {{ user.last_login }}
+                {{ user.date_joined }}
+            {% else %}
+                {{ user.username }}
+            {% endif %}
+
+            {% if user.profile.account_verified %}
+                (verified)
+            {% else %}
+                (unverified)
+            {% endif %}
+
+            <p>
+                {% if user.profile.email %}
+                    {{ user.profile.email }}
+                {% else %}
+                    No fucking email
+                {% endif %}
+            </p>
+
+
+        {% else %}
+            {#            <a href="{% url 'account_login' %}" class="pull-right">Login</a>#}
+            <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook </a>
+            <a href="{% provider_login_url "google" method="oauth" %}">Google</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
