@@ -198,6 +198,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Use email as the primary identifier
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 
-SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter' # Custom adapter, connect social acc to existing acc
+SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'   # Custom adapter, connect social acc to existing acc
 
-ACCOUNT_LOGOUT_ON_GET = True # Skip the sign out confirmation page
+ACCOUNT_LOGOUT_ON_GET = True    # Skip the sign out confirmation page
