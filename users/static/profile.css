@@ -1,0 +1,44 @@
+.avatar {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
+}
+
+#user_name {
+    color: white;
+}
+
+.button {
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    color: #E8A16D;
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #E8A16D;
+    border-radius: 30px;
+    font-family: "Avenir Next";
+    font-weight: lighter;
+}
+
+.button:hover {
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    color: white;
+    background-color: #E8A16D;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #E8A16D;
+    border-radius: 30px;
+    font-family: "Avenir Next";
+    font-weight: lighter;
+}

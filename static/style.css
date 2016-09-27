@@ -1,5 +1,5 @@
 .navbar-default {
-    background-color: #ca4051;
+    background-color: #E8A16D;
     border: none;
     border-radius: 0;
 }
@@ -27,7 +27,7 @@
 }
 
 .navbar-default .navbar-nav > li > .dropdown-menu {
-    background-color: #ca4051;
+    background-color: #E8A16D;
 }
 
 .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
@@ -36,42 +36,42 @@
 
 .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
 .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
-    color: #ca4051;
+    color: #E8A16D;
     background-color: white;
 }
 
 .navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
-    background-color: #ca4051;
+    background-color: #E8A16D;
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
 .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
 .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: white;
-    background-color: #98000f;
+    background-color: #E8A16D;
 }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: white;
-    background-color: #98000f;
+    background-color: #E8A16D;
 }
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-    color: #ca4051;
+    color: #E8A16D;
     background-color: white;
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #98000f;
+    border-color: #E8A16D;
 }
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: #98000f;
+    background-color: #E8A16D;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -105,14 +105,14 @@
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
         color: white;
-        background-color: #98000f;
+        background-color: #E8A16D;
     }
 }
 
 .fa-search {
-    color: #CA4051;
+    color: #E8A16D;
 }
 
-.form-control {
+#search_box {
     border: none;
 }

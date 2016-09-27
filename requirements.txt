@@ -12,3 +12,4 @@ pytz==2016.6.1
 requests==2.11.1
 requests-oauthlib==0.6.2
 whitenoise==3.2.1
+django-widget-tweaks==1.4.1

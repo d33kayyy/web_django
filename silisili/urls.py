@@ -11,7 +11,8 @@ urlpatterns = [
     url(r'^$', views.cook, name='cook'),
     url(r'^users/', include('users.urls')),
 
+    url(r'^accounts/profile/', views.UserProfileUpdate.as_view(), name='profile'),
+    url(r'^accounts/signup/', views.signup_page, name='signup'),
+    url(r'^accounts/login/$', views.login_page, name='login'),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^accounts/profile/', views.profile, name='profile'),
-    # url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

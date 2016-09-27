@@ -1,0 +1,66 @@
+.button {
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+}
+
+.fb {
+    background-color: #3B5897;
+    color: white;
+    border-color: transparent;
+}
+
+.fb:hover {
+    background-color: #5885e1;
+    color: white;
+    border-color: transparent;
+}
+
+.gg {
+    background-color: #DF4A32;
+    color: white;
+    border-color: transparent;
+    margin-top: 10px;
+}
+
+.gg:hover {
+    background-color: #ff5439;
+    color: white;
+    border-color: transparent;
+}
+
+.login {
+    font-size: 15px;
+    color: #E8A16D;
+    background-color: white;
+    border-style: solid;
+    border-color: #E8A16D;
+    border-radius: 30px;
+    border-width: thin;
+
+}
+
+div {
+    border: 0 solid;
+}
+
+.login:hover {
+    color: white;
+    background-color: #E8A16D;
+}
+
+.forget_pass {
+    color: grey;
+    opacity: 0.3;
+    font-size: 10px;
+}
+
+.signup {
+    color: #E8A16D;
+}
+
+.link-center {
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+}

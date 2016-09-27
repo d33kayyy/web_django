@@ -73,6 +73,8 @@ def populate_user_profile(**kwargs):
 
     if account_uid:
         # Update user display name
+        url_image = account_uid[0].get_avatar_url()
+
         if account_uid[0].provider == 'facebook':
             updated_time = account_uid[0].extra_data['updated_time']
             last_update = datetime.datetime.strptime(updated_time, '%Y-%m-%dT%H:%M:%S+0000')
@@ -82,15 +84,20 @@ def populate_user_profile(**kwargs):
                 profile[0].last_update = last_update
                 profile[0].name = account_uid[0].extra_data['name']
 
+            # Update user profile image
+            new_img = get_img_from_url(url_image)
+            if new_img != profile[0].avatar:
+                file_name = account_uid[0].extra_data['id'] + '.jpg'
+                profile[0].avatar.save(file_name, new_img)
+
         elif account_uid[0].provider == 'google':
             profile[0].name = account_uid[0].extra_data['name']
 
-        # Update user profile image
-        url_image = account_uid[0].get_avatar_url()
-        if url_image != profile[0].avatar_link:
-            file_name = account_uid[0].extra_data['id'] + '.jpg'
-            profile[0].avatar.save(file_name, get_img_from_url(url_image))
-            profile[0].avatar_link = url_image
+            # Update user profile image
+            if url_image != profile[0].avatar_link:
+                file_name = account_uid[0].extra_data['id'] + '.jpg'
+                profile[0].avatar.save(file_name, get_img_from_url(url_image))
+                profile[0].avatar_link = url_image
 
         profile[0].save()
 
@@ -122,14 +129,14 @@ def create(**kwargs):
 
             profile.last_update = last_update
 
+            if account_uid[0].extra_data['gender'] == 'male':
+                profile.gender = 'M'
+            else:
+                profile.gender = 'F'
+
     # Get user personal information
     profile.name = account_uid[0].extra_data['name']
     profile.email = account_uid[0].extra_data['email']
-
-    if account_uid[0].extra_data['gender'] == 'male':
-        profile.gender = 'M'
-    else:
-        profile.gender = 'F'
 
     # Get user avatar
     url_image = account_uid[0].get_avatar_url()

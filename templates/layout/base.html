@@ -34,7 +34,7 @@
                 <li>
                     <div class="navbar-form">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" id='search_box' placeholder="Search">
                         </div>
                     </div>
                 </li>
@@ -42,18 +42,30 @@
                     <a href="#"><i class="fa fa-shopping-cart"></i></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">UserName</a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#" class="hidden-sm"><i class="fa fa-user"></i> User </a>
-                        </li>
-                        <li>
-                            <a href="#" class="hidden-sm"><i class="fa fa-heart"></i> Pin </a>
-                        </li>
-                        <li>
-                            <a href="#" class="hidden-sm"><i class="fa fa-star-o"></i> Become a cook </a>
-                        </li>
-                    </ul>
+                    {% if user.is_authenticated %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {{ user.profile.name }}
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" class="hidden-sm"><i class="fa fa-heart"></i> Pin </a>
+                            </li>
+                            <li>
+                                <a href="#" class="hidden-sm"><i class="fa fa-star-o"></i> Become a cook </a>
+                            </li>
+                            <li>
+                                <a href='{% url 'profile' %}' class="hidden-sm"><i class="fa fa-user"></i> Profile </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'account_logout' %}" class="hidden-sm"><i class="fa fa-sign-out"
+                                                                                          aria-hidden="true"></i>
+                                    Sign out </a>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <a href="{% url 'account_login' %}" class="hidden-sm"> Sign in / Sign up </a>
+                    {% endif %}
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -65,12 +77,11 @@
 
 <div class="container" id="footer">
     <hr>
-
     <footer>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div id="copyright">Copyright &copy; 2016. Made with <i class="fa fa-heart" aria-hidden="true"></i> by
-                    <b>Mam</b>
+                    <b>SiliSili</b>
                 </div>
             </div>
         </div>
@@ -78,16 +89,18 @@
     <br>
 </div>
 
+
+<script>
+    /* Show dropdown when hover */
+    $('ul.nav li.dropdown').hover(function () {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    }, function () {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+    });
+</script>
+
 {% block footer %}
 {% endblock %}
-{#<script>#}
-{#    /* Show dropdown when hover */#}
-{#    $('ul.nav li.dropdown').hover(function () {#}
-{#        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);#}
-{#    }, function () {#}
-{#        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);#}
-{#    });#}
-{#</script>#}
 
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"
         integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="

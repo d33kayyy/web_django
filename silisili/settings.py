@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '+ba=^6@(b)l^206-bvm195c76*93tu%z5!9v0vxsptgt)6!pjx'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -49,6 +47,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+
+    # Tweak the form field rendering in templates
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -196,3 +197,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # allauth can 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Use email as the primary identifier
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+
+SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter' # Custom adapter, connect social acc to existing acc
+
+ACCOUNT_LOGOUT_ON_GET = True # Skip the sign out confirmation page

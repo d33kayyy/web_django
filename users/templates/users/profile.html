@@ -1,0 +1,77 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    {{ user.profile.name }}
+{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+    <style>
+        .custom {
+            display: block;
+            height: 34px;
+            padding: 6px 16px;
+            font-size: 14px;
+            line-height: 1.42857143;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container wrapper">
+        <div class="row">
+            <div class="col-md-3 text-center" style="background-color: #e8a16d">
+                <img class="avatar" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+                <p id="user_name">{{ user.profile.name }}</p>
+                <p>
+                    {% if user.profile.account_verified %}
+                        (verified)
+                    {% else %}
+                        (unverified)
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Form //-->
+            <div class="col-md-9">
+                <form method="POST" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="id_name">Họ và tên</label>
+                        <div class="col-md-9 custom">
+                            {{ user.profile.name }}
+                        </div>
+                    </div>
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.errors }}
+                            <label class="control-label col-md-3" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <div class="col-md-9">
+                                {% render_field field class+="form-control" %}
+                            </div>
+                            {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="id_point">Điểm tích lũy</label>
+                        <div class="col-md-9 custom">
+                            {{ user.profile.point }}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="col-md-offset-4 button">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <p>Join date: {{ user.date_joined }}</p>
+        <div class="push"></div>
+    </div>
+
+{% endblock content %}

@@ -41,14 +41,9 @@
                 {% endif %}
             </p>
 
-
         {% else %}
-            {#            <a href="{% url 'account_login' %}" class="pull-right">Login</a>#}
             <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook </a>
             <a href="{% provider_login_url "google" method="oauth" %}">Google</a>
         {% endif %}
     </div>
-{% endblock %}
-
-{% block footer %}
 {% endblock %}
