@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
     # Tweak the form field rendering in templates
     'widget_tweaks',
-    'bootstrapform',
+    # 'bootstrapform',
 ]
 
 MIDDLEWARE = [
