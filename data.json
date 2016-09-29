@@ -1,0 +1,26 @@
+[
+  {
+    "email": "dk1721996@gmail.com",
+    "verified_email": "True",
+    "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+    "id": "110643003005599877118",
+    "given_name": "Kiên",
+    "name": "Kiên Lê",
+    "family_name": "Lê",
+    "locale": "en",
+    "link": "https://plus.google.com/110643003005599877118"
+  },
+  {
+    "id": "1062904793825477",
+    "email": "dk1721996@gmail.com",
+    "timezone": 7,
+    "verified": "True",
+    "last_name": "Lê",
+    "gender": "male",
+    "name": "Lê Kiên",
+    "locale": "en_GB",
+    "first_name": "Kiên",
+    "updated_time": "2016-09-23T20:18:59+0000",
+    "link": "https://www.facebook.com/app_scoped_user_id/1062904793825477/"
+  }
+]

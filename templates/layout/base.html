@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{% static 'images/Apple-Logo-black.png' %}" type="image/x-icon"/>
 
     {% block header %}{% endblock %}
@@ -75,7 +75,7 @@
 {% block content %}
 {% endblock %}
 
-<div class="container" id="footer">
+<div class="container footer">
     <hr>
     <footer>
         <div class="row">
@@ -89,15 +89,8 @@
     <br>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
-
-{% block footer %}
-{% endblock %}
-
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"
-        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-        crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous">
@@ -111,5 +104,9 @@
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
     });
 </script>
+
+{% block footer %}
+{% endblock %}
+
 </body>
 </html>

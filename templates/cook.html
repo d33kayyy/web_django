@@ -6,12 +6,9 @@
     Cook with us!
 {% endblock %}
 
-{% block header %}
-{% endblock %}
-
 {% block content %}
 
-    <div class="container">
+    <div class="container wrapper">
         <h2>Let's go</h2>
 
         {% if user.is_authenticated %}
@@ -44,6 +41,10 @@
         {% else %}
             <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook </a>
             <a href="{% provider_login_url "google" method="oauth" %}">Google</a>
+            <a href="/admin">Admin</a>
         {% endif %}
+
+        <div class="push"></div>
     </div>
+
 {% endblock %}

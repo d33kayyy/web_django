@@ -1,0 +1,25 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    {{ item.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if item.image.url %}
+            <img src="{{ item.image.url }}"/>
+        {% endif %}
+        <p>Item: {{ item.name }}</p>
+
+        <a href="{% url 'user:detail' item.chef.id %}">
+            <p>Chef: {{ item.chef }}</p>
+        </a>
+
+        <img src="{{ item.chef.avatar.url }}"/>
+        <p>Price: {{ item.price }}</p>
+        <p>Description: {{ item.description }}</p>
+        <p>Stock: {{ item.in_stock }}</p>
+        <p>Published date: {{ item.pub_date }}</p>
+        <p>Last modified: {{ item.modified_date }}</p>
+    </div>
+{% endblock %}

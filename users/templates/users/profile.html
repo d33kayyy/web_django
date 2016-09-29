@@ -8,6 +8,7 @@
 
 {% block header %}
     <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+    {#    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">#}
     <style>
         .custom {
             display: block;
@@ -17,13 +18,19 @@
             line-height: 1.42857143;
         }
     </style>
+
 {% endblock %}
 
 {% block content %}
     <div class="container wrapper">
         <div class="row">
             <div class="col-md-3 text-center" style="background-color: #e8a16d">
-                <img class="avatar" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+                {% if user.profile.avatar %}
+                    <img class="avatar" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+                {% else %}
+                    <img class="avatar" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
+                {% endif %}
+
                 <p id="user_name">{{ user.profile.name }}</p>
                 <p>
                     {% if user.profile.account_verified %}
@@ -70,8 +77,18 @@
             </div>
         </div>
 
-        <p>Join date: {{ user.date_joined }}</p>
+        {#        <p>Join date: {{ user.date_joined }}</p>#}
         <div class="push"></div>
     </div>
 
 {% endblock content %}
+
+{% block footer %}
+    {#    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>#}
+    {#    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>#}
+    {#    <script>#}
+    {#        $(document).ready(function () {#}
+    {#            $('.datepicker').datepicker();#}
+    {#        });#}
+    {#    </script>#}
+{% endblock %}

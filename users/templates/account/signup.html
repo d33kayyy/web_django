@@ -1,0 +1,53 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block title %}{% trans "Signup" %}{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+
+                <center><h2>{% trans "Đăng Ký" %}</h2></center>
+
+                <hr>
+                <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>
+                    .{% endblocktrans %}
+                </p>
+                <hr>
+
+                <form id="signup_form" method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group" style="margin-top: 10px">
+                            {{ field.errors }}
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+                            {% render_field field class+="form-control" %}
+
+                            {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button class="button login">Đăng Ký</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
