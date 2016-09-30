@@ -3,11 +3,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from users import views
-
+from item.views import HomePageView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.cook, name='cook'),
+    url(r'^$', HomePageView.as_view(), name='cook'),
     url(r'^users/', include('users.urls')),
     url(r'^item/', include('item.urls')),
 

@@ -6,7 +6,7 @@
     {{ user.profile.name }}
 {% endblock %}
 
-{% block header %}
+{% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
     {#    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">#}
     <style>
@@ -43,6 +43,14 @@
 
             <!-- Form //-->
             <div class="col-md-9">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
                 <form method="POST" class="form-horizontal">
                     {% csrf_token %}
                     <div class="form-group">

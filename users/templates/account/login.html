@@ -11,7 +11,7 @@
     {% trans "Đăng Nhập" %}
 {% endblock %}
 
-{% block header %}
+{% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
 {% endblock %}
 
@@ -45,7 +45,7 @@
                     {#                    </div>#}
 
                     {% for f in form %}
-                        {% ifnotequal f.label form.remember.label %}
+                        {% ifnotequal f form.remember %}
                             <div class="form-group" style="margin-top: 10px">
                                 <label for="{{ f.id_for_label }}">{{ f.label }}</label>
                                 {% render_field f class+="form-control" %}

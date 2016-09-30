@@ -1,0 +1,110 @@
+{% extends 'layout/base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Add item
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'item/create_item.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container wrapper">
+        <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.errors }}
+
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <h3 class="text-capitalized heading">Create New Item</h3>
+                    <h4>Item Image</h4>
+                </div>
+            </div>
+
+            {#            <div class="row">#}
+            {#                <div class="col-md-5 col-md-offset-2 i-img">#}
+            {#                    <div class="form-group text-center">#}
+            {#                        <label for="main-img" class="btn btn-default">Click to import image</label>#}
+            {#                        <input type="file" id="main-img" style="display:none;"/>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#                <div class="col-md-3">#}
+            {#                    <div class="form-group i-subimg text-center">#}
+            {#                        <label for="sub-img1" class="btn btn-default">#}
+            {#                            <span class="glyphicon glyphicon-plus"></span>#}
+            {#                        </label>#}
+            {#                        <input type="file" id="sub-img1" style="display:none;">#}
+            {#                    </div>#}
+            {#                    <div class="form-group i-subimg text-center">#}
+            {#                        <label for="sub-img2" class="btn btn-default">#}
+            {#                            <span class="glyphicon glyphicon-plus"></span>#}
+            {#                        </label>#}
+            {#                        <input type="file" id="sub-img2" style="display:none;">#}
+            {#                    </div>#}
+            {#                    <div class="form-group i-subimg text-center">#}
+            {#                        <label for="sub-img3" class="btn btn-default">#}
+            {#                            <span class="glyphicon glyphicon-plus"></span>#}
+            {#                        </label>#}
+            {#                        <input type="file" id="sub-img3" style="display:none;">#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+            <div class="row">
+                <div class="col-md-9 col-md-offset-1">
+                    <div class="form-group">
+                        <h4><label for="{{ form.image.id_for_label }}">{{ form.image.label }}</label></h4>
+                        {% render_field form.image %}
+                        {% if form.image.help_text %}
+                            <p class="help">{{ form.image.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    {% for field in form %}
+                        {% if field != form.description and field != form.image %}
+                            <div class="form-group">
+                                <h4><label for="{{ field.id_for_label }}">{{ field.label }}</label></h4>
+                                {% render_field field class+="form-control inp" %}
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-5">
+
+                    <div class="form-group">
+                        <h4><label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label></h4>
+                        {% render_field form.description rows="8" class+="form-control inp" %}
+                        {% if form.description.help_text %}
+                            <p class="help">{{ form.description.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-default create-btn">Done</button>
+                    </div>
+                </div>
+            </div>
+
+
+            {#            {{ form.as_p }}#}
+            {#            <button type="submit">Submit</button>#}
+        </form>
+
+        <div class="push"></div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {# block for JS #}
+{% endblock %}

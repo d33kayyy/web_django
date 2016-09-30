@@ -1,18 +1,25 @@
 {% extends 'layout/base.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        {% if object.avatar %}
-            <img src="{{ object.avatar.url }}"/>
+    <div class="container wrapper">
+        {% if user.profile.avatar %}
+            <img class="avatar" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+        {% else %}
+            <img class="avatar" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
         {% endif %}
-        <p>{{ object.name }}</p>
-        <p>{{ object.address }}</p>
-        <p>{{ object.phone }}</p>
-        <p>{{ object.email }}</p>
-        <p>{{ object.info }}</p>
-        <p>{{ object.join_date }}</p>
 
-        {% if object.item_set.all %}
+        <p>{{ user.profile.name }}</p>
+        <p>{{ user.profile.address }}</p>
+        <p>{{ user.profile.phone }}</p>
+        <p>{{ user.profile.email }}</p>
+        <p>{{ user.profile.info }}</p>
+        <p>{{ user.date_joined }}</p>
+
+        {% if user.item_set.all %}
             <ul>
                 {% for item in object.item_set.all %}
                     <a href="{% url 'item:detail' item.id %}">
@@ -23,6 +30,6 @@
         {% else %}
             <p>No items are available.</p>
         {% endif %}
-
+        <div class="push"></div>
     </div>
 {% endblock %}

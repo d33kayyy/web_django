@@ -8,12 +8,12 @@
 
 {% block title %}{% trans "Signup" %}{% endblock %}
 
-{% block header %}
+{% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container wrapper">
         <div class="row">
             <div class="col-md-offset-4 col-md-4">
 
@@ -47,6 +47,7 @@
                 </form>
             </div>
         </div>
+        <div class="push"></div>
     </div>
 
 

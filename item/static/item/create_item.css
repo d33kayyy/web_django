@@ -1,0 +1,51 @@
+.heading {
+    font-weight:bold;
+    color: black;
+}
+
+.inp {
+    /*background: #ddd;*/
+    /*margin-bottom: 20px;*/
+    height: 45px;
+    font-size: 16px;
+}
+
+.i-img {
+    width: 546px;
+    height: 364px;
+    /*background: #ddd;*/
+    margin-top:25px;
+    margin-bottom:50px;
+}
+
+.i-subimg {
+    margin-top:25px;
+    margin-left: 20px;
+    width: 156px;
+    height: 104px;
+    /*background: #ddd;*/
+}
+
+.upload {
+    margin:auto;
+}
+
+.desc {
+    margin-bottom: 18px;
+}
+
+.create-btn {
+    margin-top: 30px;
+    width: 200px;
+    height: 45px;
+    border: 2px solid #8f0047;
+    border-radius: 20px;
+    color: #8f0047;
+    font-weight: bold;
+}
+
+.create-btn:hover {
+    border: 2px solid #8f0047;
+    background: #8f0047;
+    color: white;
+}
