@@ -23,6 +23,16 @@ class SignupForm(forms.Form):
         model = User
         fields = ['last_name', 'first_name', 'phone', 'email', 'password1', 'password2']
 
+        widgets = {
+            'password1': forms.PasswordInput,
+            'password2': forms.PasswordInput
+        }
+        labels = {
+            'password1': _("Mật khẩu"),
+            'password2': _("Nhập lại mật khẩu"),
+            'email': _("Email")
+        }
+
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']

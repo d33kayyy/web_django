@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Item
+from .models import Item, Images
 
 
 class ItemForm(forms.ModelForm):
@@ -9,7 +9,15 @@ class ItemForm(forms.ModelForm):
         fields = [
             'name',
             'price',
-            'image',
+            # 'image',
             'description',
             'in_stock'
         ]
+
+
+class ImageForm(forms.ModelForm):
+    image = forms.ImageField(label='Image')
+
+    class Meta:
+        model = Images
+        fields = ('image',)

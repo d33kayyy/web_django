@@ -4,7 +4,7 @@
 {% load widget_tweaks %}
 
 {% block title %}
-    Add item
+    {{ title }}
 {% endblock %}
 
 {% block css %}
@@ -53,22 +53,30 @@
             {#                    </div>#}
             {#                </div>#}
             {#            </div>#}
+
+            {#            {% for hidden in item_form.hidden_fields %}#}
+            {#                {{ hidden }}#}
+            {#            {% endfor %}#}
+
+            {#            {% for field in item_form %}#}
+            {#                {{ field }}#}
+            {#            {% endfor %}#}
+
+            {{ formset.management_form }}
+
+
             <div class="row">
                 <div class="col-md-9 col-md-offset-1">
-                    <div class="form-group">
-                        <h4><label for="{{ form.image.id_for_label }}">{{ form.image.label }}</label></h4>
-                        {% render_field form.image %}
-                        {% if form.image.help_text %}
-                            <p class="help">{{ form.image.help_text|safe }}</p>
-                        {% endif %}
-                    </div>
+                    {% for form in formset %}
+                        {{ form }}
+                    {% endfor %}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-5 col-md-offset-1">
-                    {% for field in form %}
-                        {% if field != form.description and field != form.image %}
+                    {% for field in item_form %}
+                        {% if field != item_form.description and field != item_form.image %}
                             <div class="form-group">
                                 <h4><label for="{{ field.id_for_label }}">{{ field.label }}</label></h4>
                                 {% render_field field class+="form-control inp" %}
@@ -83,10 +91,12 @@
                 <div class="col-md-5">
 
                     <div class="form-group">
-                        <h4><label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label></h4>
-                        {% render_field form.description rows="8" class+="form-control inp" %}
-                        {% if form.description.help_text %}
-                            <p class="help">{{ form.description.help_text|safe }}</p>
+                        <h4><label
+                                for="{{ item_form.description.id_for_label }}">{{ item_form.description.label }}</label>
+                        </h4>
+                        {% render_field item_form.description rows="8" class+="form-control inp" %}
+                        {% if item_form.description.help_text %}
+                            <p class="help">{{ item_form.description.help_text|safe }}</p>
                         {% endif %}
                     </div>
 
@@ -96,9 +106,6 @@
                 </div>
             </div>
 
-
-            {#            {{ form.as_p }}#}
-            {#            <button type="submit">Submit</button>#}
         </form>
 
         <div class="push"></div>
