@@ -26,9 +26,9 @@
         <div class="row">
             <div class="col-md-3 text-center" style="background-color: #e8a16d">
                 {% if user.profile.avatar %}
-                    <img class="avatar" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+                    <img class="avatar img-circle" src="{{ user.profile.avatar.url }}" alt="avatar"/>
                 {% else %}
-                    <img class="avatar" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
+                    <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
                 {% endif %}
 
                 <p id="user_name">{{ user.profile.name }}</p>

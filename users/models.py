@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
@@ -16,7 +18,8 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile')
     name = models.CharField(max_length=30, default='users')
-    avatar = models.ImageField(upload_to='uploads/%Y/%m/%d', blank=True, null=True)
+    avatar = models.ImageField(upload_to='uploads/%Y/%m/%d', blank=True, null=True,
+                               default=os.path.join(settings.STATIC_URL, "images/default-avatar.png"))
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
     birthday = models.DateField(null=True, blank=True)
     email = models.EmailField(null=True, blank=True)

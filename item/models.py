@@ -1,11 +1,17 @@
+import os
+
+import itertools
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.utils.text import slugify
 from django.urls import reverse
 
 
 class Item(models.Model):
     chef = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chef')
     name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, max_length=100)
     price = models.PositiveIntegerField()
     # image = models.ImageField(upload_to='uploads/%Y/%m/%d', blank=True)
     ingredient = models.TextField(default='', blank=True)
@@ -25,9 +31,39 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         # return reverse('item.views.ItemView', args=[str(self.id)])
-        return "/item/{}".format(self.id)
+        return reverse('item:detail', kwargs={'slug': self.slug,
+                                              # 'pk': self.pk,
+                                              })
+
+    def get_ingredient(self):
+        ingredient_str = self.ingredient
+        ingredients = [line.split(',') for line in ingredient_str.splitlines()]
+        return [j.strip() for i in ingredients for j in i if j]
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Newly created object, so set slug
+            self.slug = orig = slugify(self.name)
+
+            for x in itertools.count(1):
+                if not Item.objects.filter(slug=self.slug).exists():
+                    break
+                self.slug = '%s-%d' % (orig, x)
+                # self.slug = "{}-{}".format(self.pk, slugify(self.name))
+
+        super(Item, self).save(*args, **kwargs)
 
 
 class Images(models.Model):
-    item = models.ForeignKey(Item, related_name='images')
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='uploads/%Y/%m/%d', blank=True)
+
+
+@receiver(models.signals.post_delete, sender=Images)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes images from filesystem when corresponding Item object is deleted.
+    """
+    if instance.image:
+        if os.path.isfile(instance.image.path):
+            os.remove(instance.image.path)

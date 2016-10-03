@@ -17,9 +17,9 @@
     color: black;
 }
 
-.avatar{
-    height: 40px;
-    width: 40px;
+.avatar {
+    height: 80px;
+    width: 80px;
     box-shadow: none;
 }
 
@@ -122,9 +122,3 @@
     font-family: Avenir Next;
     font-weight: bolder;
 }
-
-.img-circle {
-    height: 80px;
-    width: 80px;
-}
-

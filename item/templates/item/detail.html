@@ -15,11 +15,6 @@
         <div class="row">
             <div class="col-md-7">
                 <!--banner-->
-
-                {#                {% if item.image %}#}
-                {#                    <img class="img-responsive" src="{{ item.image.url }}"/>#}
-                {#                {% endif %}#}
-
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -28,15 +23,17 @@
                     </ol>
                     <div class="carousel-inner">
                         {% for i in item.images.all %}
-                            <div class="item {% if forloop.first %} active {% endif %}">
-                                <img class="img-responsive" src="{{ i.image.url }}" alt="First slide">
-                            </div>
+                            {% if i.image %}
+                                <div class="item {% if forloop.first %} active {% endif %}">
+                                    <img class="img-responsive" src="{{ i.image.url }}" alt="First slide">
+                                </div>
+                            {% endif %}
+                        {% empty %}
+                            <p> No images available </p>
                         {% endfor %}
                     </div>
-                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                    </a>
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"></a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
                 </div>
             </div>
             <div class="col-md-5">
@@ -48,10 +45,10 @@
                 <div class="row">
                     <a href="{% url 'users:detail' item.chef.id %}">
                         {% if item.chef.profile.avatar %}
-                            <img class="avatar" src="{{ item.chef.profile.avatar.url }}"
+                            <img class="avatar img-circle" src="{{ item.chef.profile.avatar.url }}"
                                  alt="avatar"/>
                         {% else %}
-                            <img class="avatar" src="{% static 'images/default-avatar.png' %}"
+                            <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}"
                                  alt="avatar"/>
                         {% endif %}
                     </a>
@@ -74,92 +71,46 @@
                 </div>
             </div>
         </div>
+        <div>
+            <ul>
+                {% for ingredient in item.get_ingredient %}
+                    <li>{{ ingredient|capfirst }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <p>Stock: {{ item.in_stock }}</p>
 
         <!--Review area //-->
         <div class="row">
             <hr>
             <div class="accordion col-md-6">
                 <p id="review"> Bình luận</p>
-                <div class="row">
-                    <div class="col-md-2">
-                        <a href="#"><img class="img-circle" src="../img/user.jpg"></a>
-                    </div>
-                    <div class="col-md-10">
-                        <div>
-                            <img id="star" src="../img/star.png">
-                        </div>
-                        <p class="user_name">Joe Angustus</p>
 
-                        <p class="word_description">
-                            Lorem ipsum dolor sit amet, cu vel sale aeterno vel ei homero definitionem. Ad
-                            qui ipsum ludus ignota, quo civibus nominati partiendo no. Suavitate consulatu
-                            gloriatur cu has, verear vulputate at cum.
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <a href="#"><img class="img-circle" src="../img/user4.jpg"></a>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <img id="star" src="../img/star.png">
-                        </p>
-                        <p class="user_name">Linsay McKenzie</p>
-                        <p class="word_description">
-                            Lorem ipsum dolor sit amet, cu vel sale aeterno vel ei homero definitionem. Ad qui ipsum
-                            ludus ignota, quo civibus nominati partiendo no. Suavitate consulatu gloriatur cu has,
-                            verear vulputate at cum.
-                        </p>
-                    </div>
-                </div>
-                <div class="accordion-group">
-                    <div id="collapseTwo" class="accordion-body collapse">
-                        <div class="row">
-                            <div class="col-md-2" style="padding: 0 0 0 0">
-                                <a href=""><img class="img-circle" id="user_img" src="../img/user3.jpg"></a>
-                            </div>
-                            <div class="col-md-10" style="text-align: left">
-                                <div>
-                                    <img id="star" src="../img/star.png">
-                                </div>
-                                <p class="user_name">Lisa Rholan</p>
+                {% for review in item.reviews.all|slice:":2" %}
+                    {% include "layout/item_snippet.html" with review=review %}
+                {% empty %}
+                    <p>No reviews here yet :(</p>
+                {% endfor %}
 
-                                <p class="word_description">
-                                    Lorem ipsum dolor sit amet, cu vel sale aeterno vel ei homero definitionem. Ad
-                                    qui ipsum ludus ignota, quo civibus nominati partiendo no. Suavitate consulatu
-                                    gloriatur cu has, verear vulputate at cum.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" style="padding: 0 0 0 0">
-                                <a href=""><img class="img-circle" id="user_img" src="../img/user2.jpg"></a>
-                            </div>
-                            <div class="col-md-10" style="text-align: left">
-                                <div>
-                                    <img id="star" src="../img/star.png">
-                                </div>
-                                <p class="user_name">Thanh Lam</p>
-
-                                <p class="word_description">
-                                    Lorem ipsum dolor sit amet, cu vel sale aeterno vel ei homero definitionem. Ad
-                                    qui ipsum ludus ignota, quo civibus nominati partiendo no. Suavitate consulatu
-                                    gloriatur cu has, verear vulputate at cum.
-                                </p>
-                            </div>
+                {% if item.reviews.count > 2 %}
+                    <div class="accordion-group">
+                        <div id="collapseTwo" class="accordion-body collapse">
+                            {% for review in item.reviews.all|slice:"2:" %}
+                                {% include "layout/review_snippet.html" with review=review %}
+                            {% empty %}
+                                <p>No reviews here yet :(</p>
+                            {% endfor %}
                         </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
 
         <div class="row text-center" style="margin-top: 10px">
-            <button class="SeeMore2 sm_button" data-toggle="collapse" href="#collapseTwo">See More</button>
+            <button class="SeeMore2 sm_button" data-toggle="collapse" href="#collapseTwo">Xem thêm</button>
         </div>
 
 
-        {#        <p>Stock: {{ item.in_stock }}</p>#}
         {#        <p>Published date: {{ item.pub_date }}</p>#}
         {#        <p>Last modified: {{ item.modified_date }}</p>#}
         <div class="push"></div>
