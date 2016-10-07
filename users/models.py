@@ -1,11 +1,13 @@
 import os
 
+import itertools
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 
 from allauth.account.models import EmailAddress
 from allauth.socialaccount.models import SocialAccount
+from django.utils.text import slugify
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -30,6 +32,7 @@ class UserProfile(models.Model):
     is_chef = models.BooleanField(default=False)
     avatar_link = models.URLField(default='')
     last_update = models.DateTimeField(null=True)
+    slug = models.SlugField(unique=True, max_length=100)
 
     def __unicode__(self):
         return "{}'s profile".format(self.user.username)
@@ -39,6 +42,18 @@ class UserProfile(models.Model):
 
     class Meta:
         db_table = 'user_profile'
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Newly created object, so set slug
+            self.slug = orig = slugify(self.get_username())
+            print(self.name)
+
+            for x in itertools.count(1):
+                if not UserProfile.objects.filter(slug=self.slug).exists():
+                    break
+                self.slug = "{}-{}".format(orig, x)
+        super(UserProfile, self).save(*args, **kwargs)
 
     def account_verified(self):
         if self.user.is_authenticated:

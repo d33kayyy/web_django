@@ -4,6 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.views import generic
 
+from item.models import Item
 from users.models import UserProfile
 from .forms import UserProfileForm
 
@@ -26,6 +27,17 @@ class UserProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateV
 class ChefView(generic.DetailView):
     model = User
     template_name = 'users/detail.html'
+    slug_field = 'slug'
+    context_object_name = 'user'
+
+    def get_object(self, queryset=None):
+        profile = UserProfile.objects.get(slug=self.kwargs['slug'])
+        return User.objects.get(profile=profile)
+
+    def get_context_data(self, **kwargs):
+        context = super(ChefView, self).get_context_data(**kwargs)
+        context['items'] = Item.objects.filter(chef=self.object)
+        return context
 
 
 class IndexView(generic.ListView):

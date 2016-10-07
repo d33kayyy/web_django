@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^$', HomePageView.as_view(), name='cook'),
     url(r'^users/', include('users.urls')),
     url(r'^item/', include('item.urls')),
+    url(r'^cart/', include('order.urls')),
 
     url(r'^accounts/profile/', views.UserProfileUpdate.as_view(), name='profile'),
     url(r'^accounts/', include('allauth.urls')),

@@ -13,75 +13,63 @@
 
 {% block content %}
     <div class="container wrapper">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                <h3 class="text-capitalized heading">Create New Item</h3>
+                <h4>Item Image</h4>
+            </div>
+        </div>
+
         <form enctype="multipart/form-data" method="post">
             {% csrf_token %}
 
             <div class="row">
                 {{ item_form.non_field_errors }}
                 {{ item_form.errors }}
-                <div class="col-md-5 col-md-offset-1">
-                    <h3 class="text-capitalized heading">Create New Item</h3>
-                    <h4>Item Image</h4>
-                </div>
             </div>
-
-            {#            <div class="row">#}
-            {#                <div class="col-md-5 col-md-offset-2 i-img">#}
-            {#                    <div class="form-group text-center">#}
-            {#                        <label for="main-img" class="btn btn-default">Click to import image</label>#}
-            {#                        <input type="file" id="main-img" style="display:none;"/>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#                <div class="col-md-3">#}
-            {#                    <div class="form-group i-subimg text-center">#}
-            {#                        <label for="sub-img1" class="btn btn-default">#}
-            {#                            <span class="glyphicon glyphicon-plus"></span>#}
-            {#                        </label>#}
-            {#                        <input type="file" id="sub-img1" style="display:none;">#}
-            {#                    </div>#}
-            {#                    <div class="form-group i-subimg text-center">#}
-            {#                        <label for="sub-img2" class="btn btn-default">#}
-            {#                            <span class="glyphicon glyphicon-plus"></span>#}
-            {#                        </label>#}
-            {#                        <input type="file" id="sub-img2" style="display:none;">#}
-            {#                    </div>#}
-            {#                    <div class="form-group i-subimg text-center">#}
-            {#                        <label for="sub-img3" class="btn btn-default">#}
-            {#                            <span class="glyphicon glyphicon-plus"></span>#}
-            {#                        </label>#}
-            {#                        <input type="file" id="sub-img3" style="display:none;">#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-
-            {#            {% for hidden in item_form.hidden_fields %}#}
-            {#                {{ hidden }}#}
-            {#            {% endfor %}#}
-
-            {#            {% for field in item_form %}#}
-            {#                {{ field }}#}
-            {#            {% endfor %}#}
-
 
             <div class="row">
                 <div class="col-md-9 col-md-offset-1">
                     {{ formset.management_form }}
                     {% for form in formset %}
+                        {{ form.id }}
                         {{ form.as_p }}
                     {% endfor %}
                 </div>
             </div>
 
-            <div class="row">
+{#            <div class="row">#}
+{#                {{ formset.management_form }}#}
+{#                {% for form in formset %}#}
+{#                    {% if forloop.first %}#}
+{#                        <div class="col-md-5 col-md-offset-2 i-img">#}
+{#                            <div class="form-group text-center">#}
+{#                                <label for="main-img" class="btn btn-default">Click to import image</label>#}
+{#                                <input type="file" id="main-img" style="display:none;"/>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% else %}#}
+{#                        <div class="col-md-3">#}
+{#                            <div class="form-group i-subimg text-center">#}
+{#                                <label for="sub-img1" class="btn btn-default">#}
+{#                                    <span class="glyphicon glyphicon-plus"></span>#}
+{#                                </label>#}
+{#                                <input type="file" id="sub-img1" style="display:none;">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#            </div>#}
 
+            <div class="row">
                 <div class="col-md-5 col-md-offset-1">
                     {% for field in item_form %}
-                        {% if field != item_form.description and field != item_form.image %}
+                        {% if field != item_form.description and field != item_form.image and field != item_form.in_stock %}
                             <div class="form-group">
                                 <h4><label for="{{ field.id_for_label }}">{{ field.label }}</label></h4>
-                                {% render_field field class+="form-control inp" %}
+                                {% render_field field rows="5" class+="form-control inp" %}
                                 {% if field.help_text %}
-                                    <p class="help">{{ field.help_text|safe }}</p>
+                                    <span id="helpBlock" class="help-block">{{ field.help_text|safe }}</span>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -90,21 +78,31 @@
 
                 <div class="col-md-5">
                     <div class="form-group">
-                        <h4><label
-                                for="{{ item_form.description.id_for_label }}">{{ item_form.description.label }}</label>
+                        <h4>
+                            <label for="{{ item_form.description.id_for_label }}">
+                                {{ item_form.description.label }}
+                            </label>
                         </h4>
-                        {% render_field item_form.description rows="8" class+="form-control inp" %}
+                        {% render_field item_form.description rows="6" class+="form-control inp" %}
                         {% if item_form.description.help_text %}
-                            <p class="help">{{ item_form.description.help_text|safe }}</p>
+                            <span id="helpBlock" class="help-block">{{ item_form.description.help_text|safe }}</span>
                         {% endif %}
                     </div>
 
+                    <div class="form-group">
+                        <h4>
+                            <label for="{{ item_form.in_stock.id_for_label }}">
+                                {{ item_form.in_stock.label }}
+                            </label>
+                        </h4>
+                        {% render_field item_form.in_stock class+="form-control inp" %}
+                    </div>
+
                     <div class="text-center">
-                        <button type="submit" class="btn btn-default create-btn">Done</button>
+                        <button type="submit" class="btn btn-default create-btn">Create</button>
                     </div>
                 </div>
             </div>
-
         </form>
 
         <div class="push"></div>

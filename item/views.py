@@ -1,14 +1,14 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import PermissionDenied
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views import View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
+from django.views.generic.detail import SingleObjectMixin
 
-from silisili import settings
+from reviews.forms import ReviewForm
 from .models import Item, Images
 from .forms import ItemForm, ImageForm, ImageInlineFormSet
 
@@ -31,36 +31,50 @@ class IndexView(ListView):
         return Item.objects.order_by('-pub_date').all()
 
 
-class ItemDetailView(DetailView):
+class ItemDetailDisplay(DetailView):
     model = Item
     template_name = 'item/detail.html'
 
-
-# class ItemRedirectDetailView(RedirectView):
-#     def get(self, request, *args, **kwargs):
-#         pk = self.kwargs.get('pk', None)
-#         item = Item.objects.get(pk=pk)
-#         self.url = reverse('item:detail', kwargs={'pk': item.pk, 'slug': item.slug})
-#         return super(ItemRedirectDetailView, self).get(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetailDisplay, self).get_context_data(**kwargs)
+        context['form'] = ReviewForm()
+        return context
 
 
-class CreateItemView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class ItemReview(SingleObjectMixin, FormView):
+    template_name = 'item/detail.html'
+    form_class = ReviewForm
     model = Item
-    form_class = ItemForm
-    template_name = 'item/add_edit.html'
-    success_message = 'Item successfully created'
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            raise PermissionDenied
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
     def form_valid(self, form):
-        item = form.save(commit=False)
-        item.chef = self.request.user
-        return super(CreateItemView, self).form_valid(form)
+        review = form.save(commit=False)
+        review.item = self.get_object()
+        review.reviewer = self.request.user.profile
+        review.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('item:detail', kwargs={'slug': self.object.slug})
 
 
-class EditItemView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Item
-    form_class = ItemForm
-    template_name = 'item/add_edit.html'
-    success_message = 'Changes have been saved.'
+class ItemDetailView(View):
+    def get(self, request, *args, **kwargs):
+        view = ItemDetailDisplay.as_view()
+        return view(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        view = ItemReview.as_view()
+        return view(request, *args, **kwargs)
 
 
 def cook(request):
@@ -138,7 +152,3 @@ def delete_item(request, slug):
 
     item.delete()
     return HttpResponseRedirect(reverse('item:index'))
-
-
-class CreateReviewView():
-    pass

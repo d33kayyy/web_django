@@ -1,6 +1,10 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 
+{% block title %}
+    {{ user.profile.name }}
+{% endblock %}
+
 {% block css %}
 {% endblock %}
 
@@ -19,11 +23,12 @@
         <p>{{ user.profile.info }}</p>
         <p>{{ user.date_joined }}</p>
 
-        {% if user.item_set.all %}
+        {% if items %}
             <ul>
-                {% for item in object.item_set.all %}
-                    <a href="{% url 'item:detail' item.id %}">
-                        <img src="{{ item.image.url }}"/>
+                {% for item in items %}
+                    <a href="{% url 'item:detail' item.slug %}">
+                        {# <img class="img-responsive" src="{{ item.get_primary_image }}"/>#}
+                        {{ item.name }}
                     </a>
                 {% endfor %}
             </ul>

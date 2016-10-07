@@ -53,6 +53,9 @@ class Item(models.Model):
 
         super(Item, self).save(*args, **kwargs)
 
+    def get_primary_image(self):
+        images = Images.objects.filter(item=self).first()
+        return images.image.url
 
 class Images(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')

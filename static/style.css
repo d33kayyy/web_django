@@ -39,6 +39,8 @@ body {
 
 .navbar-default .navbar-brand {
     color: #8F0047;
+    font-weight: 200;
+    font-size: 25px;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -143,10 +145,6 @@ body {
     }
 }
 
-.fa-search {
-    color: #8F0047;
-}
-
 .user_icon {
     width: 30px;
     height: 30px;
@@ -160,4 +158,8 @@ body {
     -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
     box-shadow: 0 0 0 3px #fff, 0 0 0 3px #fff, 0 2px 5px 4px rgba(0, 0, 0, .2);
+}
+
+#aa {
+    margin-right: 2rem;
 }

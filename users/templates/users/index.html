@@ -5,13 +5,12 @@
         {% if list_users %}
             <ul>
                 {% for u in list_users %}
-                    <li><a href="{% url 'users:detail' u.id %}">{{ u }}</a></li>
+                    <li><a href="{% url 'users:detail' u.profile.slug %}">{{ u.profile.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
             <p>No users are available.</p>
         {% endif %}
     </div>
-
 
 {% endblock %}
