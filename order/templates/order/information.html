@@ -1,0 +1,136 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load order %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Giỏ hàng
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order/cart.css' %}">
+    <style>
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container wrapper">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-1">
+                    <h3>Thông tin của bạn</h3>
+                    <hr>
+
+                    <div class="row">
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {#                        <div class="radio">#}
+                        {#                            <label>#}
+                        {#                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>#}
+                        {#                                Sử dụng địa chỉ có sẵn#}
+                        {#                            </label>#}
+                        {#                        </div>#}
+                        {#                        <hr>#}
+                        {#                        <div class="radio">#}
+                        {#                            <label>#}
+                        {#                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">#}
+                        {#                                Sử dụng địa chỉ khác#}
+                        {#                            </label>#}
+                        {#                        </div>#}
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                                {% render_field form.name class+="form-control" %}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                                {% render_field form.phone class+="form-control" %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+                                {% render_field form.address class+="form-control" %}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                                {% render_field form.email class+="form-control" %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="id_city">Tỉnh/Thành Phố</label>
+                                <select id="id_city" name="city" class="form-control" required>
+                                    <option value=""></option>
+                                    <option value="Sài Gòn">Sài Gòn</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                    <option value="Hải Phòng">Hải Phòng</option>
+                                    <option value="Nha Trang">Nha Trang</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="id_district">Quận</label>
+                                <select id="id_district" name="district" class="form-control" required>
+                                    <option value=""></option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>7</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="id_note">Ghi chú</label>
+                                <textarea class="form-control" id="id_note" name="note" rows="5"></textarea>
+                                <p class="help-block">Vd: Không ớt, không hạt tiêu,.. hoặc các thành phần mà bạn bị dị
+                                    ứng</p>
+                            </div>
+                        </div>
+
+                        <div class="row text-center">
+                            <input type="submit" value="Tiếp tục" class="custom-button">
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            {% include "order/price_panel.html" %}
+        </div>
+        <div class="push"></div>
+    </div>
+
+{% endblock %}

@@ -27,6 +27,8 @@ class UserProfile(models.Model):
     email = models.EmailField(null=True, blank=True)
     phone = PhoneNumberField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
+    # city = models.CharField(max_length=30)
+    # district = models.CharField(max_length=30)
     info = models.TextField(null=True, blank=True)
     point = models.PositiveIntegerField(default=0)
     is_chef = models.BooleanField(default=False)
@@ -79,8 +81,12 @@ class UserProfile(models.Model):
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
-
 # class PhoneModel(models.Model):
 #     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
 #                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 #     phone_number = models.CharField(max_length=16, validators=[phone_regex], blank=True, null=True)  # validators should be a list
+
+# class Address(models.Model):
+#     profile = models.ForeignKey(UserProfile, related_name='addresses')
+#     city = models.CharField(max_length=30)
+#     district = models.CharField(max_length=30)

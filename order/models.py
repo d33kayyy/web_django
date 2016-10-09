@@ -2,6 +2,8 @@ from django.db import models
 from item.models import Item
 from django.contrib.auth.models import User
 
+from users.models import UserProfile
+
 
 # Create your models here.
 class Order(models.Model):
@@ -16,7 +18,8 @@ class Order(models.Model):
                       (FINISH, 'Finished'),
                       (CANCEL, 'Canceled'),)
 
-    customer = models.ForeignKey(User, related_name='orders', null=True)
+    customer = models.ForeignKey(UserProfile, related_name='orders', null=True)
+    receiver = models.CharField(max_length=30, null=True)
     order_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField(default=0)
     note = models.TextField(default='')
@@ -24,7 +27,8 @@ class Order(models.Model):
                               choices=STATUS_CHOICES,
                               default=WAITING)
     phone = models.CharField(max_length=16)
-    shipping_address = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    # email = models.EmailField()
     city = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
 

@@ -87,3 +87,12 @@ body {
     background-color: white;
     border-color: #8F0047;
 }
+
+.item_icon {
+    height: 70px;
+    width: auto;
+}
+
+.delete-col-height {
+    height: 87px
+}
