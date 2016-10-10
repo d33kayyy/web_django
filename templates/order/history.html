@@ -1,0 +1,213 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cart_tags %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Lịch sử mua hàng
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order/order_history.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for order in object_list %}
+            <p>id = {{ order.id }}</p>
+            <p>total = {{ order.get_total_price }}</p>
+            <p>status = {{ order.status }}</p>
+            <p>date = {{ order.order_date }}</p>
+            <p>items: </p>
+            <ul>
+                {% for i in order.items.all %}
+                    <li>{{ i.item.name }} - {{ i.quantity }} - {{ i.get_subtotal }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% include 'layout/profile_panel_snippet.html' with user=user %}
+
+            <div class="accordion col-md-9">
+                <!-- Succeed Form //-->
+                <div class="row succeed_form">
+                    <div class="col-md-7">
+                        <div class="row tab">
+                            <table class="table">
+                                <thead class="tab_name">
+                                <tr>
+                                    <th>Status: <span class="text-success">Succeed</span></th>
+                                    <th></th>
+                                    <th style="text-align: right; font-weight: bold">12/06/2016</th>
+                                    <th style="text-align: right; font-weight: bold">#D38AM12</th>
+                                </tr>
+                                </thead>
+                                <tbody class="borderless tab_body">
+                                <tr>
+                                    <td><a href="item.html"><img class="food_img" src="../img/lasagna1.jpg"/></a></td>
+                                    <td><a href="item.html">Bánh kem Gato</a></td>
+                                    <td>1</td>
+                                    <td class="price text-right">125,000 VND</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="item.html"><img class="food_img" src="../img/lasagna1.jpg"/></a></td>
+                                    <td><a href="item.html">Bánh kem Gato</a></td>
+                                    <td>1</td>
+                                    <td class="price text-right">125,000 VND</td>
+                                </tr>
+                                <tr class="transport">
+                                    <td>Phí vận chuyển</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="price text-right">15,000 VND</td>
+                                </tr>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-right" style="font-weight: bold">Tổng: 150,000 VND</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row tab_info">
+                            <div>
+                                <table class="table">
+                                    <thead class="order_info">
+                                    <tr>
+                                        <th class="order_info_header" style="font-weight: bolder">Chi tiết đơn hàng</th>
+                                    </tr>
+                                    </thead>
+                                    <table class="table">
+                                        <tbody class="tab_body">
+                                        <tr>
+                                            <td>Người nhận</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Thời gian đặt</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Điện thoại</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Địa chỉ</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Note</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fail Form //-->
+                <div class="row fail_form">
+                    <div class="col-md-7">
+                        <div class="row tab">
+                            <div>
+                                <table class="table">
+                                    <thead class="tab_name">
+                                    <tr>
+                                        <th class="status_fail">Failed</th>
+                                        <th></th>
+                                        <th class="date_order_num">12/06/2016</th>
+                                        <th class="date_order_num">#D38AM12</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="borderless tab_body">
+                                    <tr>
+                                        <td><a href="item.html"><img class="food_img" src="../img/lasagna1.jpg"/></a>
+                                        </td>
+                                        <td><a href="item.html">Bánh kem Gato</a></td>
+                                        <td>1</td>
+                                        <td class="price text-right">125,000 VND</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="item.html"><img class="food_img" src="../img/lasagna1.jpg"/></a>
+                                        </td>
+                                        <td><a href="item.html">Bánh kem Gato</a></td>
+                                        <td>1</td>
+                                        <td class="price text-right">125,000 VND</td>
+                                    </tr>
+                                    <tr class="transport">
+                                        <td>Phí vận chuyển</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="price text-right">15,000 VND</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-right" style="font-weight: bold">Tổng: 150,000 VND</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row tab_info">
+                            <div>
+                                <table class="table">
+                                    <thead class="order_info">
+                                    <tr>
+                                        <th class="order_info_header" style="font-weight: bolder">Chi tiết đơn hàng</th>
+                                    </tr>
+                                    </thead>
+                                    <table class="table">
+                                        <tbody class="tab_body">
+                                        <tr>
+                                            <td>Người nhận</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Thời gian đặt</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Điện thoại</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Địa chỉ</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Note</td>
+                                            <td class="name">Người nhận</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center" style="margin-top: 10px">
+                <!--<div class="col-md-9 text-center" style="margin-top: 10px" >-->
+                <button class="button">More</button>
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}

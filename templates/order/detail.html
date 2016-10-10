@@ -1,0 +1,33 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cart_tags %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Đơn hàng {{ order.id }}
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container wrapper">
+        <div class="row">
+            <div class="card card-1">
+                <p>{{ order.id }}</p>
+                <p>{{ order.receiver }}</p>
+                <p>{{ order.order_date }}</p>
+                <p>{{ order.get_status_display }}</p>
+                <p>{{ order.address }}, Quận {{ order.district }}, {{ order.city }}</p>
+
+                <hr>
+                {% for item in items %}
+                    <p>{{ item.item.name }}</p>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

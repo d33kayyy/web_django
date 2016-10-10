@@ -32,6 +32,12 @@ class Order(models.Model):
     city = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
 
+    def __str__(self):
+        return str(self.pk)
+
+    def __unicode__(self):
+        return "{}".format(str(self.pk))
+
     def get_total_price(self):
         total_price = 0
         items = self.items.all()
@@ -51,3 +57,9 @@ class ItemOrder(models.Model):
 
     def get_subtotal(self):
         return self.item.price * self.quantity
+
+    def __str__(self):
+        return self.item.name
+
+    def __unicode__(self):
+        return "{}".format(self.item.name)

@@ -2,6 +2,7 @@ import os
 
 import itertools
 from django.conf import settings
+from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -26,7 +27,7 @@ class UserProfile(models.Model):
     birthday = models.DateField(null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     phone = PhoneNumberField(null=True, blank=True)
-    address = models.TextField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True, max_length=100)
     # city = models.CharField(max_length=30)
     # district = models.CharField(max_length=30)
     info = models.TextField(null=True, blank=True)
@@ -35,6 +36,7 @@ class UserProfile(models.Model):
     avatar_link = models.URLField(default='')
     last_update = models.DateTimeField(null=True)
     slug = models.SlugField(unique=True, max_length=100)
+    allergy = models.TextField(null=True, blank=True, max_length=100)
 
     def __unicode__(self):
         return "{}'s profile".format(self.user.username)
@@ -81,10 +83,10 @@ class UserProfile(models.Model):
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
-# class PhoneModel(models.Model):
-#     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-#                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-#     phone_number = models.CharField(max_length=16, validators=[phone_regex], blank=True, null=True)  # validators should be a list
+class PhoneModel(models.Model):
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone_number = models.CharField(max_length=16, validators=[phone_regex], blank=True, null=True)  # validators should be a list
 
 # class Address(models.Model):
 #     profile = models.ForeignKey(UserProfile, related_name='addresses')

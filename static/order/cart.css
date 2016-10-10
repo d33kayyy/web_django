@@ -1,0 +1,66 @@
+.border {
+    border: 1px solid #9B9B9B;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.next_button {
+    width: 100%;
+}
+
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 5px 40px;
+}
+
+/* The controlsy */
+.carousel-control {
+    left: -12px;
+    height: 40px;
+    width: 40px;
+    background: 0 0 #222222;
+    border: 4px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    margin-top: 90px;
+}
+
+.carousel-control.right {
+    right: -12px;
+}
+
+/* The indicators */
+.carousel-indicators {
+    right: 50%;
+    top: auto;
+    bottom: -10px;
+    margin-right: -19px;
+}
+
+/* The colour of the indicators */
+.carousel-indicators li {
+    background: #cecece;
+}
+
+.carousel-indicators .active {
+    background: #428bca;
+}
+
+/* New */
+body {
+    background: #e8e7e6;
+}
+
+.table tbody > tr > td.vert-align {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}
+
+.item_icon {
+    height: 70px;
+    width: auto;
+}
+
+.delete-col-height {
+    height: 87px
+}

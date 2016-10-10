@@ -1,0 +1,41 @@
+.fb {
+    background-color: #3B5897;
+    border: none;
+    text-transform: none;
+}
+
+.fb:hover {
+    background-color: #5885e1;
+    color: white;
+    border: none;
+    text-transform: none;
+}
+
+.gg {
+    background-color: #DF4A32;
+    border: none;
+    text-transform: none;
+}
+
+.gg:hover {
+    background-color: #ff5439;
+    color: white;
+    border: none;
+    text-transform: none;
+}
+
+div {
+    border: 0 solid;
+}
+
+.signup {
+    color: #8F0047;
+    font-size: medium;
+    text-align: center;
+}
+
+.link-center {
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+}

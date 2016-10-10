@@ -1,0 +1,164 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cart_tags %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Giỏ hàng
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container wrapper">
+        {% if not cart %}
+            Chưa có món ăn nào trong giỏ hàng
+        {% else %}
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card card-1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Đồ Thêm</h4>
+                                <div id="Carousel" class="carousel slide">
+
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+
+                                        <div class="item active">
+                                            <div class="row">
+                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                        src="../img/coca.jpg"
+                                                        alt="Image"
+                                                        style="max-width:100%;"></a>
+                                                </div>
+                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                        src="../img/pepsi.jpg"
+                                                        alt="Image"
+                                                        style="max-width:100%;"></a>
+                                                </div>
+                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                        src="../img/sprite.jpg"
+                                                        alt="Image"
+                                                        style="max-width:100%;"></a>
+                                                </div>
+                                            </div><!--.row-->
+                                        </div><!--.item-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {#                <div class="panel-body border">#}
+                    <div class="card card-1">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+
+                                    <table class="table">
+                                        <thead align="center">
+                                        <tr>
+                                            <td class="col-md-1 ">&nbsp;</td>
+                                            <td class="col-md-3"><h4>Product</h4></td>
+                                            <td class="col-md-2"><h4>Price</h4></td>
+                                            <td class="col-md-2"><h4>Quantity</h4></td>
+                                            <td class="col-md-2"><h4>Total</h4></td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{ form.management_form }}
+                                        {% for field in form %}
+                                            <tr>
+                                                {% get_item field.item_id.value as item %}
+                                                {% get_subtotal field.item_id.value as sub_total %}
+                                                <input type="hidden"
+                                                       name="form-{{ forloop.counter0 }}-{{ field.item_id.name }}"
+                                                       value="{{ field.item_id.value }}"/>
+
+
+                                                <td class="col-md-2 vert-align">
+                                                    <a href="{% url 'item:detail' item.slug %}">
+                                                        <img src="{{ item.get_primary_image }}"
+                                                             class="img-responsive item_icon" alt="item_image">
+                                                    </a>
+                                                </td>
+
+                                                <td class="col-md-3 vert-align">
+                                                    <a href="{% url 'item:detail' item.slug %}">
+                                                        <h4>{{ item.name|truncatechars:'20' }}</h4></a>
+                                                </td>
+
+                                                <td class="col-md-2 vert-align">
+                                                    <span>{{ item.price|intcomma }}</span>
+                                                </td>
+
+                                                <td class="col-md-2 vert-align">
+                                                    <div>
+                                                        <input name="form-{{ forloop.counter0 }}-{{ field.quantity.name }}"
+                                                               step="1" min="1" value="{{ field.quantity.value }}"
+                                                               title="Qty"
+                                                               class="form-control input-sm" size="4" type="number">
+                                                    </div>
+                                                </td>
+
+                                                <td class="col-md-2 vert-align">
+                                                    <span class="amount">{{ sub_total|intcomma }}</span>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td colspan="6"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <input class="custom_btn pull-right" name="update" value="Update Cart"
+                                           type="submit">
+                                    <input class="custom_btn pull-left" name="checkout" value="Check out"
+                                           type="submit">
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <table class="table">
+                                    <thead align="center">
+                                    <tr>
+                                        <td><h4>&nbsp;</h4></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for field in form %}
+                                        <tr class="delete-col-height">
+                                            <td class="vert-align">
+                                                <form id="f-{{ field.item_id.value }}" method="POST"
+                                                      action="{% url 'cart:remove' %}">
+                                                    {% csrf_token %}
+                                                    <input id="item_id-{{ field.item_id.value }}" name="item_id"
+                                                           type="hidden"
+                                                           value="{{ field.item_id.value }}">
+                                                    <button
+                                                            onclick="document.forms['f-{{ field.item_id.value }}'].submit(); return false;">
+                                                        <span class="glyphicon glyphicon-trash"> </span>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% include "cart/price_panel.html" %}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

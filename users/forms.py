@@ -62,13 +62,14 @@ DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['birthday', 'gender', 'email', 'phone', 'address']
+        fields = ['birthday', 'gender', 'email', 'phone', 'address', 'allergy']
         widgets = {
             # 'gender': forms.Select,
             # 'birthday': DateInput(),
             'birthday': forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES),
-            'address': forms.Textarea(attrs={'rows': 2})
+            'address': forms.Textarea(attrs={'rows': 2}),
             # 'point': forms.TextInput,
+            'allergy': forms.Textarea(attrs={'rows': 2})
         }
         labels = {
             # 'name': _('Họ và tên'),
@@ -76,6 +77,7 @@ class UserProfileForm(forms.ModelForm):
             'gender': _('Giới tính'),
             'phone': _('Số điện thoại'),
             'address': _('Địa chỉ'),
+            'allergy': _('Tiền sử dị ứng'),
             # 'point': _('Điểm tích lũy'),
         }
 
