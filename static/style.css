@@ -1,12 +1,9 @@
-
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding-top: 80px;
+    padding-top: 70px;
     background-color: #F8F4F4;
 }
-
-
 
 #aa {
     margin-right: 2rem;
@@ -29,19 +26,9 @@ body {
 }
 
 .custom_btn:hover {
-    color: #8F0047;
-    background-color: white;
-    border-color: #8F0047;
-}
-
-.btn_white {
-    color: #8F0047;
-    background-color: white;
-}
-
-.btn_white:hover {
     color: white;
-    background-color: #8F0047;
+    background-color: #bf005a;
+    border-color: #bf005a;
 }
 
 .btn_wide {

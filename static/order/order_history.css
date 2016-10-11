@@ -1,76 +1,8 @@
-#user_img {
-    height: 150px;
-    width: 150px;
-    padding: 10px;
-}
-
-#user_name {
-    color: black;
-}
-
-.button {
+#button {
     width: 100px;
     height: 30px;
     font-size: 15px;
-    color: white;
-    background-color: #8F0047;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #8F0047;
-    border-radius: 30px;
-    font-family: "roboto", sans-serif;
-    font-weight: lighter;
-    margin-left: 50px;
-    text-transform: uppercase;
-}
-
-.button:hover {
-    width: 100px;
-    height: 30px;
-    font-size: 15px;
-    color: white;
-    background-color: #bf005a;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #bf005a;
-    border-radius: 30px;
-    font-family: "roboto", sans-serif;
-    font-weight: lighter;
-    margin-left: 50px;
-    text-align: center;
-}
-
-.button_profile {
-    width: 100%;
-    height: 45px;
-    color: black;
-    background-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-color: lightgrey;
-    font-weight: normal;
-    text-align: left;
-    padding-left: 70px;
-}
-.button_profile:hover{
-    width: 100%;
-    height: 45px;
-    color: #8F0047;
-    background-color: white;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #8F0047;
-    font-weight: normal;
-}
-
-.slidebar {
-    border: 1px solid;
-    border-color: lightgray;
-    height: 100%;
-}
-
-label {
-    margin-top: 10px;
+    padding: 0;
 }
 
 .tab_name {
@@ -88,9 +20,11 @@ label {
     background-color: white;
     color: black;
 }
+
 .order_info_header {
     font-weight: bolder;
 }
+
 .order_info {
     background-color: white;
     color: black;
@@ -140,34 +74,34 @@ label {
 
 .succeed_form {
     border: 1px solid #CCCCCC;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     margin-left: 5px;
     font-weight: normal;
+    background-color: white;
 }
 
-.fail_form {
-    border: 1px solid #CCCCCC;
-    margin: 0px;
-    padding: 0px;
-    margin-left: 5px;
-    font-weight: normal;
-    margin-top: 10px;
-}
-
-.name {
-    text-align: right;
-    color: #CCCCCC;
-}
+/*.name {*/
+/*text-align: right;*/
+/*color: #CCCCCC;*/
+/*}*/
 
 .date_order_num {
-    text-align: right; font-weight: bold;
+    text-align: right;
+    font-weight: bold;
 }
 
 .status_fail {
     background-color: #D0021B;
     color: white
 }
+
 /*td {*/
 /*border: 1px solid;*/
 /*}*/
+
+.table tbody > tr > td.vert-align {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}

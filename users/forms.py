@@ -69,7 +69,7 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             # 'gender': forms.Select,
             # 'birthday': DateInput(),
-            'birthday': forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES),
+            # 'birthday': forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES),
             'address': forms.Textarea(attrs={'rows': 1}),
             # 'point': forms.TextInput,
             'allergy': forms.Textarea(attrs={'rows': 1})
