@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from functools import partial
 
@@ -69,9 +70,9 @@ class UserProfileForm(forms.ModelForm):
             # 'gender': forms.Select,
             # 'birthday': DateInput(),
             'birthday': forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES),
-            'address': forms.Textarea(attrs={'rows': 2}),
+            'address': forms.Textarea(attrs={'rows': 1}),
             # 'point': forms.TextInput,
-            'allergy': forms.Textarea(attrs={'rows': 2})
+            'allergy': forms.Textarea(attrs={'rows': 1})
         }
         labels = {
             # 'name': _('Họ và tên'),

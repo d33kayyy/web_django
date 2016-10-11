@@ -3,27 +3,10 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding-top: 80px;
+    background-color: #F8F4F4;
 }
 
-/*.wrapper { !* wrapper container *!*/
-    /*min-height: 100%;*/
-    /*margin: 0 auto -81px;*/
-/*}*/
 
-/*#footer, .push { !* footer stay at the end of the screen, not fixed*!*/
-    /*height: 81px;*/
-    /*text-align: center;*/
-/*}*/
-
-.avatar {
-    /*-webkit-border-radius: 50%;*/
-    /*-moz-border-radius: 50%;*/
-    /*border-radius: 50%;*/
-
-    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
-    box-shadow: 0 0 0 3px #fff, 0 0 0 3px #fff, 0 2px 5px 4px rgba(0, 0, 0, .2);
-}
 
 #aa {
     margin-right: 2rem;
