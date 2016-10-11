@@ -122,3 +122,7 @@
     font-family: Avenir Next;
     font-weight: bolder;
 }
+
+body{
+    padding-bottom: 60px;
+}
