@@ -109,11 +109,11 @@
                                         <option value="26">Vĩnh Phúc</option>
                                         <option value="15">Yên Bái</option>
                                     </select>
-                                    </select>
+
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Quận</label>
-                                    <select class="form-control">
+                                    <label for="id_district">Quận</label>
+                                    <select id="id_district" name="district" class="form-control">
                                         <option>Q1</option>
                                         <option>Q2</option>
                                         <option>Q3</option>
@@ -137,7 +137,10 @@
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="{{ form.birthday.id_for_label }}">{{ form.birthday.label }}</label>
-                                <input id="id_birthday_month" name="birthday_month" type="date" class="form-control" placeholder="01/01/19xx ">
+{#                                <input id="id_birthday_month" name="birthday_month" type="date" class="form-control" placeholder="01/01/19xx ">#}
+                                <div id="birthday">
+                                    {% render_field form.birthday %}
+                                </div>
                             </div>
 
                             <div class="form-group">

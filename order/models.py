@@ -7,12 +7,12 @@ from users.models import UserProfile
 
 # Create your models here.
 class Order(models.Model):
-    WAITING = 'WA'
+    PROCESSING = 'PR'
     COOKING = 'CO'
     DELIVERING = 'DE'
     FINISH = 'FI'
     CANCEL = 'CA'
-    STATUS_CHOICES = ((WAITING, 'Waiting'),
+    STATUS_CHOICES = ((PROCESSING, 'Processing'),
                       (COOKING, 'Cooking'),
                       (DELIVERING, 'Delivering'),
                       (FINISH, 'Finished'),
@@ -22,15 +22,16 @@ class Order(models.Model):
     receiver = models.CharField(max_length=30, null=True)
     order_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField(default=0)
-    note = models.TextField(default='')
+    note = models.TextField(default='', null=True, blank=True)
     status = models.CharField(max_length=2,
                               choices=STATUS_CHOICES,
-                              default=WAITING)
+                              default=PROCESSING)
     phone = models.CharField(max_length=16)
     address = models.CharField(max_length=100)
     # email = models.EmailField()
     city = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
+    shipping = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return str(self.pk)

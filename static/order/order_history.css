@@ -1,107 +1,75 @@
-#button {
-    width: 100px;
-    height: 30px;
-    font-size: 15px;
-    padding: 0;
-}
-
-.tab_name {
-    background-color: white;
-    font-weight: bold;
-    border-bottom: 1px solid;
-    border-color: lightgray;
-    /*border: 1px solid #CCCCCC;*/
-    border-left: none;
-    border-top: none;
-
-}
-
-.tab_body {
-    background-color: white;
-    color: black;
-}
-
-.order_info_header {
-    font-weight: bolder;
-}
-
-.order_info {
-    background-color: white;
-    color: black;
-    border-bottom: 1px solid;
-    border-color: lightgray;
-    /*border: 1px solid #CCCCCC;*/
-    border-left: none;
-    border-top: none;
-}
-
-.table th, .table td {
-    border-top: none !important;
-    border-left: none !important;
-    border-bottom: none !important;;
-}
-
-.table th {
-    text-align: center;
-    font-weight: normal;
-}
-
-.fixed-table-container {
-    border: 0px;
-}
-
-.tab {
-    border-top: none;
-    border-right: 1px solid #CCCCCC;
-
-}
-
-.tab_info {
-    /*border: 1px solid #CCCCCC;*/
-    border-left: none;
-    border-top: none;
-}
-
-.food_img {
-    width: 122px;
-    height: 81px;
-
-}
-
-.transport {
-    border-top: 1px solid #CCCCCC;
-}
-
-.succeed_form {
+.style_row {
     border: 1px solid #CCCCCC;
-    margin: 0;
-    padding: 0;
     margin-left: 5px;
-    font-weight: normal;
     background-color: white;
+    margin-bottom: 15px;
 }
-
-/*.name {*/
-/*text-align: right;*/
-/*color: #CCCCCC;*/
-/*}*/
-
-.date_order_num {
-    text-align: right;
-    font-weight: bold;
-}
-
-.status_fail {
-    background-color: #D0021B;
-    color: white
-}
-
-/*td {*/
-/*border: 1px solid;*/
-/*}*/
 
 .table tbody > tr > td.vert-align {
     vertical-align: middle;
-    text-align: center;
-    font-weight: bold;
 }
+
+/*.table_order .table th,*/
+/*.table_order .table td {*/
+/*border-top: none !important;*/
+/*border-left: none !important;*/
+/*border-bottom: none !important;;*/
+/*}*/
+
+.table_order {
+    font-family: 'Open Sans', sans-serif;
+    border-right: 1px solid #ddd;
+}
+
+.table_info {
+    font-family: 'Open Sans', sans-serif;
+    border-left: 1px solid #ddd;
+}
+
+/* Order table */
+.status_failed {
+    background-color: #e40037;
+    color: white
+}
+
+.status_succeed {
+    background-color: #00e461;
+    color: white
+}
+
+.status_processing {
+    background-color: #0098e4;
+    color: white
+}
+
+.item_row {
+    height: 70px
+}
+
+.food_img {
+    max-height: 60px;
+}
+
+.transport {
+    border-top: 2px solid #ddd;
+}
+
+.table_order .table tr.total td { /* remove border of total line*/
+    border-top: 0;
+}
+
+/* Info table */
+.info_text {
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    color: darkgrey;
+}
+
+#button {
+    width: 100px;
+    height: 30px;
+    padding: 0;
+}
+
+/*table, th, td {*/
+/*border: 1px solid black;*/
+/*}*/

@@ -11,7 +11,7 @@ from phonenumber_field.formfields import PhoneNumberField
 
 from .models import UserProfile
 
-BIRTH_YEAR_CHOICES = [x for x in range(1900, 2016, 1)]
+BIRTH_YEAR_CHOICES = [x for x in range(1960, 2016, 1)]
 
 
 class SignupForm(forms.Form):
@@ -59,7 +59,10 @@ class SignupForm(forms.Form):
         return password2
 
 
-DateInput = partial(forms.DateInput, {'class': 'datepicker'})
+# DateInput = partial(forms.DateInput, {'class': 'datepicker'})
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class UserProfileForm(forms.ModelForm):
@@ -69,7 +72,7 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             # 'gender': forms.Select,
             # 'birthday': DateInput(),
-            # 'birthday': forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES),
+            'birthday': forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES),
             'address': forms.Textarea(attrs={'rows': 1}),
             # 'point': forms.TextInput,
             'allergy': forms.Textarea(attrs={'rows': 1})
