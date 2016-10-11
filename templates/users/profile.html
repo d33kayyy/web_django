@@ -22,7 +22,7 @@
         <div class="row">
             {% include 'layout/profile_panel_snippet.html' with user=user %}
 
-            <div class="col-md-9">
+            <div class="col-md-8 user_info">
                 <form method="POST">
                     {% csrf_token %}
                     <div id="left-side" class="row">
@@ -39,10 +39,10 @@
                                 <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
                                 {% render_field form.address class+="form-control" %}
                             </div>
-
-                             <div class="form-group col-md-4">
-                                    <label for="id_city">Tỉnh/Thành Phố</label>
-                                    <select id="id_city" name="city" class="form-control">
+                            <div class="row form-group">
+                                <div class="col-md-4">
+                                    <label>Tỉnh/Thành Phố</label>
+                                    <select class="form-control">
                                         <option value="1">Hà Nội</option>
                                         <option value="79">Hồ Chí Minh</option>
                                         <option value="89">An Giang</option>
@@ -109,9 +109,9 @@
                                     </select>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="id_district">Quận</label>
-                                    <select id="id_district" name="district" class="form-control">
+                                <div class="col-md-4">
+                                    <label>Quận</label>
+                                    <select class="form-control">
                                         <option>Q1</option>
                                         <option>Q2</option>
                                         <option>Q3</option>
@@ -119,19 +119,23 @@
                                         <option>Q5</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="col-md-4">
                                     <label>Xã</label>
-                                    <input class="form-control">
+                                    <select class="form-control">
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
+                                    </select>
                                 </div>
+                            </div>
 
                         </div>
 
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="{{ form.birthday.id_for_label }}">{{ form.birthday.label }}</label>
-                                <div id="birthday">
-                                    {% render_field form.birthday %}
-                                </div>
+                                <input id="id_birthday_month" name="birthday_month" type="date" class="form-control" placeholder="01/01/19xx ">
                             </div>
 
                             <div class="form-group">
