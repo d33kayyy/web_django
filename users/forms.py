@@ -1,4 +1,6 @@
+from __future__ import unicode_literals
 from functools import partial
+
 
 from django import forms
 from django.contrib.auth.models import User
@@ -12,12 +14,12 @@ BIRTH_YEAR_CHOICES = [x for x in range(1900, 2016, 1)]
 
 
 class SignupForm(forms.Form):
-    last_name = forms.CharField(max_length=30, label=_('Họ'))
-    first_name = forms.CharField(max_length=30, label=_('Tên'))
-    phone = PhoneNumberField(label=_("Điện thoại"))
-    email = forms.EmailField(label=_("Email"))
-    password1 = forms.CharField(max_length=16, label=_("Mật khẩu"), widget=forms.PasswordInput)
-    password2 = forms.CharField(max_length=16, label=_("Nhập lại mật khẩu"), widget=forms.PasswordInput)
+    last_name = forms.CharField(max_length=30, label=_(u'Họ'))
+    first_name = forms.CharField(max_length=30, label=_(u'Tên'))
+    phone = PhoneNumberField(label=_(u"Điện thoại"))
+    email = forms.EmailField(label=_(u"Email"))
+    password1 = forms.CharField(max_length=16, label=_(u"Mật khẩu"), widget=forms.PasswordInput)
+    password2 = forms.CharField(max_length=16, label=_(u"Nhập lại mật khẩu"), widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -28,9 +30,9 @@ class SignupForm(forms.Form):
             'password2': forms.PasswordInput
         }
         labels = {
-            'password1': _("Mật khẩu"),
-            'password2': _("Nhập lại mật khẩu"),
-            'email': _("Email")
+            'password1': _(u"Mật khẩu"),
+            'password2': _(u"Nhập lại mật khẩu"),
+            'email': _(u"Email")
         }
 
     def signup(self, request, user):
@@ -73,11 +75,11 @@ class UserProfileForm(forms.ModelForm):
         }
         labels = {
             # 'name': _('Họ và tên'),
-            'birthday': _('Ngày sinh'),
-            'gender': _('Giới tính'),
-            'phone': _('Số điện thoại'),
-            'address': _('Địa chỉ'),
-            'allergy': _('Tiền sử dị ứng'),
+            'birthday': _(u'Ngày sinh'),
+            'gender': _(u'Giới tính'),
+            'phone': _(u'Số điện thoại'),
+            'address': _(u'Địa chỉ'),
+            'allergy': _(u'Tiền sử dị ứng'),
             # 'point': _('Điểm tích lũy'),
         }
 

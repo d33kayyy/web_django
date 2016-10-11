@@ -18,9 +18,10 @@ class UserProfile(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
+    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', message='Tên không được chứa các kí tự đặc biệt')
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile')
-    name = models.CharField(max_length=30, default='users')
+    name = models.CharField(max_length=30, default='users', validators=(alphanumeric,))
     avatar = models.ImageField(upload_to='uploads/%Y/%m/%d', blank=True, null=True,
                                default=os.path.join(settings.STATIC_URL, "images/default-avatar.png"))
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
@@ -83,10 +84,10 @@ class UserProfile(models.Model):
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
-class PhoneModel(models.Model):
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(max_length=16, validators=[phone_regex], blank=True, null=True)  # validators should be a list
+# class PhoneModel(models.Model):
+#     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+#                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+#     phone_number = models.CharField(max_length=16, validators=[phone_regex], blank=True, null=True)  # validators should be a list
 
 # class Address(models.Model):
 #     profile = models.ForeignKey(UserProfile, related_name='addresses')
