@@ -21,14 +21,13 @@
 
 .button_profile:hover {
     color: #8F0047;
-    border-width: 2px;
-    border-color: #8F0047;
-    border-style: solid;
+    border: 2px solid #8F0047;
 }
 
 .slidebar {
     background-color: white;
-    height: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 .user_info {

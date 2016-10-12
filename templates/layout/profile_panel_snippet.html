@@ -1,44 +1,46 @@
 {% load static %}
 
-<div class="col-md-3" style="margin-bottom: 1em">
-    <div class="row text-center slidebar">
-        {% if user.profile.avatar %}
-            <img class="avatar img-circle" src="{{ user.profile.avatar.url }}" alt="avatar"/>
-        {% else %}
-            <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
-        {% endif %}
+<div class="col-md-3">
+    <div class="row text-center">
+        <div class="card card-1">
+            {% if user.profile.avatar %}
+                <img class="avatar img-circle" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+            {% else %}
+                <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
+            {% endif %}
 
-        <h4 id="user_name">{{ user.profile.name }}</h4>
-        <hr>
-        <div>
-            <a href="{% url 'order:list' %}">
-                <button class="button_profile"><i class="fa fa-history"></i> Lịch sử mua hàng</button>
-            </a>
-        </div>
-        <div>
-            <a href="{% url 'profile' %}">
-                <button class="button_profile"><i class="fa fa-user"></i> Profile</button>
-            </a>
-        </div>
-        <div>
-            <a href="reset_pw.html">
-                <button class="button_profile"><i class="fa fa-cog"></i> Thay đổi mật khẩu</button>
-            </a>
-        </div>
-        <div>
-            <a href="noti.html">
-                <button class="button_profile"><i class="fa fa-comment-o"></i> Thông báo</button>
-            </a>
-        </div>
-        <div>
-            <a href="review.html">
-                <button class="button_profile"><i class="fa fa-thumbs-up"></i> Đánh giá sản phẩm</button>
-            </a>
-        </div>
-        <div>
-            <a href="foodcoins.html">
-                <button class="button_profile"><i class="fa fa-money"></i> Food Coin</button>
-            </a>
+            <h4 id="user_name">{{ user.profile.name }}</h4>
+            <hr>
+            <div>
+                <a href="{% url 'order:list' %}">
+                    <button class="button_profile"><i class="fa fa-history"></i> Lịch sử mua hàng</button>
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'profile' %}">
+                    <button class="button_profile"><i class="fa fa-user"></i> Profile</button>
+                </a>
+            </div>
+            <div>
+                <a href="reset_pw.html">
+                    <button class="button_profile"><i class="fa fa-cog"></i> Thay đổi mật khẩu</button>
+                </a>
+            </div>
+            <div>
+                <a href="noti.html">
+                    <button class="button_profile"><i class="fa fa-comment-o"></i> Thông báo</button>
+                </a>
+            </div>
+            <div>
+                <a href="review.html">
+                    <button class="button_profile"><i class="fa fa-thumbs-up"></i> Đánh giá sản phẩm</button>
+                </a>
+            </div>
+            <div>
+                <a href="foodcoins.html">
+                    <button class="button_profile"><i class="fa fa-money"></i> Food Coin</button>
+                </a>
+            </div>
         </div>
     </div>
 </div>

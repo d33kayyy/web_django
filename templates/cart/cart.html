@@ -21,55 +21,49 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card card-1">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4>Đồ Thêm</h4>
-                                <div id="Carousel" class="carousel slide">
+                        <h4>Đồ Thêm</h4>
+                        <div id="Carousel" class="carousel slide">
 
-                                    <!-- Carousel items -->
-                                    <div class="carousel-inner">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
 
-                                        <div class="item active">
-                                            <div class="row">
-                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
-                                                        src="../img/coca.jpg"
-                                                        alt="Image"
-                                                        style="max-width:100%;"></a>
-                                                </div>
-                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
-                                                        src="../img/pepsi.jpg"
-                                                        alt="Image"
-                                                        style="max-width:100%;"></a>
-                                                </div>
-                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
-                                                        src="../img/sprite.jpg"
-                                                        alt="Image"
-                                                        style="max-width:100%;"></a>
-                                                </div>
-                                            </div><!--.row-->
-                                        </div><!--.item-->
-
+                                <div class="item active">
+                                    <div class="row">
+                                        <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                src="../img/coca.jpg"
+                                                alt="Image"
+                                                style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                src="../img/pepsi.jpg"
+                                                alt="Image"
+                                                style="max-width:100%;"></a>
+                                        </div>
+                                        <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                src="../img/sprite.jpg"
+                                                alt="Image"
+                                                style="max-width:100%;"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {#                <div class="panel-body border">#}
                     <div class="card card-1">
                         <div class="row">
                             <div class="col-md-10 col-xs-10">
-                                <form action="" method="POST">
+                                <form id="cart_form" action="" method="POST">
                                     {% csrf_token %}
 
                                     <table class="table">
                                         <thead align="center">
                                         <tr>
                                             <td class="col-md-1 ">&nbsp;</td>
-                                            <td class="col-md-3"><h4>Product</h4></td>
-                                            <td class="col-md-2"><h4>Price</h4></td>
-                                            <td class="col-md-2"><h4>Quantity</h4></td>
-                                            <td class="col-md-2"><h4>Total</h4></td>
+                                            <td class="col-md-3"><h4>Sản phẩm</h4></td>
+                                            <td class="col-md-2"><h4>Đơn giá</h4></td>
+                                            <td class="col-md-2"><h4>Số lượng</h4></td>
+                                            <td class="col-md-2"><h4>Thành tiền</h4></td>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -118,9 +112,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <input class="custom_btn pull-right" name="update" value="Update Cart"
-                                           type="submit">
-                                    <input class="custom_btn pull-left" name="checkout" value="Check out"
+                                    <input class="custom_btn" name="update" value="Update Cart"
                                            type="submit">
                                 </form>
                             </div>
@@ -156,7 +148,15 @@
                     </div>
                 </div>
 
-                {% include "cart/price_panel.html" %}
+                <div class="col-md-4 col-xs-12">
+                    <div class="card card-1">
+                        {% include "cart/price_panel.html" %}
+                        <div class="row text-center margin_top_10">
+                            <input class="custom_btn" name="checkout" value="Tiếp tục"
+                                   type="submit" form="cart_form">
+                        </div>
+                    </div>
+                </div>
             </div>
         {% endif %}
 
