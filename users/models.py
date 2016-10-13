@@ -13,22 +13,22 @@ from django.utils.text import slugify
 
 from phonenumber_field.modelfields import PhoneNumberField
 
+numeric = RegexValidator(r'^[+]?\d{9,15}$', message='Số điện thoại không hợp lệ')
+
 
 class UserProfile(models.Model):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', message='Tên không được chứa các kí tự đặc biệt')
-
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile')
-    name = models.CharField(max_length=30, default='users', validators=(alphanumeric,))
+    name = models.CharField(max_length=30, default='users')
     avatar = models.ImageField(upload_to='uploads/%Y/%m/%d', blank=True, null=True,
                                default=os.path.join(settings.STATIC_URL, "images/default-avatar.png"))
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
     birthday = models.DateField(null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
-    phone = PhoneNumberField(null=True, blank=True)
+    phone = models.CharField(max_length=15, validators=(numeric,), null=True, blank=True)
     address = models.TextField(null=True, blank=True, max_length=100)
     # city = models.CharField(max_length=30)
     # district = models.CharField(max_length=30)

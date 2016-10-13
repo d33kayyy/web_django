@@ -2,22 +2,22 @@
 from __future__ import unicode_literals
 from functools import partial
 
-
 from django import forms
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 
-from phonenumber_field.formfields import PhoneNumberField
-
-from .models import UserProfile
+from .models import UserProfile, numeric
 
 BIRTH_YEAR_CHOICES = [x for x in range(1960, 2016, 1)]
 
 
 class SignupForm(forms.Form):
-    last_name = forms.CharField(max_length=30, label=_(u'Họ'))
-    first_name = forms.CharField(max_length=30, label=_(u'Tên'))
-    phone = PhoneNumberField(label=_(u"Điện thoại"))
+    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', message='Tên không được chứa các kí tự đặc biệt')
+
+    last_name = forms.CharField(max_length=30, label=_(u'Họ'), validators=(alphanumeric,))
+    first_name = forms.CharField(max_length=30, label=_(u'Tên'), validators=(alphanumeric,))
+    phone = forms.CharField(label=_(u"Điện thoại"), min_length=9, max_length=15, validators=(numeric,))
     email = forms.EmailField(label=_(u"Email"))
     password1 = forms.CharField(max_length=16, label=_(u"Mật khẩu"), widget=forms.PasswordInput)
     password2 = forms.CharField(max_length=16, label=_(u"Nhập lại mật khẩu"), widget=forms.PasswordInput)
