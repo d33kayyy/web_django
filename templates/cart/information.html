@@ -86,19 +86,19 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="id_city">Tỉnh/Thành Phố</label>
+                            <div class="form-group col-md-4">
+                                <label for="id_city">Tỉnh/ Thành Phố</label>
                                 <select id="id_city" name="city" class="form-control" required>
                                     <option value=""></option>
-                                    <option value="Sài Gòn">Sài Gòn</option>
-                                    <option value="Hà Nội">Hà Nội</option>
-                                    <option value="Đà Nẵng">Đà Nẵng</option>
-                                    <option value="Hải Phòng">Hải Phòng</option>
-                                    <option value="Nha Trang">Nha Trang</option>
+                                    <option value="Sài Gòn" selected>Sài Gòn</option>
+                                    {#                                    <option value="Hà Nội">Hà Nội</option>#}
+                                    {#                                    <option value="Đà Nẵng">Đà Nẵng</option>#}
+                                    {#                                    <option value="Hải Phòng">Hải Phòng</option>#}
+                                    {#                                    <option value="Nha Trang">Nha Trang</option>#}
                                 </select>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="id_district">Quận</label>
+                            <div class="form-group col-md-4">
+                                <label for="id_district">Quận/ Huyện</label>
                                 <select id="id_district" name="district" class="form-control" required>
                                     <option value=""></option>
                                     <option>1</option>
@@ -107,6 +107,10 @@
                                     <option>7</option>
                                     <option>5</option>
                                 </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="id_ward">Phường/ Xã</label>
+                                <input id="id_ward" name="ward" class="form-control">
                             </div>
                         </div>
 
@@ -128,8 +132,15 @@
             <div class="col-md-4 ">
                 <div class="card card-1">
                     {% include "cart/price_panel.html" %}
-                    <div class="text-center margin_top_10">
-                        <input type="submit" form="info_form" value="Tiếp tục" class="custom_btn">
+                    <div class="row text-center margin_top_10">
+                        <div class="col-md-6">
+                            <form action="{% url 'cart:cart' %}">
+                                <input type="submit" value="Quay lại" class="custom_btn btn_wide">
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" form="info_form" value="Tiếp tục" class="custom_btn btn_wide">
+                        </div>
                     </div>
                 </div>
             </div>
