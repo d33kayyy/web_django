@@ -3,6 +3,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     padding-top: 70px;
     background-color: #F8F4F4;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
 #aa {
