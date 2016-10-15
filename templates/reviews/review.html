@@ -1,0 +1,102 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'reviews/review.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile_panel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'item/rating.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            {% include 'layout/profile_panel_snippet.html' with user=user %}
+
+            <div class="col-md-9">
+                {#                <div class="card card-1">#}
+                <div class="row review_form">
+                    {% for i in item_order %}
+                        <div class="col-md-6">
+                            <div class="card card-1">
+                                <div class="row tab">
+                                    <div class="col-md-4" style="text-align: center">
+                                        <a href="{% url 'item:detail' i.item.slug %}">
+                                            <img class="img-responsive center-block food_img"
+                                                 src="{{ i.item.get_primary_image }}"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="food_name">
+                                                {{ i.item.name }}
+                                            </div>
+                                        </div>
+                                        <div class="row margin_top_10">
+                                            <div class="col-md-1 col-xs-1">
+                                                <a href="{% url 'users:detail' i.item.chef.profile.slug %}">
+                                                    <img class="img-circle user_img                                                                                         "
+                                                         src="{{ i.item.chef.profile.avatar.url }}">
+                                                </a>
+                                            </div>
+                                            <div class="col-md-10 col-xs-8">
+                                                <a href="{% url 'users:detail' i.item.chef.profile.slug %}">
+                                                    <p class="cook_name">{{ i.item.chef.profile.name }}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row margin_top_10">
+                                    <div class="col-xs-12">
+                                        <form id="form-{{ i.item_id }}" method="post"
+                                              action="{% url 'reviews:create' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="item" value="{{ i.item_id }}">
+                                            <input type="hidden" name="item_order_id" value="{{ i.id }}">
+
+                                            <div class="rating">
+                                                <input type="radio" id="star5" name="rating" value="5"/>
+                                                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                <input type="radio" id="star4" name="rating" value="4" checked/>
+                                                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                                <input type="radio" id="star3" name="rating" value="3"/>
+                                                <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                                <input type="radio" id="star2" name="rating" value="2"/>
+                                                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                <input type="radio" id="star1" name="rating" value="1"/>
+                                                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                            </div>
+
+                                            <div class="" style="display: block; width: 100%">
+{#                                                <label for="id_content">Đánh giá của bạn về món ăn này</label>#}
+                                                <textarea id="id_content" name="content" cols="45" rows="8"
+                                                          aria-required="true" class="form-control"></textarea>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row margin_top_10">
+                                    <div class="col-md-3 col-md-offset-9 col-xs-4">
+                                        <button type="submit" form="form-{{ i.item_id }}"
+                                                class="custom_btn btn_wide finish_button">Done
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+                </div>
+                {#                </div>#}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

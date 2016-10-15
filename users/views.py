@@ -1,30 +1,32 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
 from django.views import generic
+from django.utils.translation import ugettext_lazy as _
 
 from item.models import Item
 from users.models import UserProfile
 from .forms import UserProfileForm
 
 
-def cook(request):
-    return render(template_name='cook.html', request=request)
-
-
 class UserProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
+    '''
+    User profile page: /accounts/profile
+    '''
     model = UserProfile
     form_class = UserProfileForm
     template_name = 'users/profile.html'
     success_url = '.'
-    success_message = 'Changes saved.'
+    success_message = _(u'Thay đổi đã được lưu lại.')
 
     def get_object(self, queryset=None):
         return self.request.user.profile
 
 
 class ChefView(generic.DetailView):
+    '''
+    Chef page
+    '''
     model = User
     template_name = 'users/detail.html'
     slug_field = 'slug'

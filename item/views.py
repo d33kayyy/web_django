@@ -14,15 +14,21 @@ from .forms import ItemForm, ImageForm, ImageInlineFormSet
 
 
 class HomePageView(ListView):
+    '''
+    Homepage
+    '''
     template_name = 'index.html'
     context_object_name = 'list_items'
 
     def get_queryset(self):
-        """Return the last five published questions."""
+        """Return all items"""
         return Item.objects.order_by('-pub_date').all()
 
 
 class IndexView(ListView):
+    '''
+    List of all items (possibly for searching)
+    '''
     template_name = 'item/index.html'
     context_object_name = 'list_items'
 
@@ -32,49 +38,26 @@ class IndexView(ListView):
 
 
 class ItemDetailDisplay(DetailView):
+    '''
+    Item detail page
+    '''
     model = Item
     template_name = 'item/detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(ItemDetailDisplay, self).get_context_data(**kwargs)
-        context['form'] = ReviewForm()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(ItemDetailDisplay, self).get_context_data(**kwargs)
+    #     context['form'] = ReviewForm()
+    #     return context
 
 
-class ItemReview(SingleObjectMixin, FormView):
-    template_name = 'item/detail.html'
-    form_class = ReviewForm
-    model = Item
-
-    def post(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            raise PermissionDenied
-        self.object = self.get_object()
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        review = form.save(commit=False)
-        review.item = self.get_object()
-        review.reviewer = self.request.user.profile
-        review.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-    def get_success_url(self):
-        return reverse('item:detail', kwargs={'slug': self.object.slug})
-
-
-class ItemDetailView(View):
-    def get(self, request, *args, **kwargs):
-        view = ItemDetailDisplay.as_view()
-        return view(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        view = ItemReview.as_view()
-        return view(request, *args, **kwargs)
+# class ItemDetailView(View):
+#     def get(self, request, *args, **kwargs):
+#         view = ItemDetailDisplay.as_view()
+#         return view(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         view = ItemReview.as_view()
+#         return view(request, *args, **kwargs)
 
 
 def cook(request):
@@ -83,6 +66,9 @@ def cook(request):
 
 @login_required
 def create_item(request):
+    '''
+    Create item page for chef
+    '''
     ImageFormSet = modelformset_factory(Images, form=ImageForm, extra=3, max_num=3)
 
     if request.method == 'POST':
@@ -115,6 +101,9 @@ def create_item(request):
 
 @login_required
 def edit_item(request, slug):
+    '''
+    Edit item page
+    '''
     item = get_object_or_404(Item, slug=slug)
 
     if item.chef != request.user:
@@ -145,6 +134,9 @@ def edit_item(request, slug):
 
 @login_required
 def delete_item(request, slug):
+    '''
+    Delete item handler
+    '''
     item = get_object_or_404(Item, slug=slug)
 
     if item.chef != request.user:

@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
     # Tweak the form field rendering in templates
     'widget_tweaks',
-    # 'bootstrapform',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -92,14 +92,14 @@ WSGI_APPLICATION = 'silisili.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'postgres',
-        # 'USER': 'dk',
-        # 'PASSWORD': '1',
-        # 'HOST': '127.0.0.1',
-        # 'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'dk',
+        'PASSWORD': '1',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -157,7 +157,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 4
+SITE_ID = 2
 
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 
@@ -172,7 +172,7 @@ SOCIALACCOUNT_PROVIDERS = \
                           'public_profile',
                           # 'user_friends'
                           ],
-                'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+                'AUTH_PARAMS': {'auth_type': 'https'},
                 'FIELDS': [
                     'id',
                     'email',

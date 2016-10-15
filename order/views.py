@@ -5,6 +5,10 @@ from .models import ItemOrder, Order
 
 
 class OrderDetailView(DetailView):
+    '''
+    Detail of each order
+    Could be deprecated in the future
+    '''
     model = Order
     template_name = 'order/detail.html'
 
@@ -15,6 +19,9 @@ class OrderDetailView(DetailView):
 
 
 class ListOrdersView(LoginRequiredMixin, ListView):
+    '''
+    List of orders of the current user
+    '''
     template_name = 'order/history.html'
 
     def get_queryset(self):

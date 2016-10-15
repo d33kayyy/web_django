@@ -20,4 +20,5 @@ class InformationForm(forms.Form):
     address = forms.CharField(max_length=250, label=_(u'Địa chỉ'))
     city = forms.CharField(max_length=30, label=_(u'Tỉnh/Thành Phố'))
     district = forms.CharField(max_length=30, label=_(u'Quận/Huyện'))
+    ward = forms.CharField(max_length=30, label=_(u'Phường/Xã'), required=False)
     note = forms.CharField(max_length=250, label=_(u'Ghi chú'), required=False)

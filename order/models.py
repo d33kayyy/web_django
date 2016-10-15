@@ -2,7 +2,7 @@ from django.db import models
 from item.models import Item
 from django.contrib.auth.models import User
 
-from users.models import UserProfile
+from users.models import UserProfile, numeric
 
 
 # Create your models here.
@@ -22,16 +22,20 @@ class Order(models.Model):
     receiver = models.CharField(max_length=30, null=True)
     order_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField(default=0)
-    note = models.TextField(default='', null=True, blank=True)
+    shipping = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=2,
                               choices=STATUS_CHOICES,
                               default=PROCESSING)
+
+    # Customer information, could be different from the user's profile
     phone = models.CharField(max_length=16)
     address = models.CharField(max_length=100)
-    # email = models.EmailField()
+    email = models.EmailField(null=True)
+    note = models.TextField(default='', null=True, blank=True)
     city = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
-    shipping = models.PositiveIntegerField(default=0)
+    ward = models.CharField(max_length=30, null=True, blank=True)
+
 
     def __str__(self):
         return str(self.pk)
@@ -40,6 +44,10 @@ class Order(models.Model):
         return "{}".format(str(self.pk))
 
     def get_total_price(self):
+        '''
+        Get the total price of the order
+        :return:
+        '''
         total_price = 0
         items = self.items.all()
         if items:
@@ -55,6 +63,7 @@ class ItemOrder(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     item = models.ForeignKey(Item)
     quantity = models.PositiveSmallIntegerField(default=0)
+    is_reviewed = models.BooleanField(default=False)
 
     def get_subtotal(self):
         return self.item.price * self.quantity

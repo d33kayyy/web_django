@@ -55,13 +55,18 @@ def populate_user_profile(**kwargs):
                 profile[0].avatar.save(file_name, get_img_from_url(url_image))
                 profile[0].avatar_link = url_image
 
+        if account_uid[0].extra_data['gender'] and account_uid[0].extra_data['gender'] == 'male':
+            profile[0].gender = 'M'
+        else:
+            profile[0].gender = 'F'
+
         profile[0].save()
 
 
 @receiver(user_signed_up)
 def create(**kwargs):
     """
-    Populate user's profile
+    Create user's profile
     :param kwargs:
     :return:
     """
@@ -75,7 +80,7 @@ def create(**kwargs):
     profile = UserProfile.objects.create(user=user)
 
     if account_uid:
-        print(account_uid[0].extra_data)
+        # print(account_uid[0].extra_data)
         if account_uid[0].provider == 'facebook':
             updated_time = account_uid[0].extra_data['updated_time']
             last_update = datetime.datetime.strptime(updated_time, '%Y-%m-%dT%H:%M:%S+0000')
@@ -83,10 +88,10 @@ def create(**kwargs):
 
             profile.last_update = last_update
 
-            if account_uid[0].extra_data['gender'] == 'male':
-                profile.gender = 'M'
-            else:
-                profile.gender = 'F'
+        if account_uid[0].extra_data['gender'] and account_uid[0].extra_data['gender'] == 'male':
+            profile.gender = 'M'
+        else:
+            profile.gender = 'F'
 
         # Get user personal information
         profile.name = account_uid[0].extra_data['name']

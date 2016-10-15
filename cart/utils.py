@@ -4,7 +4,7 @@ INFO_SESSION = 'info'
 
 def get_session(request, session_name):
     """
-    Get cart session or create an empty cart if not exist.
+    Get session or create an empty session if not exist.
     """
     cart = request.session.get(session_name, {})
     if cart is None:

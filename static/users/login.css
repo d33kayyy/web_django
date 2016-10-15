@@ -24,14 +24,11 @@
     text-transform: none;
 }
 
-div {
-    border: 0 solid;
-}
-
 .signup {
     color: #8F0047;
     font-size: medium;
     text-align: center;
+    margin: 1rem;
 }
 
 .link-center {

@@ -1,6 +1,8 @@
 import os
 
 import itertools
+from _operator import itemgetter
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
@@ -19,9 +21,9 @@ class Item(models.Model):
     in_stock = models.PositiveSmallIntegerField(default=0)
     pub_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
+    rating = models.FloatField(default=0)
 
     # category
-    # review
 
     def __str__(self):
         return self.name
@@ -36,6 +38,10 @@ class Item(models.Model):
                                               })
 
     def get_ingredient(self):
+        '''
+        Extract ingredients from the text paragraph
+        :return: a list of ingredients
+        '''
         ingredient_str = self.ingredient
         ingredients = [line.split(',') for line in ingredient_str.splitlines()]
         return [j.strip() for i in ingredients for j in i if j]
@@ -54,8 +60,28 @@ class Item(models.Model):
         super(Item, self).save(*args, **kwargs)
 
     def get_primary_image(self):
+        '''
+        Get the first image as primary
+        :return: Image url
+        '''
         images = Images.objects.filter(item=self).first()
         return images.image.url
+
+    def get_rating(self):
+        '''
+        Calculate the rating of the item
+        :return: Float number represents the rating
+        '''
+        from reviews.models import Review
+        reviews = Review.objects.filter(item=self)
+        total = 0
+        counter = 0
+        for review in reviews:
+            total += review.rating
+            counter += 1
+
+        return float(total / counter)
+
 
 class Images(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from functools import partial
 
 from django import forms
 from django.contrib.auth.models import User
@@ -13,11 +12,11 @@ BIRTH_YEAR_CHOICES = [x for x in range(1960, 2016, 1)]
 
 
 class SignupForm(forms.Form):
-    alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', message='Tên không được chứa các kí tự đặc biệt')
+    alphabet = RegexValidator(r'^[a-zA-Z\s]+$', message=_(u'Họ tên không được chứa số và các kí tự đặc biệt'))
 
-    last_name = forms.CharField(max_length=30, label=_(u'Họ'), validators=(alphanumeric,))
-    first_name = forms.CharField(max_length=30, label=_(u'Tên'), validators=(alphanumeric,))
-    phone = forms.CharField(label=_(u"Điện thoại"), min_length=9, max_length=15, validators=(numeric,))
+    last_name = forms.CharField(max_length=30, label=_(u'Họ'), validators=(alphabet,))
+    first_name = forms.CharField(max_length=30, label=_(u'Tên'), validators=(alphabet,))
+    phone = forms.CharField(label=_(u"Điện thoại"), validators=(numeric,))
     email = forms.EmailField(label=_(u"Email"))
     password1 = forms.CharField(max_length=16, label=_(u"Mật khẩu"), widget=forms.PasswordInput)
     password2 = forms.CharField(max_length=16, label=_(u"Nhập lại mật khẩu"), widget=forms.PasswordInput)
@@ -68,7 +67,7 @@ class DateInput(forms.DateInput):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['birthday', 'gender', 'email', 'phone', 'address', 'allergy']
+        fields = ['birthday', 'gender', 'email', 'phone', 'address', 'allergy', 'city', 'district', 'ward']
         widgets = {
             # 'gender': forms.Select,
             # 'birthday': DateInput(),
@@ -84,6 +83,9 @@ class UserProfileForm(forms.ModelForm):
             'phone': _(u'Số điện thoại'),
             'address': _(u'Địa chỉ'),
             'allergy': _(u'Tiền sử dị ứng'),
+            'city': _(u'Tỉnh/Thành Phố'),
+            'district': _(u'Quận/Huyện'),
+            'ward': _(u'Phường/Xã')
             # 'point': _('Điểm tích lũy'),
         }
 

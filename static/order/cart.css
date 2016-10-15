@@ -53,14 +53,23 @@ body {
 .table tbody > tr > td.vert-align {
     vertical-align: middle;
     text-align: center;
-    font-weight: bold;
+    /*font-weight: bold;*/
+}
+
+.row_height {
+    height: 87px;
 }
 
 .item_icon {
-    height: 70px;
-    width: auto;
+    max-height: 70px;
 }
 
-.delete-col-height {
+.delete_row_height {
     height: 87px
+}
+
+@media (max-width: 768px) {
+    .del_thead {
+        height: 77px;
+    }
 }

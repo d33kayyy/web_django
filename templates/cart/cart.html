@@ -15,8 +15,13 @@
 {% block content %}
 
     <div class="container wrapper">
+        <div class="row">
+            {% include 'layout/messages_snippet.html' with messages=messages %}
+        </div>
         {% if not cart %}
-            Chưa có món ăn nào trong giỏ hàng
+            <div class="alert alert-info">
+                Chưa có món ăn nào trong giỏ hàng
+            </div>
         {% else %}
             <div class="row">
                 <div class="col-md-8">
@@ -69,7 +74,7 @@
                                         <tbody>
                                         {{ form.management_form }}
                                         {% for field in form %}
-                                            <tr>
+                                            <tr class="row_height">
                                                 {% get_item field.item_id.value as item %}
                                                 {% get_subtotal field.item_id.value as sub_total %}
                                                 <input type="hidden"
@@ -80,7 +85,8 @@
                                                 <td class="col-md-2 vert-align">
                                                     <a href="{% url 'item:detail' item.slug %}">
                                                         <img src="{{ item.get_primary_image }}"
-                                                             class="img-responsive item_icon" alt="item_image">
+                                                             class="img-responsive center-block item_icon"
+                                                             alt="item_image">
                                                     </a>
                                                 </td>
 
@@ -103,7 +109,7 @@
                                                 </td>
 
                                                 <td class="col-md-2 vert-align">
-                                                    <span class="amount">{{ sub_total|intcomma }}</span>
+                                                    <span class="amount"><strong>{{ sub_total|intcomma }}</strong></span>
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -112,20 +118,20 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <input class="custom_btn" name="update" value="Update Cart"
+                                    <input class="custom_btn" name="update" value="Cập nhật giỏ hàng"
                                            type="submit">
                                 </form>
                             </div>
                             <div class="col-md-2 col-xs-2">
                                 <table class="table">
                                     <thead align="center">
-                                    <tr>
+                                    <tr class="del_thead">
                                         <td><h4>&nbsp;</h4></td>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for field in form %}
-                                        <tr class="delete-col-height">
+                                        <tr class="delete_row_height">
                                             <td class="vert-align">
                                                 <form id="f-{{ field.item_id.value }}" method="POST"
                                                       action="{% url 'cart:remove' %}">
@@ -163,4 +169,11 @@
         {% endif %}
 
     </div>
+{% endblock %}
+
+{% block footer %}
+    {#    <script>#}
+    {#        var result = $("#myDiv").height();#}
+    {#        alert(result);#}
+    {#    </script>#}
 {% endblock %}

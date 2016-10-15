@@ -22,6 +22,9 @@ class Review(models.Model):
     updated_time = models.DateTimeField(auto_now=True)
     approved_comment = models.BooleanField(default=False)
 
+    class Meta:
+        unique_together = (("item", "reviewer"),)
+
     def __str__(self):
         return self.content
 
@@ -31,5 +34,3 @@ class Review(models.Model):
     def approve(self):
         self.approved_comment = True
         self.save()
-
-

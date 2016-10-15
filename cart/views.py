@@ -3,6 +3,8 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormView
+from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
 
 from order.models import ItemOrder, Order
 from item.models import Item
@@ -13,6 +15,10 @@ from .forms import ItemOrderForm, ItemForm, InformationForm
 
 # Create your views here.
 class CartView(FormView):
+    '''
+    Display Cart page and handle cart update
+    '''
+
     template_name = 'cart/cart.html'
     form_class = formset_factory(ItemOrderForm, extra=0)
     success_url = reverse_lazy('cart:cart')
@@ -37,12 +43,12 @@ class CartView(FormView):
 
             return self.form_valid(form)
         else:
-            print(form.errors)
             return self.form_invalid(form)
 
     def form_valid(self, form):
         cart = get_session(self.request, CART_SESSION)
         formset = form
+
         for f in formset:
             item_id = f.cleaned_data['item_id']
             quantity = f.cleaned_data['quantity']
@@ -51,10 +57,16 @@ class CartView(FormView):
         # self.request.session[CART_SESSION] = cart
         self.request.session.modified = True
 
-        return HttpResponseRedirect(self.get_success_url())
+        success_message = _(u'Cập nhật giỏ hàng thành công!')
+        messages.success(self.request, success_message)
+
+        return super(CartView, self).form_valid(form)
 
 
 class AddItemToCart(FormView):
+    '''
+    Add new item to cart
+    '''
     form_class = ItemOrderForm
 
     def get(self, request, *args, **kwargs):
@@ -75,10 +87,17 @@ class AddItemToCart(FormView):
         self.request.session[CART_SESSION] = cart
         self.request.session.modified = True
 
+        item = Item.objects.get(id=item_id)
+        success_message = _(u'Đã thêm {} vào giỏ hàng!'.format(item.name))
+        messages.success(self.request, success_message)
+
         return HttpResponseRedirect(reverse('cart:cart'))
 
 
 class RemoveItemFromCart(FormView):
+    '''
+    Delete item from cart
+    '''
     form_class = ItemForm
 
     def get(self, request, *args, **kwargs):
@@ -92,10 +111,20 @@ class RemoveItemFromCart(FormView):
 
         self.request.session.modified = True
 
+        item = Item.objects.get(id=item_id)
+        success_message = _(u'Đã xóa {} khỏi giỏ hàng!'.format(item.name))
+        messages.success(self.request, success_message)
+
         return HttpResponseRedirect(reverse('cart:cart'))
 
 
 def information(request):
+    '''
+    Information form when ordering
+    :param request:
+    :return:
+    '''
+
     cart = get_session(request, CART_SESSION)
     if not cart:
         return HttpResponseRedirect(reverse('cart:cart'))
@@ -127,6 +156,11 @@ def information(request):
 
 
 def confirmation(request):
+    '''
+    Confirmation page and create new order if transaction succeed
+    :param request:
+    :return:
+    '''
     cart = get_session(request, CART_SESSION)
     info = get_session(request, INFO_SESSION)
 
@@ -139,22 +173,25 @@ def confirmation(request):
         else:
             customer = None
 
+        # Create order
         order = Order.objects.create(customer=customer,
                                      receiver=info['name'],
                                      note=info['note'],
                                      phone=info['phone'],
                                      address=info['address'],
-                                     # email=info['email'],
+                                     email=info['email'],
                                      city=info['city'],
                                      district=info['district'], )
-
+        # Create item order
         for item_id, quantity in cart.items():
             item = Item.objects.get(id=item_id)
             item_order = ItemOrder.objects.create(order=order, item=item, quantity=quantity)
 
+        # Clear the session
         cart.clear()
         info.clear()
         request.session.modified = True
+
         return HttpResponseRedirect(reverse('order:detail', args=(str(order.id),)))
 
     return render(request, 'cart/confirm.html', {'cart': cart, 'info': info})

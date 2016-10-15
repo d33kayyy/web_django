@@ -16,14 +16,15 @@
     <div class="container wrapper">
         <div class="row">
             <div class="col-md-offset-4 col-md-4">
-                <center><h2>{% trans "Đăng Ký" %}</h2></center>
+                <div class="card card-1">
+                    <center><h2>{% trans "Đăng Ký" %}</h2></center>
 
-                <hr>
-                <p>{% blocktrans %}Bạn đã có tài khoản? Hãy <a href="{{ login_url }}">đăng nhập</a>
-                    .{% endblocktrans %}
-                </p>
-                <hr>
-                <div class="row">
+                    <hr>
+                    <p>{% blocktrans %}Bạn đã có tài khoản? Hãy <a href="{{ login_url }}">đăng nhập</a>
+                        .{% endblocktrans %}
+                    </p>
+                    <hr>
+
                     {% if form.errors %}
                         {% for field in form %}
                             {% for error in field.errors %}
@@ -38,24 +39,25 @@
                             </div>
                         {% endfor %}
                     {% endif %}
+
+
+                    <form id="signup_form" method="post" action="{% url 'account_signup' %}">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+                                {% render_field field class+="form-control" %}
+
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="custom_btn btn_wide btn_white margin_top_10">Đăng Ký</button>
+                    </form>
                 </div>
 
-                <form id="signup_form" method="post" action="{% url 'account_signup' %}">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div class="form-group">
-                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-
-                            {% render_field field class+="form-control" %}
-
-                            {% if field.help_text %}
-                                <p class="help">{{ field.help_text|safe }}</p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-
-                    <button type="submit" class="custom_btn btn_wide btn_white margin_top_10">Đăng Ký</button>
-                </form>
             </div>
         </div>
 
