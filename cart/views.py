@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.forms import formset_factory
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render

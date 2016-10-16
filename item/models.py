@@ -1,7 +1,6 @@
-import os
+# -*- coding: utf-8 -*-
 
 import itertools
-from _operator import itemgetter
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -79,8 +78,11 @@ class Item(models.Model):
         for review in reviews:
             total += review.rating
             counter += 1
+        if reviews.count():
 
-        return float(total / counter)
+            return float(total / counter)
+        else:
+            return 0
 
 
 class Images(models.Model):
