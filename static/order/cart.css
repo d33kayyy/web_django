@@ -46,10 +46,6 @@
 }
 
 /* New */
-body {
-    background: #f8f4f4;
-}
-
 .table tbody > tr > td.vert-align {
     vertical-align: middle;
     text-align: center;

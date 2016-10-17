@@ -1,0 +1,118 @@
+{% extends 'layout/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    {{ user.profile.name }}
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'chef/cook_page_grid.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chef/cook_page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <!-- cook profile -->
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-2 col-md-offset-2 left">
+                {% if user.profile.avatar %}
+                    <img class="img-circle img-responsive center-block" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+                {% else %}
+                    <img class="img-circle img-responsive center-block" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
+                {% endif %}
+
+                <div class="onoffswitch margin_top_10">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch">
+                        <span class="onoffswitch-inner"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-7 right info">
+                <p><strong>{{ user.profile.name }}</strong></p>
+                <p>{{ user.profile.info }}</p>
+                <p><strong>Open time: 9AM - 2PM</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!--item area //-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <hr>
+                <h3>
+                    Cook's masterpieces
+                </h3>
+            </div>
+
+            <div class="container">
+                <div class="grid">
+                    {% for item in items %}
+                        <figure class="effect-zoe">
+                            <img class="img-responsive" style="background-color: white"
+                                 src="{{ item.get_primary_image }}"/>
+                            <figcaption>
+                                <h2>{{ item.name }}</h2>
+                                <span>{{ item.price|intcomma }}</span>
+                            </figcaption>
+                            <a href="{% url 'item:detail' item.slug %}"></a>
+                        </figure>
+                    {% empty %}
+                        <div class="alert alert-info">
+                            Chưa có món ăn nào
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block footer %}
+    <script>
+        document.getElementById("sub").addEventListener("click", myFunction);
+
+        function myFunction() {
+            document.getElementById("sub").innerHTML = "Subscribed";
+
+        }
+
+        $("#showing a").on("click", function () {
+            var $this = $(this);
+            var $content = $this.parent().prev("div.content");
+            var linkText = $this.text().toUpperCase();
+
+            if (linkText === "See More") {
+                linkText = "Show less";
+                $content.switchClass("hidding", "showing", 400);
+            } else {
+                linkText = "See More";
+                $content.switchClass("showing", "hidding", 400);
+            }
+            ;
+
+            $this.text(linkText);
+        });
+
+        $('.SeeMore2').click(function () {
+            var $this = $(this);
+            $this.toggleClass('SeeMore2');
+            if ($this.hasClass('SeeMore2')) {
+                $this.text('See More');
+            } else {
+                $this.text('See Less');
+            }
+        });
+    </script>
+{% endblock %}
+
+
+

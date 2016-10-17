@@ -1,0 +1,118 @@
+table, th, td, div {
+    margin: 0px auto;
+    border: 0px solid;
+}
+
+/* Chef info */
+.profile {
+    margin-top: 30px;
+}
+
+.left {
+    text-align: center;
+}
+
+.right {
+    margin: 50px 0 0 20px;
+    text-align: left;
+}
+
+.avatar {
+    height: 200px;
+    width: 200px;
+}
+
+.info {
+    font-family: Avenir Next;
+}
+
+/* Subscribe button */
+.onoffswitch {
+    position: relative;
+    width: 130px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #FFFFFF;
+    border-radius: 30px;
+}
+
+.onoffswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 40px;
+    padding: 0;
+    line-height: 40px;
+    font-size: 14px;
+    color: white;
+    font-family: Avenir Next;
+    font-weight: lighter;
+    box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "Subscribe";
+    background-color: white;
+    color: #8F0047;
+    border: #8F0047;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+
+}
+
+.onoffswitch-inner:after {
+    content: "Subscribed";
+    background-color: #8F0047;
+    color: #FFFFFF;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+}
+
+.onoffswitch-switch {
+    display: block;
+    width: 18px;
+    margin: 13.5px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 121px;
+    border: 2px solid #FFFFFF;
+    border-radius: 30px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0;
+}
+
+/*.container {*/
+/*text-align: center;*/
+/*width: 1200px;*/
+/*border: none;*/
+/*}*/

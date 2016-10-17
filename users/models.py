@@ -46,8 +46,7 @@ class UserProfile(models.Model):
     info = models.TextField(null=True, blank=True)
 
     # Extra
-    avatar_link = models.URLField(default='')
-    last_update = models.DateTimeField(null=True)
+    avatar_link = models.URLField(default='', null=True, blank=True)
 
     def __unicode__(self):
         return "{}'s profile".format(self.user.username)

@@ -42,13 +42,13 @@
                                         </div>
                                         <div class="row margin_top_10">
                                             <div class="col-md-1 col-xs-1">
-                                                <a href="{% url 'users:detail' i.item.chef.profile.slug %}">
+                                                <a href="{% url 'chef:detail' i.item.chef.profile.slug %}">
                                                     <img class="img-circle user_img                                                                                         "
                                                          src="{{ i.item.chef.profile.avatar.url }}">
                                                 </a>
                                             </div>
                                             <div class="col-md-10 col-xs-8">
-                                                <a href="{% url 'users:detail' i.item.chef.profile.slug %}">
+                                                <a href="{% url 'chef:detail' i.item.chef.profile.slug %}">
                                                     <p class="cook_name">{{ i.item.chef.profile.name }}</p>
                                                 </a>
                                             </div>

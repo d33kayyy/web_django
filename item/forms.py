@@ -28,7 +28,7 @@ class ItemForm(forms.ModelForm):
             'price': _(u'Giá'),
             'description': _(u'Mô tả sản phẩm'),
             'ingredient': _(u'Thành phần'),
-            'in_stock': _(u'Địa chỉ'),
+            'in_stock': _(u'Số lượng'),
         }
 
 

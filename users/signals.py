@@ -30,15 +30,9 @@ def populate_user_profile(**kwargs):
     if account_uid:
         # Update user display name
         url_image = account_uid[0].get_avatar_url()
+        profile[0].name = account_uid[0].extra_data['name']
 
         if account_uid[0].provider == 'facebook':
-            updated_time = account_uid[0].extra_data['updated_time']
-            last_update = datetime.datetime.strptime(updated_time, '%Y-%m-%dT%H:%M:%S+0000')
-            last_update = timezone.make_aware(last_update, timezone.get_default_timezone())
-
-            if profile[0].last_update is None or last_update > profile[0].last_update:
-                profile[0].last_update = last_update
-                profile[0].name = account_uid[0].extra_data['name']
 
             # Update user profile image
             new_img = get_img_from_url(url_image)
@@ -47,7 +41,6 @@ def populate_user_profile(**kwargs):
                 profile[0].avatar.save(file_name, new_img)
 
         elif account_uid[0].provider == 'google':
-            profile[0].name = account_uid[0].extra_data['name']
 
             # Update user profile image
             if url_image != profile[0].avatar_link:
@@ -81,12 +74,6 @@ def create(**kwargs):
 
     if account_uid:
         # print(account_uid[0].extra_data)
-        if account_uid[0].provider == 'facebook':
-            updated_time = account_uid[0].extra_data['updated_time']
-            last_update = datetime.datetime.strptime(updated_time, '%Y-%m-%dT%H:%M:%S+0000')
-            last_update = timezone.make_aware(last_update, timezone.get_default_timezone())
-
-            profile.last_update = last_update
 
         if account_uid[0].extra_data['gender'] and account_uid[0].extra_data['gender'] == 'male':
             profile.gender = 'M'

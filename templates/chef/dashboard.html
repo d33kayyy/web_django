@@ -1,0 +1,374 @@
+{% extends 'layout/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block css %}
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'chef/cook_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chef/dashboard.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'chef/dashboard2.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <ul class="nav nav-tabs">
+            <li class="active"><a class="tab-section" data-toggle="tab" href="#dashboard">Dashboard</a></li>
+            <li><a class="tab-section" data-toggle="tab" href="#current_order">Current Order</a></li>
+            <li><a class="tab-section" data-toggle="tab" href="#items">Items</a></li>
+            <li><a class="tab-section" data-toggle="tab" href="#market">Đi Chợ</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- Dashboard -->
+            <div id="dashboard" class="tab-pane fade in active">
+                <div class="container box text-center">
+                    <div>
+                        <a href="javascript: displayLineChart()">This Month</a>
+                        |
+                        <a href="javascript: displayLineChart2()">This Year</a>
+                    </div>
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <div class="row">
+                    <div class=" col-md-3 col-md-offset-3 text-center">
+                        <p>Product Sold</p>
+                        <canvas class="mycanvas" height="250" width="250"></canvas>
+                    </div>
+                    <div class=" col-md-3 text-center">
+                        <p>Product Ranking</p>
+                        <canvas class="mycanvas2" height="250" width="250"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Order -->
+            <div id="current_order" class="tab-pane fade">
+                <div class="container">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="table_header text-center">
+                                <th>Order number</th>
+                                <th>Items</th>
+                                <th>Quantity</th>
+                                <th>Note</th>
+                                <th>Check</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="checkbox" name="option1"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="checkbox" name="option1"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="checkbox" name="option2"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="checkbox" name="option3"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-9">
+                            <button class="delivery_button">Deliver now</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Items -->
+            <div id="items" class="tab-pane fade">
+                <div class="container-fluid">
+                    <a href="{% url 'item:create' %}">
+                        <button class="create">Create New Item</button>
+                    </a>
+                </div>
+
+                <div class="row text-center" style="margin-top: 20px">
+                    <div class="col-md-2 col-xs-2 skeleton">Image</div>
+                    <div class="col-md-2 col-xs-2 skeleton">Item</div>
+                    <div class="col-md-2 col-xs-2 skeleton">Category</div>
+                    <div class="col-md-2 col-xs-2 skeleton">Price</div>
+                    <div class="col-md-1 col-xs-1 skeleton">Quantity</div>
+                    <div class="col-md-1 col-xs-1 skeleton">Sold</div>
+                    <div class="col-md-2 col-xs-2 skeleton">Availability</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-xs-2 skeleton" style="text-align: center">
+                        <a href="create_item.html">
+                            <img height="80%" width="80%" src="../../img/lasagna.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <a href="create_item.html">Banh Kem ABCD</a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <p>cake</p>
+                        <p>sweet</p>
+                        <p>desert</p>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">150,000 vnd</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">5</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">15</div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"
+                               data-offstyle="danger">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-xs-2 skeleton" style="text-align: center">
+                        <a href="create_item.html">
+                            <img height="80%" width="80%" src="../../img/lasagna.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <a href="create_item.html">Banh Kem ABCD</a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <p>cake</p>
+                        <p>sweet</p>
+                        <p>desert</p>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">150,000 vnd</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">5</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">15</div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"
+                               data-offstyle="danger">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-xs-2 skeleton" style="text-align: center">
+                        <a href="create_item.html">
+                            <img height="80%" width="80%" src="../../img/lasagna.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <a href="create_item.html">Banh Kem ABCD</a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <p>cake</p>
+                        <p>sweet</p>
+                        <p>desert</p>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">150,000 vnd</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">5</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">15</div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"
+                               data-offstyle="danger">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-xs-2 skeleton" style="text-align: center">
+                        <a href="create_item.html">
+                            <img height="80%" width="80%" src="../../img/lasagna.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <a href="create_item.html">Banh Kem ABCD</a>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <p>cake</p>
+                        <p>sweet</p>
+                        <p>desert</p>
+                    </div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">150,000 vnd</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">5</div>
+                    <div class="col-md-1 col-xs-1 skeleton" style="height: 101px;">15</div>
+                    <div class="col-md-2 col-xs-2 skeleton" style="height: 101px;">
+                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"
+                               data-offstyle="danger">
+                    </div>
+                </div>
+            </div>
+
+            <!--Market-->
+            <div id="market" class="tab-pane fade">
+                <div class="container">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">Search <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sản Phẩm</a></li>
+                                <li><a href="#">Nhà Sản Xuất</a></li>
+                            </ul>
+                        </div><!-- input-group-btn -->
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="container carousel-inner">
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                        </div><!--.row-->
+                    </div><!--.item-->
+
+                    <!--</div>
+                      <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
+                      <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
+                    </div>-->
+
+                </div>
+
+                <div class="container carousel-inner">
+
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                        </div><!--.row-->
+                    </div><!--.item-->
+
+                    <!--</div>
+                      <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
+                      <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
+                    </div>-->
+
+                </div>
+
+                <div class="container carousel-inner">
+
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <a href="#" class="thumbnail"><img src="../../img/coca.jpg" alt="Image"></a>
+                                <p>sp 1</p>
+                                <p class="drink_price">20,000 VND</p>
+                            </div>
+                        </div><!--.row-->
+                    </div><!--.item-->
+
+                    <!--</div>
+                      <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
+                      <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
+                    </div>-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="{% static 'chef/dashboard.js' %}"></script>
+{% endblock %}
+
+

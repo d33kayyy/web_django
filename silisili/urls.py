@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^cart/', include('cart.urls')),
     url(r'^order/', include('order.urls')),
     url(r'^reviews/', include('reviews.urls')),
+    url(r'^chef/', include('chef.urls')),
 
     url(r'^accounts/profile/', views.UserProfileUpdate.as_view(), name='profile'),
     url(r'^accounts/', include('allauth.urls')),
