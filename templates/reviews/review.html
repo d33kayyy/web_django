@@ -5,7 +5,7 @@
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'reviews/review.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'profile_panel.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'item/rating.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'reviews/rating.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 {% endblock %}
@@ -18,7 +18,12 @@
 
             <div class="col-md-9">
                 {#                <div class="card card-1">#}
-                <div class="row review_form">
+                {% if not object_list %}
+                    <div class="alert alert-info">
+                        Không có sản phẩm để đánh giá
+                    </div>
+                {% else %}
+                    <div class="row review_form">
                     {% for i in item_order %}
                         <div class="col-md-6">
                             <div class="card card-1">
@@ -63,17 +68,18 @@
                                                 <input type="radio" id="star5" name="rating" value="5"/>
                                                 <label class="full" for="star5" title="Awesome - 5 stars"></label>
                                                 <input type="radio" id="star4" name="rating" value="4" checked/>
-                                                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                                <label class="full" for="star4"
+                                                       title="Pretty good - 4 stars"></label>
                                                 <input type="radio" id="star3" name="rating" value="3"/>
                                                 <label class="full" for="star3" title="Meh - 3 stars"></label>
                                                 <input type="radio" id="star2" name="rating" value="2"/>
                                                 <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
                                                 <input type="radio" id="star1" name="rating" value="1"/>
-                                                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                                <label class="full" for="star1"
+                                                       title="Sucks big time - 1 star"></label>
                                             </div>
 
                                             <div class="" style="display: block; width: 100%">
-{#                                                <label for="id_content">Đánh giá của bạn về món ăn này</label>#}
                                                 <textarea id="id_content" name="content" cols="45" rows="8"
                                                           aria-required="true" class="form-control"></textarea>
                                             </div>
@@ -89,10 +95,9 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     {% endfor %}
+                {% endif %}
                 </div>
                 {#                </div>#}
             </div>

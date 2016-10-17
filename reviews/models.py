@@ -34,3 +34,6 @@ class Review(models.Model):
     def approve(self):
         self.approved_comment = True
         self.save()
+
+    def get_rating(self):
+        return range(self.rating)

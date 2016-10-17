@@ -26,7 +26,7 @@
                         {% for i in item.images.all %}
                             {% if i.image %}
                                 <div class="item {% if forloop.first %} active {% endif %}">
-                                    <img class="img-responsive" src="{{ i.image.url }}" alt="First slide">
+                                    <img class="img-responsive img_slide center-block" src="{{ i.image.url }}" alt="image">
                                 </div>
                             {% endif %}
                         {% empty %}
@@ -38,108 +38,127 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <div class="row">
-                    <p class="food_name">
-                        {{ item.name }}
-                    </p>
-                </div>
-                <div class="row">
-                    <a href="{% url 'users:detail' item.chef.profile.slug %}">
-                        {% if item.chef.profile.avatar %}
-                            <img class="avatar img-circle" src="{{ item.chef.profile.avatar.url }}"
-                                 alt="avatar"/>
-                        {% else %}
-                            <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}"
-                                 alt="avatar"/>
-                        {% endif %}
-                    </a>
-                    <a href="{% url 'users:detail' item.chef.profile.slug %}">
-                        <div class="cook_name">{{ item.chef.profile.name }}</div>
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="description">
-                        <p id="description">Mô Tả</p>
+                <div class="card card-1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="food_name">
+                                {{ item.name }}
+                            </p>
+                        </div>
                     </div>
-                    <p>
-                        {{ item.description }}
-                    </p>
-                    <hr>
-                    <div> {{ item.get_rating }}</div>
-                    <div class="price">{{ item.price|intcomma }} VND</div>
-                    <form method="post" action="{% url 'cart:add' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="item_id" value="{{ item.id }}"/>
-                        <input type="hidden" name="quantity" value="1"/>
-                        <input type="submit" class="buy_button" value="Ăn ngay"/>
-                    </form>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <ul>
-                {% for ingredient in item.get_ingredient %}
-                    <li>{{ ingredient|capfirst }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+                    <div class="row">
+                        <div class="col-md-1 col-xs-2">
+                            <a href="{% url 'users:detail' item.chef.profile.slug %}">
+                                {% if item.chef.profile.avatar %}
+                                    <img class="avatar img-circle" src="{{ item.chef.profile.avatar.url }}"
+                                         alt="avatar"/>
+                                {% else %}
+                                    <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}"
+                                         alt="avatar"/>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col-md-11 col-xs-10">
+                            <a href="{% url 'users:detail' item.chef.profile.slug %}">
+                                <div class="cook_name">{{ item.chef.profile.name }}</div>
+                            </a>
+                        </div>
+                    </div>
 
-        <!--Review area //-->
-        <div class="row">
-            <hr>
-            <div class="accordion col-md-6">
-                <p id="review"> Bình luận</p>
-
-                {% for review in item.reviews.all|slice:":2" %}
-                    {% include "layout/review_snippet.html" with review=review %}
-                {% empty %}
-                    <p>No reviews here yet :(</p>
-                {% endfor %}
-
-                {% if item.reviews.count > 2 %}
-                    <div class="accordion-group">
-                        <div id="collapseTwo" class="accordion-body collapse">
-                            {% for review in item.reviews.all|slice:"2:" %}
-                                {% include "layout/review_snippet.html" with review=review %}
-                            {% empty %}
-                                <p>No reviews here yet :(</p>
+                    <!--rating-->
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 rate">
+                            {% for foo in rating %}
+                                <label></label>
                             {% endfor %}
                         </div>
                     </div>
 
+                    <!--price-->
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <p class="price margin_top_10">{{ item.price|intcomma }} VND</p>
+                        </div>
+                    </div>
+
+                    <!--buy Button-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="post" action="{% url 'cart:add' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="item_id" value="{{ item.id }}"/>
+                                <input type="hidden" name="quantity" value="1"/>
+                                <input type="submit" class="custom_btn small_btn" value="Đặt ngay"/>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!--description/ingredient-->
+                    <div class="row margin_top_10">
+                        <div class="col-md-12">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#home">Mô Tả</a></li>
+                                <li><a data-toggle="tab" href="#menu1">Thành phần</a></li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane fade in active">
+                                    <p class="margin_top_10">{{ item.description }}</p>
+                                </div>
+                                <div id="menu1" class="tab-pane fade">
+                                    <ul class="margin_top_10">
+                                        {% for ingredient in item.get_ingredient %}
+                                            <li>{{ ingredient|capfirst }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Review area //-->
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-md-12 title">
+                <h4>Đánh Giá Sản Phẩm</h4>
+            </div>
+        </div>
+        <div class="row">
+            {% for review in item.reviews.all|slice:":3" %}
+                {% include "layout/review_snippet.html" with review=review %}
+            {% empty %}
+                <p>No reviews here yet :(</p>
+            {% endfor %}
+        </div>
+        <div class="collapse" id="collapseReview">
+            <div class="row">
+                {% if item.reviews.count > 3 %}
+
+                    {% for review in item.reviews.all|slice:"3:" %}
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div class="row">
+                        {% endif %}
+                    {% include "layout/review_snippet.html" with review=review %}
+                    {% if forloop.counter|divisibleby:3 %}
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+
                     <div class="row text-center" style="margin-top: 10px">
-                        <button class="SeeMore2 sm_button" data-toggle="collapse" href="#collapseTwo">Xem thêm</button>
+                        <button class="custom_btn small_btn" type="button" data-toggle="collapse"
+                                data-target="#collapseReview"
+                                aria-expanded="false" aria-controls="collapseReview">
+                            Xem thêm
+                        </button>
                     </div>
                 {% endif %}
             </div>
         </div>
-
-{#        <div class="row">#}
-{#            <div class="accordion col-md-6">#}
-{#                <form method="post" action="{% url 'item:detail' item.slug %}">#}
-{#                    {% csrf_token %}#}
-{#                    <div class="rating" style="display: block">#}
-{#                        <input type="radio" id="star5" name="rating" value="5"/>#}
-{#                        <label class="full" for="star5" title="Awesome - 5 stars"></label>#}
-{#                        <input type="radio" id="star4" name="rating" value="4"/>#}
-{#                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>#}
-{#                        <input type="radio" id="star3" name="rating" value="3" checked/>#}
-{#                        <label class="full" for="star3" title="Meh - 3 stars"></label>#}
-{#                        <input type="radio" id="star2" name="rating" value="2"/>#}
-{#                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>#}
-{#                        <input type="radio" id="star1" name="rating" value="1"/>#}
-{#                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>#}
-{#                    </div>#}
-{##}
-{#                    <div style="display: block">#}
-{#                        <label for="content">Your Review</label>#}
-{#                        <textarea name="content" cols="45" rows="8" aria-required="true"></textarea>#}
-{#                    </div>#}
-{#                    <button type="submit" class="btn btn-default create-btn">Add review</button>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-
     </div>
 {% endblock %}

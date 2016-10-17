@@ -46,6 +46,11 @@ class ItemDetailDisplay(DetailView):
     model = Item
     template_name = 'item/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetailDisplay, self).get_context_data(**kwargs)
+        context['rating'] = range(int(self.object.get_rating()))
+        return context
+
     # def get_context_data(self, **kwargs):
     #     context = super(ItemDetailDisplay, self).get_context_data(**kwargs)
     #     context['form'] = ReviewForm()
