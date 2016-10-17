@@ -91,6 +91,10 @@ class UserProfile(models.Model):
         if self.user.phone:
             return self.user.phone
 
+    def get_birthday(self):
+        return {'day': self.birthday.day,
+                'month': self.birthday.month,
+                'year': self.birthday.year}
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 

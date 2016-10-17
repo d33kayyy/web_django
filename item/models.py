@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*-   coding: utf-8 -*-
 
 import itertools
 
@@ -73,16 +73,15 @@ class Item(models.Model):
         '''
         from reviews.models import Review
         reviews = Review.objects.filter(item=self)
+        if not reviews.count():
+            return 0
+
         total = 0
-        counter = 0
+
         for review in reviews:
             total += review.rating
-            counter += 1
-        if reviews.count():
 
-            return float(total / counter)
-        else:
-            return 0
+        return float(total / reviews.count())
 
 
 class Images(models.Model):

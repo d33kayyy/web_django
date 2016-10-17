@@ -142,6 +142,13 @@
                                     <div class="display_text">
                                         {% if userprofile.birthday %}
                                             {{ userprofile.birthday }}
+
+                                            {% with userprofile.get_birthday as birthday %}
+                                                <input type="hidden" name="birthday_day" value="{{ birthday.day }}">
+                                                <input type="hidden" name="birthday_month" value="{{ birthday.month }}">
+                                                <input type="hidden" name="birthday_year" value="{{ birthday.year }}">
+                                            {% endwith %}
+
                                         {% else %}
                                             {% render_field form.birthday class+="form-control" %}
                                         {% endif %}
