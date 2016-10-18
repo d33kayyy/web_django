@@ -6,7 +6,6 @@ app_name = 'chef'
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^dashboard/$', views.dashboard, name='dashboard'),
+    url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
     url(r'^(?P<slug>[\w-]+)/$', views.ChefView.as_view(), name='detail'),
-
 ]

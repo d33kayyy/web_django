@@ -6,11 +6,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import PermissionDenied
-from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
-from django.views.generic.detail import SingleObjectMixin
+from django.views.generic import ListView, DetailView
 
-from reviews.forms import ReviewForm
 from .models import Item, Images
 from .forms import ItemForm, ImageForm, ImageInlineFormSet
 
@@ -76,6 +73,9 @@ def create_item(request):
     '''
     Create item page for chef
     '''
+    if not request.user.profile.is_chef:
+        raise PermissionDenied
+
     ImageFormSet = modelformset_factory(Images, form=ImageForm, extra=3, max_num=3)
 
     if request.method == 'POST':
@@ -113,7 +113,7 @@ def edit_item(request, slug):
     '''
     item = get_object_or_404(Item, slug=slug)
 
-    if item.chef != request.user:
+    if item.chef != request.user or not request.user.profile.is_chef:
         raise PermissionDenied
 
     if request.method == 'POST':
@@ -146,7 +146,7 @@ def delete_item(request, slug):
     '''
     item = get_object_or_404(Item, slug=slug)
 
-    if item.chef != request.user:
+    if item.chef != request.user or not request.user.profile.is_chef:
         raise PermissionDenied
 
     item.delete()

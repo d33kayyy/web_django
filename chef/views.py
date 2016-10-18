@@ -1,15 +1,12 @@
+# -*- coding: utf-8 -*-
+from django.contrib.auth.mixins import AccessMixin
 from django.contrib.auth.models import User
-from django.shortcuts import render
-
+from django.core.exceptions import PermissionDenied
 from django.views.generic import DetailView, ListView
-from django.contrib.auth.decorators import user_passes_test
+from django.utils.translation import ugettext_lazy as _
 
 from item.models import Item
 from users.models import UserProfile
-
-
-def chef_check(user):
-    return user.profile.is_chef
 
 
 class ChefView(DetailView):
@@ -37,10 +34,41 @@ class IndexView(ListView):
     context_object_name = 'list_users'
 
     def get_queryset(self):
-        """Return the last five published questions."""
+        """Return the list of chefs."""
         return User.objects.order_by('-date_joined').filter(is_superuser=False, profile__is_chef=True)
 
 
-@user_passes_test(chef_check)
-def dashboard(request):
-    return render(template_name='chef/dashboard.html', request=request)
+class SuperOrManagerPermissionsMixin(AccessMixin):
+    """
+    Super class for permission checking
+    Check if the logged in user is a chef or not
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return self.handle_no_permission()
+        if self.user_has_permissions():
+            return super(SuperOrManagerPermissionsMixin, self).dispatch(request, *args, **kwargs)
+        raise PermissionDenied
+
+    def user_has_permissions(self):
+        profile = UserProfile.objects.get(user=self.request.user)
+        return profile.is_chef
+
+
+class DashboardView(SuperOrManagerPermissionsMixin, DetailView):
+    """
+    Chef page
+    """
+    model = User
+    template_name = 'chef/dashboard.html'
+    context_object_name = 'user'
+    permission_denied_message = _(u'Bạn không có quyền truy cập trang này')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        context['items'] = Item.objects.filter(chef=self.object)
+        return context
