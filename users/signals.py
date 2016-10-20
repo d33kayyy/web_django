@@ -3,7 +3,6 @@ import datetime
 import requests
 from django.core.files.base import ContentFile
 from django.dispatch import receiver
-from django.utils import timezone
 
 from allauth.socialaccount.models import SocialAccount
 from allauth.account.signals import user_logged_in, user_signed_up

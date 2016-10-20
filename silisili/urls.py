@@ -14,7 +14,9 @@ urlpatterns = [
     url(r'^order/', include('order.urls')),
     url(r'^reviews/', include('reviews.urls')),
     url(r'^chef/', include('chef.urls')),
+    url(r'^notifications/', views.notifications, name='notifications'),
 
     url(r'^accounts/profile/', views.UserProfileUpdate.as_view(), name='profile'),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^activity/', include('actstream.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

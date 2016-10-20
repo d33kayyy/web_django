@@ -3,17 +3,15 @@ from __future__ import unicode_literals
 
 from django import forms
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 
-from .models import UserProfile, numeric
+from .validators import alphabet, numeric
+from .models import UserProfile
 
 BIRTH_YEAR_CHOICES = [x for x in range(1960, 2016, 1)]
 
 
 class SignupForm(forms.Form):
-    alphabet = RegexValidator(r'^[a-zA-Z\s]+$', message=_(u'Họ tên không được chứa số và các kí tự đặc biệt'))
-
     last_name = forms.CharField(max_length=30, label=_(u'Họ'), validators=(alphabet,))
     first_name = forms.CharField(max_length=30, label=_(u'Tên'), validators=(alphabet,))
     phone = forms.CharField(label=_(u"Điện thoại"), validators=(numeric,))

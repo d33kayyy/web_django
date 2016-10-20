@@ -1,0 +1,16 @@
+.promotion {
+    margin-top: 15px;
+}
+
+.date {
+    font-weight: bold;
+}
+
+.marketing_banner {
+    margin-bottom: 10px;
+}
+
+.promotion_tab {
+    margin: 15px 5px 0; /* top 15, left right 5, bottom 0 */
+    border-bottom: 1px solid #ddd;
+}

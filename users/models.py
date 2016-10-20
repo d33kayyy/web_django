@@ -3,7 +3,6 @@ import os
 
 import itertools
 from django.conf import settings
-from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -11,9 +10,7 @@ from allauth.account.models import EmailAddress
 from allauth.socialaccount.models import SocialAccount
 from django.utils.text import slugify
 
-# from phonenumber_field.modelfields import PhoneNumberField
-
-numeric = RegexValidator(r'^[+]?\d{9,15}$', message='Số điện thoại không hợp lệ')
+from .validators import numeric
 
 
 class UserProfile(models.Model):
@@ -94,6 +91,7 @@ class UserProfile(models.Model):
         return {'day': self.birthday.day,
                 'month': self.birthday.month,
                 'year': self.birthday.year}
+
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
