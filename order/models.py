@@ -1,8 +1,14 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.db import models
+
 from item.models import Item
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
-from users.models import UserProfile, numeric
+from actstream import action
+
+from users.models import UserProfile
 
 
 # Create your models here.
@@ -10,15 +16,16 @@ class Order(models.Model):
     PROCESSING = 'PR'
     COOKING = 'CO'
     DELIVERING = 'DE'
-    FINISH = 'FI'
-    CANCEL = 'CA'
+    FINISHED = 'FI'
+    CANCELED = 'CA'
     STATUS_CHOICES = ((PROCESSING, 'Processing'),
                       (COOKING, 'Cooking'),
                       (DELIVERING, 'Delivering'),
-                      (FINISH, 'Finished'),
-                      (CANCEL, 'Canceled'),)
+                      (FINISHED, 'Finished'),
+                      (CANCELED, 'Canceled'),)
 
-    customer = models.ForeignKey(UserProfile, related_name='orders', null=True)
+    userprofile = models.ForeignKey(UserProfile, related_name='orders', null=True)
+    order_id = models.CharField(max_length=30, null=True, blank=True)
     receiver = models.CharField(max_length=30, null=True)
     order_date = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField(default=0)
@@ -35,7 +42,6 @@ class Order(models.Model):
     city = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
     ward = models.CharField(max_length=30, null=True, blank=True)
-
 
     def __str__(self):
         return str(self.pk)
@@ -57,6 +63,20 @@ class Order(models.Model):
         self.total_price = total_price
 
         return total_price
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            super(Order, self).save(*args, **kwargs)
+            action.send(self.userprofile, verb=_(u'đã tạo'), action_object=self)
+        else:
+            super(Order, self).save(*args, **kwargs)
+            if self.status == self.PROCESSING:
+                return
+            elif self.status != self.CANCELED:
+                action.send(self, verb=_(u'đã được thay đổi'), action_object=self,
+                            target=self.userprofile, status=self.status)
+            else:
+                action.send(self, verb=_(u'đã bị hủy'), action_object=self, target=self.userprofile)
 
 
 class ItemOrder(models.Model):

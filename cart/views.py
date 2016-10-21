@@ -23,6 +23,7 @@ class CartView(FormView):
     template_name = 'cart/cart.html'
     form_class = formset_factory(ItemOrderForm, extra=0)
     success_url = reverse_lazy('cart:cart')
+    success_message = _(u'Cập nhật giỏ hàng thành công!')
 
     def get_context_data(self, **kwargs):
         context = super(CartView, self).get_context_data(**kwargs)
@@ -41,6 +42,7 @@ class CartView(FormView):
         if form.is_valid():
             if 'checkout' in request.POST:
                 self.success_url = reverse('cart:info')
+                self.success_message = None
 
             return self.form_valid(form)
         else:
@@ -57,9 +59,8 @@ class CartView(FormView):
 
         # self.request.session[CART_SESSION] = cart
         self.request.session.modified = True
-
-        success_message = _(u'Cập nhật giỏ hàng thành công!')
-        messages.success(self.request, success_message)
+        if self.success_message:
+            messages.success(self.request, self.success_message)
 
         return super(CartView, self).form_valid(form)
 
@@ -170,12 +171,12 @@ def confirmation(request):
 
     if request.method == 'POST':
         if request.user.is_authenticated():
-            customer = request.user.profile
+            profile = request.user.profile
         else:
-            customer = None
+            profile = None
 
         # Create order
-        order = Order.objects.create(customer=customer,
+        order = Order.objects.create(userprofile=profile,
                                      receiver=info['name'],
                                      note=info['note'],
                                      phone=info['phone'],

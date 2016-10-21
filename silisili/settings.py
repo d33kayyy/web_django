@@ -67,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'silisili.urls'
@@ -208,3 +209,11 @@ SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'  # Custom adapter,
 
 ACCOUNT_LOGOUT_ON_GET = True  # Skip the sign out confirmation page
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
+
+
+# Activity stream
+ACTSTREAM_SETTINGS = {
+    'MANAGER': 'actstream.managers.ActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_JSONFIELD': True
+}

@@ -25,5 +25,5 @@ class ListOrdersView(LoginRequiredMixin, ListView):
     template_name = 'order/history.html'
 
     def get_queryset(self):
-        return Order.objects.order_by('-order_date').filter(customer=self.request.user.profile)
+        return Order.objects.order_by('-order_date').filter(userprofile=self.request.user.profile)
 

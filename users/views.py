@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from actstream.models import actor_stream, any_stream
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -27,6 +28,5 @@ class UserProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateV
 
 @login_required
 def notifications(request):
-    profile = request.user.profile
-    order = Order.objects.filter(customer=profile)
-    return render(request, 'noti.html', {'order': order})
+    actions = any_stream(request.user.profile)
+    return render(request, 'notification.html', {'actions': actions})

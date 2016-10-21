@@ -33,7 +33,7 @@ class ReviewPageView(ListView,LoginRequiredMixin):
     context_object_name = 'item_order'
 
     def get_queryset(self):
-        item_order = ItemOrder.objects.filter(order__customer=self.request.user.profile,
+        item_order = ItemOrder.objects.filter(order__userprofile=self.request.user.profile,
                                               is_reviewed=False,
                                               order__status='FI')
 

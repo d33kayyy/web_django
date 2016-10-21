@@ -1,0 +1,101 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load activity_tags %}
+
+{% block title %}
+    Thông báo
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'noti.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile_panel.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            {% include 'layout/profile_panel_snippet.html' with user=user %}
+
+            <div class="col-md-9">
+                <div class="card card-1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Thông báo của tôi</h4>
+
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#promotion">Khuyến mãi hấp dẫn</a></li>
+                                <li><a data-toggle="tab" href="#infomation">Thông tin đơn hàng</a></li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="promotion" class="tab-pane fade in active promotion">
+                                    <a href="sharing.html"><img class="img-responsive marketing_banner"
+                                                                src="{% static 'images/banner.jpg' %}"> </a>
+                                    <a href="#"> <img class="img-responsive marketing_banner"
+                                                      src="{% static 'images/banner2.jpg' %}"></a>
+                                    <a href="#"> <img class="img-responsive marketing_banner"
+                                                      src="{% static 'images/banner3.jpg' %}"></a>
+                                </div>
+
+                                <div id="infomation" class="tab-pane fade">
+                                    {#                                        {% for action in actions %}#}
+                                    {#                                            {% display_action action %}#}
+                                    {#                                                                            {% empty %}#}
+                                    {#                                                                                <p>Nothing here</p>#}
+                                    {#                                                                            {% endfor %}#}
+
+                                    {% for event in actions %}
+                                        <div class="row promotion_tab">
+                                            <div id="date" class="col-md-2 col-xs-12 date">
+                                                <p>{{ event.timestamp|date:"SHORT_DATE_FORMAT" }}</p>
+                                            </div>
+                                            <div class="col-md-8 col-xs-12">
+                                                <p>
+                                                    {% if event.verb == 'đã được thay đổi' %}
+                                                        Trạng thái của đơn hàng
+                                                        {% if event.action_object %}
+                                                            #{{ event.action_object.order_id }}
+                                                        {% endif %}
+                                                        {{ event.verb }} sang
+                                                        {% if event.data.status %}
+                                                            <strong>{{ event.data.status }}</strong>
+                                                        {% endif %}
+                                                    {% elif event.verb == 'đã bị hủy' %}
+                                                        Đơn hàng
+                                                        {% if event.action_object %}
+                                                            #{{ event.action_object.order_id }}
+                                                        {% endif %}
+                                                        {{ event.verb }}
+                                                    {% else %}
+
+                                                        {% if request.user.profile == event.actor %}
+                                                            Bạn
+                                                        {% else %}
+                                                            {{ event.actor.name }}
+                                                        {% endif %}
+                                                        {{ event.verb }} đơn hàng
+                                                        {% if event.action_object %}
+                                                            #{{ event.action_object.order_id }}
+                                                        {% endif %}
+
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {% empty %}
+                                        <div class="alert alert-info margin_top_10">
+                                            Bạn chưa thực hiện mua hàng
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- close col div -->
+        </div>
+    </div>
+
+{% endblock %}
+
