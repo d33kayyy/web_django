@@ -1,5 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load activity_tags %}
+
 
 {% block title %}
     Thông báo
@@ -67,6 +69,15 @@
                                                 incididunt ut labore et dolore magna aliqua.</p>
                                         </div>
                                     </div>
+                                    <div class="row promotion_tab">
+                                        {% activity_stream 'actor' order %}
+                                        {% for action in stream %}
+                                            {% display_action action %}
+                                        {% empty %}
+                                            <p>Nothing here</p>
+                                        {% endfor %}
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
