@@ -5,6 +5,8 @@ from django.contrib import admin
 from users import views
 from item.views import HomePageView
 
+import notifications.urls
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomePageView.as_view(), name='cook'),
@@ -14,8 +16,9 @@ urlpatterns = [
     url(r'^order/', include('order.urls')),
     url(r'^reviews/', include('reviews.urls')),
     url(r'^chef/', include('chef.urls')),
-    url(r'^notifications/', views.notifications, name='notifications'),
+    url(r'^notification/', views.notification, name='notification'),
 
+    url(r'^inbox/notifications/', include(notifications.urls, namespace='notifications')),
     url(r'^accounts/profile/', views.UserProfileUpdate.as_view(), name='profile'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^activity/', include('actstream.urls')),

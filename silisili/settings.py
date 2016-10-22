@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     # Tweak the form field rendering in templates
     'widget_tweaks',
     'bootstrapform',
-    'actstream'
+    'actstream',
+    'notifications'
 ]
 
 MIDDLEWARE = [
@@ -210,10 +211,12 @@ SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'  # Custom adapter,
 ACCOUNT_LOGOUT_ON_GET = True  # Skip the sign out confirmation page
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
 
-
 # Activity stream
 ACTSTREAM_SETTINGS = {
     'MANAGER': 'actstream.managers.ActionManager',
     'FETCH_RELATIONS': True,
     'USE_JSONFIELD': True
 }
+
+# Notify
+NOTIFICATIONS_USE_JSONFIELD = True

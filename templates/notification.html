@@ -55,18 +55,20 @@
                                                     {% if event.verb == 'đã được thay đổi' %}
                                                         Trạng thái của đơn hàng
                                                         {% if event.action_object %}
-                                                            #{{ event.action_object.order_id }}
+                                                            <strong>#{{ event.action_object.order_id }}</strong>
                                                         {% endif %}
                                                         {{ event.verb }} sang
                                                         {% if event.data.status %}
                                                             <strong>{{ event.data.status }}</strong>
                                                         {% endif %}
+
                                                     {% elif event.verb == 'đã bị hủy' %}
                                                         Đơn hàng
                                                         {% if event.action_object %}
-                                                            #{{ event.action_object.order_id }}
+                                                            <strong>#{{ event.action_object.order_id }}</strong>
                                                         {% endif %}
                                                         {{ event.verb }}
+
                                                     {% else %}
 
                                                         {% if request.user.profile == event.actor %}
@@ -76,7 +78,7 @@
                                                         {% endif %}
                                                         {{ event.verb }} đơn hàng
                                                         {% if event.action_object %}
-                                                            #{{ event.action_object.order_id }}
+                                                            <strong>#{{ event.action_object.order_id }}</strong>
                                                         {% endif %}
 
                                                     {% endif %}

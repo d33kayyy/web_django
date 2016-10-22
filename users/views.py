@@ -27,6 +27,6 @@ class UserProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateV
 
 
 @login_required
-def notifications(request):
+def notification(request):
     actions = any_stream(request.user.profile)
     return render(request, 'notification.html', {'actions': actions})

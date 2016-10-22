@@ -5,9 +5,12 @@ django-activity-stream==0.6.3
 django-allauth==0.27.0
 django-bootstrap-form==3.2.1
 django-jsonfield==1.0.1
+django-model-utils==2.6
+django-notifications-hq==1.2
 django-phonenumber-field==1.1.0
 django-widget-tweaks==1.4.1
 gunicorn==19.6.0
+jsonfield==1.0.3
 oauthlib==2.0.0
 phonenumberslite==7.5.2
 Pillow==3.3.1

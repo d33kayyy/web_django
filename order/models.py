@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from actstream import action
+from notifications.signals import notify
 
 from users.models import UserProfile
 
@@ -68,15 +69,23 @@ class Order(models.Model):
         if not self.id:
             super(Order, self).save(*args, **kwargs)
             action.send(self.userprofile, verb=_(u'đã tạo'), action_object=self)
+
         else:
             super(Order, self).save(*args, **kwargs)
-            if self.status == self.PROCESSING:
+
+            status = dict(self.STATUS_CHOICES).get(self.status)
+
+            if self.status == self.PROCESSING:  # Default status, no change
                 return
-            elif self.status != self.CANCELED:
-                action.send(self, verb=_(u'đã được thay đổi'), action_object=self,
-                            target=self.userprofile, status=self.status)
-            else:
+            elif self.status == self.CANCELED: # Message when order is canceled
                 action.send(self, verb=_(u'đã bị hủy'), action_object=self, target=self.userprofile)
+                notify.send(self, verb=_(u'đã bị hủy'), action_object=self, recipient=self.userprofile.user,
+                            order_id=self.order_id)
+            else: # Message when status change
+                action.send(self, verb=_(u'đã được thay đổi'), action_object=self, target=self.userprofile,
+                            status=status)
+                notify.send(self, verb=_(u'đã được thay đổi'), action_object=self, recipient=self.userprofile.user,
+                            status=status, order_id=self.order_id)
 
 
 class ItemOrder(models.Model):

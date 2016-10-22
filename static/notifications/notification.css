@@ -1,0 +1,207 @@
+.dropdown-container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 200px;
+    max-width: 330px;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    background-clip: padding-box;
+}
+
+.dropdown-container > .dropdown-menu {
+    position: static;
+    z-index: 1000;
+    float: none !important;
+    padding: 10px 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    max-height: 330px;
+    overflow-y: auto;
+}
+
+.dropdown-container > .dropdown-menu + .dropdown-menu {
+    padding-top: 0;
+}
+
+.dropdown-menu > li > a {
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.open > .dropdown-container > .dropdown-menu,
+.open > .dropdown-container {
+    display: block;
+}
+
+.dropdown-toolbar {
+    padding-top: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px 4px 0 0;
+}
+
+.dropdown-toolbar .dropdown-toolbar-title {
+    margin: 0;
+    font-size: 14px;
+}
+
+.dropdown-footer {
+    border-top: 1px solid #ccc;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 4px 4px;
+}
+
+.anchor-block small {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .anchor-block small {
+        display: block;
+        font-weight: normal;
+        color: #777777;
+    }
+
+    .dropdown-menu > li > a.anchor-block {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+}
+
+@media (min-width: 992px) {
+    .dropdown.hoverable:hover > ul {
+        display: block;
+    }
+}
+
+.dropdown-inverse .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.9);
+}
+
+.dropdown-inverse .dropdown-menu > li > a {
+    color: #cccccc;
+}
+
+.dropdown-inverse .dropdown-menu > li > a:hover,
+.dropdown-inverse .dropdown-menu > li > a:focus {
+    color: #fff;
+    background-color: #262626;
+}
+
+.dropdown-inverse .dropdown-menu > .active > a,
+.dropdown-inverse .dropdown-menu > .active > a:hover,
+.dropdown-inverse .dropdown-menu > .active > a:focus {
+    color: #fff;
+    background-color: #337ab7;
+}
+
+.dropdown-inverse .dropdown-menu > .disabled > a,
+.dropdown-inverse .dropdown-menu > .disabled > a:hover,
+.dropdown-inverse .dropdown-menu > .disabled > a:focus {
+    color: #777777;
+}
+
+.table > thead > tr > th.col-actions {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.table > thead > tr > th.col-actions .dropdown-toggle {
+    color: #777777;
+}
+
+.notification {
+    display: block;
+    padding: 9.6px 12px;
+    border-bottom: 1px solid #eeeeee;
+    color: #333333;
+    text-decoration: none;
+}
+
+.notification:last-child {
+    border-bottom: 0;
+}
+
+.notification:hover,
+.notification.active:hover {
+    background-color: #f9f9f9;
+}
+
+.notification.active {
+    background-color: #f4f4f4;
+}
+
+.dropdown-notifications > .dropdown-container,
+.dropdown-notifications > .dropdown-menu {
+    width: 450px;
+    max-width: 450px;
+}
+
+.dropdown-notifications .dropdown-menu {
+    padding: 0;
+}
+
+.dropdown-notifications .dropdown-toolbar {
+    padding: 9.6px 12px;
+}
+
+.dropdown-notifications .dropdown-toolbar {
+    background: #fff;
+}
+
+.dropdown-notifications .dropdown-footer {
+    background: #eeeeee;
+}
+
+.notification-icon {
+    margin-right: 6.8775px;
+}
+
+.notification-icon:after {
+    position: absolute;
+    content: attr(data-count);
+    margin-left: -6.8775px;
+    margin-top: -6.8775px;
+    padding: 0 4px;
+    min-width: 13.755px;
+    height: 13.755px;
+    line-height: 13.755px;
+    background: red;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 11.004px;
+    font-weight: 600;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
