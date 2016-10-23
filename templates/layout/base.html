@@ -53,7 +53,8 @@
                 {#  Notification #}
                 <li class="dropdown dropdown-notifications">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-bell fa-bell-slash">{% live_notify_badge classes="label label-danger" %}</i>
+{#                        <i class="fa fa-bell fa-bell-slash">{% live_notify_badge classes="label label-danger" %}</i>#}
+                        {% live_notify_count classes='glyphicon glyphicon-bell notification-icon' %}
                     </a>
 
                     <div class="dropdown-container">

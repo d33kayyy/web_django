@@ -11,10 +11,8 @@ def live_notify_count(context, badge_id='live_notify_badge', classes=""):
     if not user:
         return ''
 
-    html = "<i id='{badge_id}' data-count='{unread}' class='{classes}'></i>".format(badge_id=badge_id,
-                                                                                    classes=classes,
-                                                                                    unread=user.notifications.unread().count()
-                                                                                    )
+    html = "<i data-count='{unread}' class='{classes}'></i>".format(classes=classes,
+                                                                    unread=user.notifications.unread().count(),)
     return format_html(html)
 
 
