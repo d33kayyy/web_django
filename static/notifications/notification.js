@@ -24,11 +24,12 @@ function gen_notification_list(data) {
                 datetime = item.timestamp;
             }
             if (typeof item.data != 'undefined') {
-                if (typeof item.data.status != 'undefined') {
-                    status = item.data.status;
+                obj = JSON.parse(item.data);
+                if (typeof obj.status != 'undefined') {
+                    status = obj.status;
                 }
-                if (typeof item.data.order_id != 'undefined') {
-                    order_id = item.data.order_id;
+                if (typeof obj.order_id != 'undefined') {
+                    order_id = obj.order_id;
                 }
             }
 
@@ -49,7 +50,7 @@ function gen_notification_list(data) {
             if (unread) {
                 menu.innerHTML = menu.innerHTML + "<li class='notification active'>" + message + '<small>' + datetime + '</small>' + "</li>";
             } else {
-                menu.innerHTML = menu.innerHTML + "<li class='notification'>" + message + '<small>' + datetime  + '</small>' + "</li>";
+                menu.innerHTML = menu.innerHTML + "<li class='notification'>" + message + '<small>' + datetime + '</small>' + "</li>";
             }
         }
     }
