@@ -25,7 +25,7 @@
 
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#promotion">Khuyến mãi hấp dẫn</a></li>
-                                <li><a data-toggle="tab" href="#infomation">Thông tin đơn hàng</a></li>
+                                <li><a data-toggle="tab" href="#information">Thông tin đơn hàng</a></li>
                             </ul>
 
                             <div class="tab-content">
@@ -38,7 +38,7 @@
                                                       src="{% static 'images/banner3.jpg' %}"></a>
                                 </div>
 
-                                <div id="infomation" class="tab-pane fade">
+                                <div id="information" class="tab-pane fade">
                                     {#                                        {% for action in actions %}#}
                                     {#                                            {% display_action action %}#}
                                     {#                                                                            {% empty %}#}
@@ -99,5 +99,21 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+    var hash = document.location.hash;
+    var prefix = "tab_";
+    if (hash) {
+        $('.nav-tabs a[href="'+hash.replace(prefix,"")+'"]').tab('show');
+    }
+
+    // Change hash for page-reload
+    $('.nav-tabs a').on('shown.bs.tab', function (e) {
+        console.log("abc")
+        window.location.hash = e.target.hash.replace("#", "#" + prefix);
+    });
+</script>
 {% endblock %}
 
