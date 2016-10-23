@@ -26,7 +26,7 @@
                         {% for i in item.images.all %}
                             {% if i.image %}
                                 <div class="item {% if forloop.first %} active {% endif %}">
-                                    <img class="img-responsive img_slide center-block" src="{{ i.image.url }}" alt="image">
+                                    <img class="img-responsive center-block" src="{{ i.image.url }}" alt="image">
                                 </div>
                             {% endif %}
                         {% empty %}
