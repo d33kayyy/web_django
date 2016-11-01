@@ -10,5 +10,4 @@ urlpatterns = [
     url(r'^remove/$', views.RemoveItemFromCart.as_view(), name='remove'),
     url(r'^info/$', views.information, name='info'),
     url(r'^confirm/$', views.confirmation, name='confirm'),
-    # url(r'^update/$', views.UpdateItemInCart.as_view(), name='update'),
 ]

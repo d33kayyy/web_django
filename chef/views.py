@@ -25,6 +25,7 @@ class ChefView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ChefView, self).get_context_data(**kwargs)
+        # get all items created by this chef
         context['items'] = Item.objects.filter(chef=self.object)
         return context
 

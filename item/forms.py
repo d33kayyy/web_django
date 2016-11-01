@@ -31,7 +31,7 @@ class ItemForm(forms.ModelForm):
             'in_stock': _(u'Số lượng'),
         }
 
-
+# Set of image forms for an item
 ImageInlineFormSet = inlineformset_factory(Item, Images, fields=('image',), extra=3, max_num=3)
 
 

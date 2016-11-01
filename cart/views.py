@@ -41,6 +41,7 @@ class CartView(FormView):
 
         if form.is_valid():
             if 'checkout' in request.POST:
+                # if the button clicked is 'checkout', redirect to info page
                 self.success_url = reverse('cart:info')
                 self.success_message = None
 
@@ -52,6 +53,7 @@ class CartView(FormView):
         cart = get_session(self.request, CART_SESSION)
         formset = form
 
+        # update cart
         for f in formset:
             item_id = f.cleaned_data['item_id']
             quantity = f.cleaned_data['quantity']
@@ -108,6 +110,8 @@ class RemoveItemFromCart(FormView):
     def form_valid(self, form):
         cart = get_session(self.request, CART_SESSION)
         item_id = form.cleaned_data['item_id']
+
+        # remove item from cart session
         if str(item_id) in cart.keys():
             del cart[str(item_id)]
 
@@ -144,8 +148,8 @@ def information(request):
         form = InformationForm(request.POST)
 
         if form.is_valid():
-            # print(form.cleaned_data)
 
+            # push data into info session
             info = get_session(request, INFO_SESSION)
             for k, v in form.cleaned_data.items():
                 info[str(k)] = v

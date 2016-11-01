@@ -5,15 +5,24 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class ItemOrderForm(forms.Form):
+    """
+    Form for items in order (cart page)
+    """
     item_id = forms.IntegerField()
     quantity = forms.IntegerField(min_value=0)
 
 
 class ItemForm(forms.Form):
+    """
+    Form for item deletion (cart page)
+    """
     item_id = forms.IntegerField()
 
 
 class InformationForm(forms.Form):
+    """
+    Form for information page
+    """
     name = forms.CharField(max_length=30, label=_(u'Tên người nhận'))
     email = forms.EmailField(label=_('Email'))
     phone = forms.CharField(max_length=16, label=_(u'Số điện thoại'))

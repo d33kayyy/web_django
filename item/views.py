@@ -32,7 +32,7 @@ class IndexView(ListView):
     context_object_name = 'list_items'
 
     def get_queryset(self):
-        """Return the last five published questions."""
+        """Return all the items"""
         return Item.objects.order_by('-pub_date').all()
 
 
@@ -47,21 +47,6 @@ class ItemDetailDisplay(DetailView):
         context = super(ItemDetailDisplay, self).get_context_data(**kwargs)
         context['rating'] = range(int(self.object.get_rating()))
         return context
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(ItemDetailDisplay, self).get_context_data(**kwargs)
-    #     context['form'] = ReviewForm()
-    #     return context
-
-
-# class ItemDetailView(View):
-#     def get(self, request, *args, **kwargs):
-#         view = ItemDetailDisplay.as_view()
-#         return view(request, *args, **kwargs)
-#
-#     def post(self, request, *args, **kwargs):
-#         view = ItemReview.as_view()
-#         return view(request, *args, **kwargs)
 
 
 def cook(request):

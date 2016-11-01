@@ -67,15 +67,11 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['birthday', 'gender', 'email', 'phone', 'address', 'allergy', 'city', 'district', 'ward']
         widgets = {
-            # 'gender': forms.Select,
-            # 'birthday': DateInput(),
             'birthday': forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES),
             'address': forms.Textarea(attrs={'rows': 1}),
-            # 'point': forms.TextInput,
             'allergy': forms.Textarea(attrs={'rows': 1})
         }
         labels = {
-            # 'name': _('Họ và tên'),
             'birthday': _(u'Ngày sinh'),
             'gender': _(u'Giới tính'),
             'phone': _(u'Số điện thoại'),
@@ -84,7 +80,6 @@ class UserProfileForm(forms.ModelForm):
             'city': _(u'Tỉnh/Thành Phố'),
             'district': _(u'Quận/Huyện'),
             'ward': _(u'Phường/Xã')
-            # 'point': _('Điểm tích lũy'),
         }
 
     email = forms.CharField(disabled=True)

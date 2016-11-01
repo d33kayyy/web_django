@@ -11,19 +11,6 @@ from reviews.models import Review
 from .forms import ReviewForm
 
 
-# Create your views here.
-
-# @login_required
-# def review_display(request):
-#
-#     # Not reviewed item order (item)
-#     item_order = ItemOrder.objects.filter(order__customer=request.user.profile,
-#                                           is_reviewed=False,
-#                                           order__status='FI')
-#     form = ReviewForm
-#
-#     return render(request, 'reviews/review.html', {'item_order': item_order, 'form': form})
-
 class ReviewPageView(ListView,LoginRequiredMixin):
     '''
     Display all item order that is not reviewed
@@ -65,10 +52,8 @@ class ItemReview(FormView, LoginRequiredMixin):
             review.reviewer = reviewer
             review.save()
 
-        # Mark as reviewed
-        # item_order_id = form.cleaned_data['item_order_id']
-        # item_order = ItemOrder.objects.get(id=item_order_id)
-        # item_order.is_reviewed = True
-        # item_order.save()
+
+        # After the review is saved, mark the itemorder as reviewed
+        # this is done in the save() of form (in forms.py)
 
         return HttpResponseRedirect(reverse('item:detail', kwargs={'slug': item.slug}))
