@@ -71,7 +71,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
-ROOT_URLCONF = 'silisili.urls'
+ROOT_URLCONF = 'web_django.urls'
 
 TEMPLATES = [
     {
@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'silisili.wsgi.application'
+WSGI_APPLICATION = 'web_django.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -101,7 +101,7 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.postgresql_psycopg2',
         #'NAME': 'postgres',
         #'USER': 'dk',
-    #'PASSWORD': '1',
+        #'PASSWORD': '1',
         #'HOST': '127.0.0.1',
         #'PORT': '5432',
     }
