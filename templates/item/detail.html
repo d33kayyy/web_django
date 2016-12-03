@@ -89,7 +89,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="item_id" value="{{ item.id }}"/>
                                 <input type="hidden" name="quantity" value="1"/>
-                                <input type="submit" class="custom_btn small_btn" value="Đặt ngay"/>
+                                <input type="submit" class="btn_color small_btn" value="Đặt ngay"/>
                             </form>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                     {% endfor %}
 
                     <div class="row text-center" style="margin-top: 10px">
-                        <button class="custom_btn small_btn" type="button" data-toggle="collapse"
+                        <button class="btn_color small_btn" type="button" data-toggle="collapse"
                                 data-target="#collapseReview"
                                 aria-expanded="false" aria-controls="collapseReview">
                             Xem thêm

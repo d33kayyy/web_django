@@ -24,11 +24,11 @@ class ItemForm(forms.ModelForm):
         }
 
         labels = {
-            'name': _(u'Tên sản phẩm'),
-            'price': _(u'Giá'),
-            'description': _(u'Mô tả sản phẩm'),
-            'ingredient': _(u'Thành phần'),
-            'in_stock': _(u'Số lượng'),
+            'name': _('Product name'),
+            'price': _('Price'),
+            'description': _('Description'),
+            'ingredient': _('Ingredients'),
+            'in_stock': _('Stock'),
         }
 
 # Set of image forms for an item
@@ -43,5 +43,5 @@ class ImageForm(forms.ModelForm):
         fields = ('image',)
 
         labels = {
-            'image': _(u'Ảnh')
+            'image': _('Image')
         }

@@ -12,26 +12,19 @@ BIRTH_YEAR_CHOICES = [x for x in range(1960, 2016, 1)]
 
 
 class SignupForm(forms.Form):
-    last_name = forms.CharField(max_length=30, label=_(u'Họ'), validators=(alphabet,))
-    first_name = forms.CharField(max_length=30, label=_(u'Tên'), validators=(alphabet,))
-    phone = forms.CharField(label=_(u"Điện thoại"), validators=(numeric,))
-    email = forms.EmailField(label=_(u"Email"))
-    password1 = forms.CharField(max_length=16, label=_(u"Mật khẩu"), widget=forms.PasswordInput)
-    password2 = forms.CharField(max_length=16, label=_(u"Nhập lại mật khẩu"), widget=forms.PasswordInput)
+    last_name = forms.CharField(max_length=30, label=_('Last name'), validators=(alphabet,),
+                                widget=forms.TextInput(attrs={'placeholder': _('Last name')}))
+    first_name = forms.CharField(max_length=30, label=_('First name'), validators=(alphabet,),
+                                 widget=forms.TextInput(attrs={'placeholder': _('First name')}))
+    phone = forms.CharField(label=_("Phone"), validators=(numeric,),
+                            widget=forms.TextInput(attrs={'placeholder': _('Phone number')}))
+    email = forms.EmailField(label=_("Email"))
+    password1 = forms.CharField(max_length=16, widget=forms.PasswordInput)
+    password2 = forms.CharField(max_length=16, widget=forms.PasswordInput)
 
     class Meta:
         model = User
         fields = ['last_name', 'first_name', 'phone', 'email', 'password1', 'password2']
-
-        widgets = {
-            'password1': forms.PasswordInput,
-            'password2': forms.PasswordInput
-        }
-        labels = {
-            'password1': _(u"Mật khẩu"),
-            'password2': _(u"Nhập lại mật khẩu"),
-            'email': _(u"Email")
-        }
 
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']

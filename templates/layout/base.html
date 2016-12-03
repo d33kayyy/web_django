@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %} SiliSili {% endblock %}</title>
+    <title>{% block title %} DK {% endblock %}</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7/css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
@@ -22,10 +22,10 @@
 
     <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon"/>
 </head>
-<body onload="displayLineChart();">
+<body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Silisili</a>
+            <a class="navbar-brand" href="/">DK</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,35 +49,35 @@
                 <li>
                     <a href="{% url 'cart:cart' %}"><i class="fa fa-shopping-cart fa-lg"></i></a>
                 </li>
+                {% if user.is_authenticated %}
+                    {#  Notification #}
+                    <li class="dropdown dropdown-notifications">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            {#                        <i class="fa fa-bell fa-bell-slash">{% live_notify_badge classes="label label-danger" %}</i>#}
+                            {% live_notify_count classes='glyphicon glyphicon-bell notification-icon' %}
+                        </a>
 
-                {#  Notification #}
-                <li class="dropdown dropdown-notifications">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        {#                        <i class="fa fa-bell fa-bell-slash">{% live_notify_badge classes="label label-danger" %}</i>#}
-                        {% live_notify_count classes='glyphicon glyphicon-bell notification-icon' %}
-                    </a>
+                        <div class="dropdown-container">
 
-                    <div class="dropdown-container">
+                            <div class="dropdown-toolbar">
+                                <h3 class="dropdown-toolbar-title pull-right">Mark all as read</h3>
+                                <h3 class="dropdown-toolbar-title">Notifications ({% live_notify_badge %})</h3>
+                            </div>
 
-                        <div class="dropdown-toolbar">
-                            <h3 class="dropdown-toolbar-title pull-right">Mark all as read</h3>
-                            <h3 class="dropdown-toolbar-title">Notifications ({% live_notify_badge %})</h3>
-                        </div>
+                            {#                        {% live_notify_list classes="dropdown-menu" %}#}
 
-                        {#                        {% live_notify_list classes="dropdown-menu" %}#}
+                            <ul id='live_notify_list' class="dropdown-menu">
 
-                        <ul id='live_notify_list' class="dropdown-menu">
+                            </ul>
 
-                        </ul>
+                            <div class="dropdown-footer text-center">
+                                <a href="{% url 'notification' %}/#tab_information">View All</a>
+                            </div>
+                        </div><!-- /dropdown-container -->
+                    </li><!-- /dropdown -->
 
-                        <div class="dropdown-footer text-center">
-                            <a href="{% url 'notification' %}/#tab_information">View All</a>
-                        </div>
-                    </div><!-- /dropdown-container -->
-                </li><!-- /dropdown -->
+                    <li class="dropdown" id="aa">
 
-                <li class="dropdown" id="aa">
-                    {% if user.is_authenticated %}
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             {% if user.profile.avatar %}
                                 <img class="user_icon img-circle" src="{{ user.profile.avatar.url }}" alt="avatar"/>
@@ -93,25 +93,28 @@
                             </li>
                             <li>
                                 {% if user.profile.is_chef %}
-                                    <a href="{% url 'chef:dashboard' %}" class="hidden-sm"><i class="fa fa-tachometer"></i> Dashboard </a>
+                                    <a href="{% url 'chef:dashboard' %}" class="hidden-sm"><i
+                                            class="fa fa-tachometer"></i> Dashboard </a>
                                 {% else %}
                                     <a href="#" class="hidden-sm"><i class="fa fa-star-o"></i> Cook with us! </a>
                                 {% endif %}
                             </li>
                             <li>
-                                <a href='{% url 'profile' %}' class="hidden-sm"><i class="fa fa-user"></i> Hồ sơ </a>
+                                <a href='{% url 'profile' %}' class="hidden-sm"><i class="fa fa-user"></i> Profile </a>
                             </li>
                             <li>
                                 <a href="{% url 'account_logout' %}" class="hidden-sm"><i class="fa fa-sign-out"
                                                                                           aria-hidden="true"></i>
-                                    Đăng xuất </a>
+                                    Sign out </a>
                             </li>
                         </ul>
-                    {% else %}
-                        <a href="{% url 'account_login' %}" class="hidden-sm"> Đăng nhập </a>
-                        {# / Đăng xuất #}
-                    {% endif %}
-                </li>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'account_login' %}" class="hidden-sm"> Sign In </a>
+                    </li>
+                {% endif %}
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -122,7 +125,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted footer_text">&copy; 2016 SiliSili. All Rights Reserved.</p>
+        <p class="text-muted footer_text">&copy; 2016 DK. All Rights Reserved.</p>
     </div>
 </footer>
 
