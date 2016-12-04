@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django import forms
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
@@ -20,7 +17,7 @@ class ItemForm(forms.ModelForm):
             'in_stock'
         ]
         help_texts = {
-            'ingredient': "Separate by commas or new line"
+            'ingredient': _("Separate by commas or new line")
         }
 
         labels = {

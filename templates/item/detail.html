@@ -49,9 +49,9 @@
 
                     <div class="row">
                         <div class="col-md-1 col-xs-2">
-                            <a href="{% url 'chef:detail' item.chef.profile.slug %}">
-                                {% if item.chef.profile.avatar %}
-                                    <img class="avatar img-circle" src="{{ item.chef.profile.avatar.url }}"
+                            <a href="{% url 'shop:detail' item.shop.profile.slug %}">
+                                {% if item.shop.profile.avatar %}
+                                    <img class="avatar img-circle" src="{{ item.shop.profile.avatar.url }}"
                                          alt="avatar"/>
                                 {% else %}
                                     <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}"
@@ -60,8 +60,8 @@
                             </a>
                         </div>
                         <div class="col-md-11 col-xs-10">
-                            <a href="{% url 'chef:detail' item.chef.profile.slug %}">
-                                <div class="cook_name">{{ item.chef.profile.name }}</div>
+                            <a href="{% url 'shop:detail' item.shop.profile.slug %}">
+                                <div class="cook_name">{{ item.shop.profile.name }}</div>
                             </a>
                         </div>
                     </div>

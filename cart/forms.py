@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 from django import forms
-
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -23,11 +21,11 @@ class InformationForm(forms.Form):
     """
     Form for information page
     """
-    name = forms.CharField(max_length=30, label=_(u'Tên người nhận'))
+    name = forms.CharField(max_length=30, label=_('Receiver'))
     email = forms.EmailField(label=_('Email'))
-    phone = forms.CharField(max_length=16, label=_(u'Số điện thoại'))
-    address = forms.CharField(max_length=250, label=_(u'Địa chỉ'))
-    city = forms.CharField(max_length=30, label=_(u'Tỉnh/Thành Phố'))
-    district = forms.CharField(max_length=30, label=_(u'Quận/Huyện'))
-    ward = forms.CharField(max_length=30, label=_(u'Phường/Xã'), required=False)
-    note = forms.CharField(max_length=250, label=_(u'Ghi chú'), required=False)
+    phone = forms.CharField(max_length=16, label=_('Phone number'))
+    address = forms.CharField(max_length=250, label=_('Address'))
+    city = forms.CharField(max_length=30, label=_('City'))
+    district = forms.CharField(max_length=30, label=_('District'))
+    ward = forms.CharField(max_length=30, label=_('Ward'), required=False)
+    note = forms.CharField(max_length=250, label=_('Note'), required=False)

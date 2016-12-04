@@ -1,4 +1,3 @@
-# -*-   coding: utf-8 -*-
 import os
 import itertools
 
@@ -10,7 +9,7 @@ from django.urls import reverse
 
 
 class Item(models.Model):
-    chef = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chef')
+    shop = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shop')
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, max_length=100)
     price = models.PositiveIntegerField()

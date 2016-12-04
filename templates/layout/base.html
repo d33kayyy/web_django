@@ -1,6 +1,6 @@
 {% load static %}
-{% load notifications_tags %}
-{% load my_noti_tags %}
+{#{% load notifications_tags %}#}
+{#{% load my_noti_tags %}#}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,30 +51,30 @@
                 </li>
                 {% if user.is_authenticated %}
                     {#  Notification #}
-                    <li class="dropdown dropdown-notifications">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+{#                    <li class="dropdown dropdown-notifications">#}
+{#                        <a href="" class="dropdown-toggle" data-toggle="dropdown">#}
                             {#                        <i class="fa fa-bell fa-bell-slash">{% live_notify_badge classes="label label-danger" %}</i>#}
-                            {% live_notify_count classes='glyphicon glyphicon-bell notification-icon' %}
-                        </a>
-
-                        <div class="dropdown-container">
-
-                            <div class="dropdown-toolbar">
-                                <h3 class="dropdown-toolbar-title pull-right">Mark all as read</h3>
-                                <h3 class="dropdown-toolbar-title">Notifications ({% live_notify_badge %})</h3>
-                            </div>
-
+{#                            {% live_notify_count classes='glyphicon glyphicon-bell notification-icon' %}#}
+{#                        </a>#}
+{##}
+{#                        <div class="dropdown-container">#}
+{##}
+{#                            <div class="dropdown-toolbar">#}
+{#                                <h3 class="dropdown-toolbar-title pull-right">Mark all as read</h3>#}
+{#                                <h3 class="dropdown-toolbar-title">Notifications ({% live_notify_badge %})</h3>#}
+{#                            </div>#}
+{##}
                             {#                        {% live_notify_list classes="dropdown-menu" %}#}
-
-                            <ul id='live_notify_list' class="dropdown-menu">
-
-                            </ul>
-
-                            <div class="dropdown-footer text-center">
-                                <a href="{% url 'notification' %}/#tab_information">View All</a>
-                            </div>
-                        </div><!-- /dropdown-container -->
-                    </li><!-- /dropdown -->
+{##}
+{#                            <ul id='live_notify_list' class="dropdown-menu">#}
+{##}
+{#                            </ul>#}
+{##}
+{#                            <div class="dropdown-footer text-center">#}
+{#                                <a href="{% url 'notification' %}/#tab_information">View All</a>#}
+{#                            </div>#}
+{#                        </div><!-- /dropdown-container -->#}
+{#                    </li><!-- /dropdown -->#}
 
                     <li class="dropdown" id="aa">
 
@@ -93,7 +93,7 @@
                             </li>
                             <li>
                                 {% if user.profile.is_chef %}
-                                    <a href="{% url 'chef:dashboard' %}" class="hidden-sm"><i
+                                    <a href="{% url 'shop:dashboard' %}" class="hidden-sm"><i
                                             class="fa fa-tachometer"></i> Dashboard </a>
                                 {% else %}
                                     <a href="#" class="hidden-sm"><i class="fa fa-star-o"></i> Cook with us! </a>
@@ -142,9 +142,9 @@
 </script>
 
 {# Notification #}
-<script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
-<script src="{% static 'notifications/notification.js' %}" type="text/javascript"></script>
-{% register_notify_callbacks callbacks='fill_notification_badge,gen_notification_list' %}
+{#<script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>#}
+{#<script src="{% static 'notifications/notification.js' %}" type="text/javascript"></script>#}
+{#{% register_notify_callbacks callbacks='fill_notification_badge,gen_notification_list' %}#}
 
 {% block footer %}
 {% endblock %}

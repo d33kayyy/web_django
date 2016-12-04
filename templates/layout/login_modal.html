@@ -1,0 +1,57 @@
+{% load i18n %}
+<!-- BEGIN # MODAL LOGIN -->
+<section id="login">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"
+         style="display: none;">
+        <div id="login-overlay" class="modal-dialog">
+            <div class="modal-content">
+                {#            <div class="modal-header">#}
+                {#                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span#}
+                {#                        class="sr-only">Close</span></button>#}
+                {#                <h4 class="modal-title" id="myModalLabel">Login to site.com</h4>#}
+                {#            </div>#}
+                <div class="modal-body">
+
+                    <div class="form-wrap">
+                        <h1>Log in with your email account</h1>
+                        <form method="POST" action="{% url 'account_login' %}" autocomplete="off">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="id_login" class="sr-only">Email</label>
+                                <input autofocus="autofocus" class="form-control" id="id_login" name="login"
+                                       placeholder="somebody@example.com" type="email" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_password" class="sr-only">Password</label>
+                                <input class="form-control" id="id_password" name="password" placeholder="Password"
+                                       type="password" required/>
+                            </div>
+
+                            <div class="checkbox">
+                                <span class="character-checkbox" onclick="showPassword()"></span>
+                                <span class="label">Remember me</span>
+                            </div>
+
+{#                            <div class="form-group checkbox-inline margin_top_10">#}
+{#                                <label for="id_remember">#}
+{#                                    <input id="id_remember" name="remember" type="checkbox"/>Remember me</label>#}
+{#                            </div>#}
+
+                            <button class="btn btn-custom btn-lg btn-block" type="submit">
+                                {% trans "Sign in" %}
+                            </button>
+                        </form>
+
+                        <a href="{% url 'account_reset_password' %}" class="forget">Forgot your password?</a>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END # MODAL LOGIN -->
+</section>

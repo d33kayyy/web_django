@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.contrib.auth.mixins import AccessMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
@@ -9,7 +8,7 @@ from item.models import Item
 from users.models import UserProfile
 
 
-class ChefView(DetailView):
+class ShopView(DetailView):
     '''
     Chef page
     '''
@@ -24,8 +23,8 @@ class ChefView(DetailView):
         return chef
 
     def get_context_data(self, **kwargs):
-        context = super(ChefView, self).get_context_data(**kwargs)
-        # get all items created by this chef
+        context = super(ShopView, self).get_context_data(**kwargs)
+        # get all items created by this shop
         context['items'] = Item.objects.filter(chef=self.object)
         return context
 
@@ -42,7 +41,7 @@ class IndexView(ListView):
 class SuperOrManagerPermissionsMixin(AccessMixin):
     """
     Super class for permission checking
-    Check if the logged in user is a chef or not
+    Check if the logged in user is a shop or not
     """
 
     def dispatch(self, request, *args, **kwargs):
@@ -54,7 +53,7 @@ class SuperOrManagerPermissionsMixin(AccessMixin):
 
     def user_has_permissions(self):
         profile = UserProfile.objects.get(user=self.request.user)
-        return profile.is_chef
+        return profile.is_shop
 
 
 class DashboardView(SuperOrManagerPermissionsMixin, DetailView):
@@ -64,7 +63,7 @@ class DashboardView(SuperOrManagerPermissionsMixin, DetailView):
     model = User
     template_name = 'chef/dashboard.html'
     context_object_name = 'user'
-    permission_denied_message = _(u'Bạn không có quyền truy cập trang này')
+    permission_denied_message = _(u'''You don't have access to this page''')
 
     def get_object(self, queryset=None):
         return self.request.user

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 import itertools
@@ -38,8 +37,8 @@ class UserProfile(models.Model):
     district = models.CharField(max_length=30, null=True, blank=True)
     ward = models.CharField(max_length=30, null=True, blank=True)
 
-    #  For chef
-    is_chef = models.BooleanField(default=False)
+    #  For shop
+    is_shop = models.BooleanField(default=False)
     info = models.TextField(null=True, blank=True)
 
     # Extra

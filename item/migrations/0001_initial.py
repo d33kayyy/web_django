@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('pub_date', models.DateTimeField(auto_now_add=True)),
                 ('modified_date', models.DateTimeField(auto_now=True)),
                 ('rating', models.FloatField(default=0)),
-                ('chef', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='chef', to=settings.AUTH_USER_MODEL)),
+                ('shop', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='shop', to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(

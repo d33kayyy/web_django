@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.db import models
 
 from item.models import Item
@@ -15,12 +13,10 @@ from users.models import UserProfile
 # Create your models here.
 class Order(models.Model):
     PROCESSING = 'PR'
-    COOKING = 'CO'
     DELIVERING = 'DE'
     FINISHED = 'FI'
     CANCELED = 'CA'
     STATUS_CHOICES = ((PROCESSING, 'Processing'),
-                      (COOKING, 'Cooking'),
                       (DELIVERING, 'Delivering'),
                       (FINISHED, 'Finished'),
                       (CANCELED, 'Canceled'),)
@@ -68,7 +64,7 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             super(Order, self).save(*args, **kwargs)
-            action.send(self.userprofile, verb=_(u'đã tạo'), action_object=self)
+            action.send(self.userprofile, verb=_(u'is created'), action_object=self)
 
         else:
             super(Order, self).save(*args, **kwargs)
@@ -77,15 +73,14 @@ class Order(models.Model):
 
             if self.status == self.PROCESSING:  # Default status, no change
                 return
-            elif self.status == self.CANCELED: # Message when order is canceled
-                action.send(self, verb=_(u'đã bị hủy'), action_object=self, target=self.userprofile)
-                notify.send(self, verb=_(u'đã bị hủy'), action_object=self, recipient=self.userprofile.user,
-                            order_id=self.order_id)
-            else: # Message when status change
-                action.send(self, verb=_(u'đã được thay đổi'), action_object=self, target=self.userprofile,
-                            status=status)
-                notify.send(self, verb=_(u'đã được thay đổi'), action_object=self, recipient=self.userprofile.user,
-                            status=status, order_id=self.order_id)
+            elif self.status == self.CANCELED:  # Message when order is canceled
+                action.send(self, verb=_(u'is canceled'), action_object=self, target=self.userprofile)
+                # notify.send(self, verb=_(u'is canceled'), action_object=self, recipient=self.userprofile.user,
+                #             order_id=self.order_id)
+            else:  # Message when status change
+                action.send(self, verb=_(u'is changed'), action_object=self, target=self.userprofile, status=status)
+                # notify.send(self, verb=_(u'is changed'), action_object=self, recipient=self.userprofile.user,
+                #             status=status, order_id=self.order_id)
 
 
 class ItemOrder(models.Model):

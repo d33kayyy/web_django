@@ -5,7 +5,7 @@ from django.contrib import admin
 from users import views
 from item.views import HomePageView
 
-import notifications.urls
+# import notifications.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -15,11 +15,11 @@ urlpatterns = [
     url(r'^cart/', include('cart.urls')),
     url(r'^order/', include('order.urls')),
     url(r'^reviews/', include('reviews.urls')),
-    url(r'^chef/', include('chef.urls')),
+    url(r'^shop/', include('shop.urls')),
     url(r'^notification/', views.notification, name='notification'),
+    url(r'^profile/', views.UserProfileUpdate.as_view(), name='profile'),
 
-    url(r'^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-    url(r'^accounts/profile/', views.UserProfileUpdate.as_view(), name='profile'),
+    # url(r'^inbox/notifications/', include(notifications.urls, namespace='notifications')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^activity/', include('actstream.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

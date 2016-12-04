@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -49,12 +46,6 @@ class SignupForm(forms.Form):
         return password2
 
 
-# DateInput = partial(forms.DateInput, {'class': 'datepicker'})
-
-class DateInput(forms.DateInput):
-    input_type = 'date'
-
-
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
@@ -65,14 +56,14 @@ class UserProfileForm(forms.ModelForm):
             'allergy': forms.Textarea(attrs={'rows': 1})
         }
         labels = {
-            'birthday': _(u'Ngày sinh'),
-            'gender': _(u'Giới tính'),
-            'phone': _(u'Số điện thoại'),
-            'address': _(u'Địa chỉ'),
-            'allergy': _(u'Tiền sử dị ứng'),
-            'city': _(u'Tỉnh/Thành Phố'),
-            'district': _(u'Quận/Huyện'),
-            'ward': _(u'Phường/Xã')
+            'birthday': _('Birthday'),
+            'gender': _('Gender'),
+            'phone': _('Phone number'),
+            'address': _('Address'),
+            'allergy': _('Allergy history'),
+            'city': _('City'),
+            'district': _('District'),
+            'ward': _('Ward')
         }
 
     email = forms.CharField(disabled=True)

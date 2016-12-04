@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'reviews.apps.ReviewsConfig',
     'cart.apps.CartConfig',
-    'chef.apps.ChefConfig',
+    'shop.apps.ChefConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'bootstrapform',
     'actstream',
-    'notifications'
+    # 'notifications'
 ]
 
 MIDDLEWARE = [
@@ -163,7 +163,7 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 2
 
-LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGIN_REDIRECT_URL = '/profile/'
 
 SOCIALACCOUNT_QUERY_EMAIL = True
 

@@ -5,7 +5,7 @@
         {% if list_users %}
             <ul>
                 {% for u in list_users %}
-                    <li><a href="{% url 'chef:detail' u.profile.slug %}">{{ u.profile.name }}</a></li>
+                    <li><a href="{% url 'shop:detail' u.profile.slug %}">{{ u.profile.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}

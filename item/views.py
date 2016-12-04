@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
@@ -50,15 +48,15 @@ class ItemDetailDisplay(DetailView):
 
 
 def cook(request):
-    return render(template_name='cook.html', request=request)
+    return render(template_name='work.html', request=request)
 
 
 @login_required
 def create_item(request):
     '''
-    Create item page for chef
+    Create item page for shop
     '''
-    if not request.user.profile.is_chef:
+    if not request.user.profile.is_shop:
         raise PermissionDenied
 
     ImageFormSet = modelformset_factory(Images, form=ImageForm, extra=3, max_num=3)
@@ -66,13 +64,12 @@ def create_item(request):
     if request.method == 'POST':
 
         item_form = ItemForm(request.POST)
-        formset = ImageFormSet(request.POST, request.FILES,
-                               queryset=Images.objects.none())
+        formset = ImageFormSet(request.POST, request.FILES, queryset=Images.objects.none())
 
         if item_form.is_valid() and formset.is_valid():
 
             item = item_form.save(commit=False)
-            item.chef = request.user
+            item.shop = request.user
             item.save()
 
             for form in formset.cleaned_data:
@@ -98,7 +95,7 @@ def edit_item(request, slug):
     '''
     item = get_object_or_404(Item, slug=slug)
 
-    if item.chef != request.user or not request.user.profile.is_chef:
+    if item.shop != request.user or not request.user.profile.is_shop:
         raise PermissionDenied
 
     if request.method == 'POST':
@@ -131,7 +128,7 @@ def delete_item(request, slug):
     '''
     item = get_object_or_404(Item, slug=slug)
 
-    if item.chef != request.user or not request.user.profile.is_chef:
+    if item.shop != request.user or not request.user.profile.is_shop:
         raise PermissionDenied
 
     item.delete()

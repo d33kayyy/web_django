@@ -19,75 +19,96 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-4 col-md-4">
+            <div class="col-md-offset-2 col-md-8">
                 <div class="card card-1">
-                    <h2 class="text-center">{% trans "Sign in" %}</h2>
+                    <div class="row">
+                        <div class="col-md-6 vcenter">
+                            <div class="well">
+                                <h2 class="text-center">{% trans "Sign in" %}</h2>
 
-                    <hr>
-                    <form action="{% provider_login_url "facebook" method="oauth2" %}">
-                        <button class="btn btn-block btn-social btn-facebook" type="submit">
-                            <span class="fa fa-facebook"></span> Sign in with Facebook
-                        </button>
-                    </form>
+                                <br>
+                                <form action="{% provider_login_url "facebook" method="oauth2" %}">
+                                    <button class="btn btn-block btn-social btn-facebook" type="submit">
+                                        <span class="fa fa-facebook"></span> {% trans "Sign in with Facebook" %}
+                                    </button>
+                                </form>
 
-                    <form action="{% provider_login_url "google" method="oauth" %}" class="margin_top_10">
-                        <button class="btn btn-block btn-social btn-google" type="submit">
-                            <span class="fa fa-google"></span> Sign in with Google
-                        </button>
-                    </form>
+                                <form action="{% provider_login_url "google" method="oauth" %}" class="margin_top_10">
+                                    <button class="btn btn-block btn-social btn-google" type="submit">
+                                        <span class="fa fa-google"></span> {% trans "Sign in with Google" %}
+                                    </button>
+                                </form>
 
-                    <div class="login-or">
-                        <hr class="hr-or">
-                        <span class="span-or">or</span>
-                    </div>
-
-                    {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <div class="alert alert-danger">
-                                    {{ error|escape }}
+                                <div class="login-or">
+                                    <hr class="hr-or">
+                                    <span class="span-or">{% trans "or" %}</span>
                                 </div>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <div class="alert alert-warning">
-                                {{ error|escape }}
+
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-danger">
+                                                {{ error|escape }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-warning">
+                                            {{ error|escape }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                <form method="POST" action="{% url 'account_login' %}">
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                        <label for="id_login">{% trans "Email" %}</label>
+                                        <input autofocus="autofocus" class="form-control" id="id_login" name="login"
+                                               placeholder="{% trans "Email address" %}" type="email" required/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <a class="pull-right small" href="{% url 'account_reset_password' %}">
+                                            {% trans "Forgot your password?" %}</a>
+                                        <label for="id_password">{% trans "Password" %}</label>
+                                        <input class="form-control" id="id_password" name="password" type="password"
+                                               placeholder="{% trans "Password" %}" required/>
+                                    </div>
+
+                                    <div class="checkbox">
+                                        <label> <input type="checkbox">{% trans "Remember me" %}</label>
+                                    </div>
+
+                                    <button class="btn btn-lg btn-block btn_color margin_top_10" type="submit">
+                                        {% trans "Sign in" %}
+                                    </button>
+                                </form>
+
+                                {#                                <hr>#}
+                                {##}
+                                {#                                <div class="text-center">#}
+                                {#                                    <a href="{% url 'account_signup' %}" class="signup">{% trans "Sign up" %}</a>#}
+                                {#                                </div>#}
                             </div>
-                        {% endfor %}
-                    {% endif %}
-
-                    <form method="POST" action="{% url 'account_login' %}">
-                        {% csrf_token %}
-
-                        <div class="form-group">
-                            <label for="id_login">{% trans "Email" %}</label>
-                            <input autofocus="autofocus" class="form-control" id="id_login" name="login"
-                                   placeholder="{% trans "Email address" %}" type="email" required/>
+                        </div><!--
+                        --><div class="col-md-6 vcenter">
+                            <p class="lead">Register now for <span class="text-success">FREE</span></p>
+                            <ul class="list-unstyled" style="line-height: 2">
+                                <li><span class="fa fa-check text-success"></span> {% trans 'See all your orders' %}
+                                </li>
+                                <li><span class="fa fa-check text-success"></span> {% trans 'Fast re-order' %}</li>
+                                <li><span class="fa fa-check text-success"></span> {% trans 'Save your favorites' %}
+                                </li>
+                                <li><span class="fa fa-check text-success"></span> {% trans 'Fast checkout' %}</li>
+                                <li><span class="fa fa-check text-success"></span> {% trans 'Get a gift' %}
+                                    <small>({% trans 'only new customers' %})</small>
+                                </li>
+                                <li><a href="#"><u>{% trans 'Read more' %}</u></a></li>
+                            </ul>
+                            <p><a href="{% url 'account_signup' %}"
+                                  class="btn btn-info btn-block">{% trans 'Yes please, register now!' %}</a></p>
                         </div>
-
-                        <div class="form-group">
-                            <a class="pull-right small" href="{% url 'account_reset_password' %}">
-                                {% trans "Forgot your password?" %}</a>
-                            <label for="id_password">{% trans "Password" %}</label>
-                            <input class="form-control" id="id_password" name="password" type="password"
-                                   placeholder="{% trans "Password" %}" required/>
-                        </div>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                                Remember me </label>
-                        </div>
-
-                        <button class="btn btn-lg btn-block btn_color margin_top_10" type="submit">
-                            {% trans "Sign in" %}
-                        </button>
-                    </form>
-
-                    <hr>
-
-                    <div class="text-center">
-                        <a href="{% url 'account_signup' %}" class="signup">{% trans "Sign up" %}</a>
                     </div>
 
                 </div>

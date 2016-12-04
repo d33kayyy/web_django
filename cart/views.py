@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.forms import formset_factory
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render
@@ -14,7 +13,6 @@ from .utils import get_session, CART_SESSION, INFO_SESSION
 from .forms import ItemOrderForm, ItemForm, InformationForm
 
 
-# Create your views here.
 class CartView(FormView):
     '''
     Display Cart page and handle cart update
@@ -23,7 +21,7 @@ class CartView(FormView):
     template_name = 'cart/cart.html'
     form_class = formset_factory(ItemOrderForm, extra=0)
     success_url = reverse_lazy('cart:cart')
-    success_message = _(u'Cập nhật giỏ hàng thành công!')
+    success_message = _(u'Cart updated!')
 
     def get_context_data(self, **kwargs):
         context = super(CartView, self).get_context_data(**kwargs)
@@ -92,7 +90,7 @@ class AddItemToCart(FormView):
         self.request.session.modified = True
 
         item = Item.objects.get(id=item_id)
-        success_message = _(u'Đã thêm {} vào giỏ hàng!'.format(item.name))
+        success_message = _(u'{} added to cart!'.format(item.name))
         messages.success(self.request, success_message)
 
         return HttpResponseRedirect(reverse('cart:cart'))
@@ -118,7 +116,7 @@ class RemoveItemFromCart(FormView):
         self.request.session.modified = True
 
         item = Item.objects.get(id=item_id)
-        success_message = _(u'Đã xóa {} khỏi giỏ hàng!'.format(item.name))
+        success_message = _(u'{} removed from cart!'.format(item.name))
         messages.success(self.request, success_message)
 
         return HttpResponseRedirect(reverse('cart:cart'))
@@ -140,7 +138,7 @@ def information(request):
         form = InformationForm(initial={'name': profile.name,
                                         'address': profile.address,
                                         'phone': profile.phone,
-                                        'email': profile.email,})
+                                        'email': profile.email, })
     else:
         form = InformationForm
 
