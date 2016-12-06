@@ -5,4 +5,4 @@ from django.utils.translation import ugettext_lazy as _
 alphabet = RegexValidator(r'^[a-zA-Z\s]+$', message=_('Name cannot contain number or special characters'))
 
 # Validate phone number
-numeric = RegexValidator(r'^[+]?\d{9,15}$', message=_('Invalid number'))
+numeric = RegexValidator(r'^[+]?\d{9,15}$', message=_('Invalid phone number'))

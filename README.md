@@ -4,7 +4,7 @@
 
 Install required packages using [pip](https://pip.pypa.io/en/stable/) (install on [virtualenv](https://virtualenv.pypa.io/en/stable/) is recommended).
 
-In terminal, go to the project directory (eg: `cd PycharmProjects/silisili-web/`), run:
+In terminal, go to the project directory (eg: `cd PycharmProjects/web_django/`), run:
 
     pip install -r requirements.txt
 
@@ -16,7 +16,7 @@ In terminal, go to the project directory (eg: `cd PycharmProjects/silisili-web/`
 
 * **Config**
 
-    Depend on which [database](https://docs.djangoproject.com/en/1.10/topics/install/#database-installation) used, in **silisili/settings.py**, change `DATABASES` accordingly. Example using SQLite:
+    Depend on which [database](https://docs.djangoproject.com/en/1.10/topics/install/#database-installation) used, in **web_django/settings.py**, change `DATABASES` accordingly. Example using SQLite:
 
         DATABASES = {
            'default': {
@@ -56,7 +56,7 @@ After create admin account, loginto admin page (eg: `localhost:8000/admin`):
 * Find **Sites**, go into that and change to **your domain name and display name**. For local testing only:
 
         localhost:8000
-        SiliSili
+        DK
 
 * Back to admin homepage, find **Social applications** then add your Social App, more information can be found [here](http://django-allauth.readthedocs.io/en/latest/providers.html):
 
