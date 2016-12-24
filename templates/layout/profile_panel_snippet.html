@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div class="col-md-3">
     <div class="row text-center">
@@ -13,32 +14,38 @@
             <hr>
             <div>
                 <a href="{% url 'order:list' %}">
-                    <button class="button_profile"><i class="fa fa-history"></i> Lịch sử mua hàng</button>
+                    <button class="button_profile"><i class="fa fa-history"></i> {% trans 'Order history' %}</button>
                 </a>
             </div>
             <div>
                 <a href="{% url 'profile' %}">
-                    <button class="button_profile"><i class="fa fa-user"></i> Hồ sơ</button>
+                    <button class="button_profile"><i class="fa fa-user"></i> {% trans 'Profile' %}</button>
                 </a>
             </div>
             <div>
                 <a href="{% url 'account_change_password' %}">
-                    <button class="button_profile"><i class="fa fa-cog"></i> Thay đổi mật khẩu</button>
+                    <button class="button_profile"><i class="fa fa-cog"></i>
+                        {% if user.password %}
+                            {% trans 'Change password' %}
+                        {% else %}
+                            {% trans 'Set password' %}
+                        {% endif %}
+                    </button>
                 </a>
             </div>
             <div>
                 <a href="{% url 'notification' %}">
-                    <button class="button_profile"><i class="fa fa-comment-o"></i> Thông báo</button>
+                    <button class="button_profile"><i class="fa fa-comment-o"></i> {% trans 'Notifications' %}</button>
                 </a>
             </div>
             <div>
                 <a href="{% url 'reviews:index' %}">
-                    <button class="button_profile"><i class="fa fa-thumbs-up"></i> Đánh giá sản phẩm</button>
+                    <button class="button_profile"><i class="fa fa-thumbs-up"></i> {% trans 'Reviews' %}</button>
                 </a>
             </div>
             <div>
                 <a href="#">
-                    <button class="button_profile"><i class="fa fa-money"></i> Food Coin</button>
+                    <button class="button_profile"><i class="fa fa-money"></i> {% trans 'Food Coin' %}</button>
                 </a>
             </div>
         </div>

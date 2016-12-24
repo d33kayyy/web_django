@@ -63,21 +63,19 @@
                                     {% csrf_token %}
 
                                     <div class="form-group">
-                                        <label for="id_login">{% trans "Email" %}</label>
                                         <input autofocus="autofocus" class="form-control" id="id_login" name="login"
-                                               placeholder="{% trans "Email address" %}" type="email" required/>
+                                               placeholder="{% trans "Email" %}" type="email" required/>
                                     </div>
 
                                     <div class="form-group">
-                                        <a class="pull-right small" href="{% url 'account_reset_password' %}">
-                                            {% trans "Forgot your password?" %}</a>
-                                        <label for="id_password">{% trans "Password" %}</label>
                                         <input class="form-control" id="id_password" name="password" type="password"
                                                placeholder="{% trans "Password" %}" required/>
                                     </div>
 
                                     <div class="checkbox">
                                         <label> <input type="checkbox">{% trans "Remember me" %}</label>
+                                        <a class="pull-right small" href="{% url 'account_reset_password' %}">
+                                            {% trans "Forgot your password?" %}</a>
                                     </div>
 
                                     <button class="btn btn-lg btn-block btn_color margin_top_10" type="submit">
@@ -85,11 +83,6 @@
                                     </button>
                                 </form>
 
-                                {#                                <hr>#}
-                                {##}
-                                {#                                <div class="text-center">#}
-                                {#                                    <a href="{% url 'account_signup' %}" class="signup">{% trans "Sign up" %}</a>#}
-                                {#                                </div>#}
                             </div>
                         </div><!--
                         --><div class="col-md-6 vcenter">

@@ -1,127 +1,78 @@
-/*.navbar-brand,*/
-/*.navbar-nav li a {*/
-    /*line-height: 50px;*/
-    /*height: 50px;*/
-    /*padding-top: 0;*/
-/*}*/
-
-.navbar-default {
-    background-color: white;
-    border: none;
-    border-radius: 0;
-    /*border-bottom: 1px solid;*/
-    /*border-color: lightgray;*/
+nav.navbar-custom {
+    background: #fff;
+    border-color: #ccc;
+    box-shadow: 0 0 2px 0 #ccc;
 }
 
-.navbar-default .navbar-brand {
-    color: #1fa67b;
-    /*font-weight: 200;*/
-    /*font-size: 25px;*/
-}
-
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
+nav.navbar-custom a {
     color: #1fa67b;
 }
 
-.navbar-default .navbar-text {
+nav.navbar-custom ul.navbar-nav a {
+    color: #1fa67b;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: #fff;
+}
+
+nav.navbar-custom ul.navbar-nav a:hover,
+nav.navbar-custom ul.navbar-nav a:visited,
+nav.navbar-custom ul.navbar-nav a:focus,
+nav.navbar-custom ul.navbar-nav a:active {
+    background: #fff;
+}
+
+nav.navbar-custom ul.navbar-nav a:hover {
+    border-color: #1fa67b;
+}
+
+nav.navbar-custom li.divider {
+    background: #ccc;
+}
+
+nav.navbar-custom button.navbar-toggle {
+    background: #1fa67b;
+    border-radius: 2px;
+}
+
+nav.navbar-custom button.navbar-toggle:hover {
+    background: #999;
+}
+
+nav.navbar-custom button.navbar-toggle > span.icon-bar {
+    background: #fff;
+}
+
+nav.navbar-custom ul.dropdown-menu {
+    border: 0;
+    background: #fff;
+    border-radius: 4px;
+    margin: 4px 0;
+    box-shadow: 0 0 4px 0 #ccc;
+}
+
+nav.navbar-custom ul.dropdown-menu > li > a {
     color: #1fa67b;
 }
 
-.navbar-default .navbar-nav > li > a {
-    color: #1fa67b;
+nav.navbar-custom ul.dropdown-menu > li > a:hover {
+    background: #1fa67b;
+    color: #fff;
 }
 
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: #1fa67b;
+nav.navbar-custom span.badge {
+    background: #1fa67b;
+    font-weight: normal;
+    font-size: 11px;
+    margin: 0 4px;
 }
 
-.navbar-default .navbar-nav > li > .dropdown-menu {
-    background-color: white;
+nav.navbar-custom span.badge.new {
+    background: rgba(255, 0, 0, 0.8);
+    color: #fff;
 }
 
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
-    color: #1fa67b;
+.navbar-nav > li > a.profile-image {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
-    color: white;
-    background-color: #1fa67b;
-}
-
-.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
-    background-color: white;
-}
-
-.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
-.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
-.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #1fa67b;
-    background-color: white;
-}
-
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-    color: #1fa67b;
-    background-color: white;
-}
-
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-    color: white;
-    background-color: #1fa67b;
-}
-
-.navbar-default .navbar-toggle {
-    border-color: white;
-}
-
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-    background-color: white;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: #1fa67b;
-}
-
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
-
-}
-
-.navbar-default .navbar-link {
-    color: #1fa67b;
-}
-
-.navbar-default .navbar-link:hover {
-    color: #1fa67b;
-}
-
-@media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #1fa67b;
-    }
-
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #1fa67b;
-    }
-
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-        color: #1fa67b;
-        background-color: white;
-    }
-}
-
-.user_icon {
-    width: 30px;
-    height: 30px;
-}
-
