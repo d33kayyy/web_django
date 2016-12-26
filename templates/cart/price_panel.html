@@ -1,10 +1,10 @@
 {% load humanize %}
 {% load cart_tags %}
-
+{% load i18n %}
 
 <div class="row">
     <div class="col-md-6 col-xs-6">
-        <h4>Thành tiền</h4>
+        <h4>{% trans 'Subtotal' %}</h4>
     </div>
     <div class="col-md-6 col-xs-6">
         <div class="text-right">
@@ -16,7 +16,7 @@
 <hr>
 <div class="row">
     <div class="col-md-6 col-xs-6">
-        <h4>Tiền ship</h4>
+        <h4>{% trans 'Shipping fee' %}</h4>
     </div>
     <div class="col-md-6 col-xs-6">
         <div class="text-right">
@@ -28,12 +28,12 @@
 <hr>
 <div class="row">
     <div class="col-md-6 col-xs-6">
-        <input type="text" class="form-control" placeholder="Mã giảm giá">
+        <input type="text" class="form-control" placeholder="{% trans 'Coupon code' %}">
     </div>
     <div class="col-md-6 col-xs-6">
         <div class="text-right">
-            <button type="button" class="btn_color">
-                Áp Dụng
+            <button type="button" class="btn btn_color">
+                {% trans 'Apply' %}
             </button>
         </div>
     </div>
@@ -41,7 +41,7 @@
 <hr>
 <div class="row">
     <div class="col-md-6 col-xs-6">
-        <h4>Tổng số tiền</h4>
+        <h4>{% trans 'Total' %}</h4>
     </div>
     <div class="col-md-6 col-xs-6">
         <div class="text-right">

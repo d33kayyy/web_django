@@ -10,32 +10,32 @@ from users.models import UserProfile
 
 class ShopView(DetailView):
     '''
-    Chef page
+    shop page
     '''
     model = User
-    template_name = 'chef/cook_page.html'
+    template_name = 'shop/cook_page.html'
     slug_field = 'slug'
     context_object_name = 'user'
 
     def get_object(self, queryset=None):
         profile = UserProfile.objects.get(slug=self.kwargs['slug'])
-        chef = User.objects.get(profile=profile)
-        return chef
+        shop = User.objects.get(profile=profile)
+        return shop
 
     def get_context_data(self, **kwargs):
         context = super(ShopView, self).get_context_data(**kwargs)
         # get all items created by this shop
-        context['items'] = Item.objects.filter(chef=self.object)
+        context['items'] = Item.objects.filter(shop=self.object)
         return context
 
 
 class IndexView(ListView):
-    template_name = 'chef/index.html'
+    template_name = 'shop/index.html'
     context_object_name = 'list_users'
 
     def get_queryset(self):
-        """Return the list of chefs."""
-        return User.objects.order_by('-date_joined').filter(is_superuser=False, profile__is_chef=True)
+        """Return the list of shops."""
+        return User.objects.order_by('-date_joined').filter(is_superuser=False, profile__is_shop=True)
 
 
 class SuperOrManagerPermissionsMixin(AccessMixin):
@@ -58,10 +58,10 @@ class SuperOrManagerPermissionsMixin(AccessMixin):
 
 class DashboardView(SuperOrManagerPermissionsMixin, DetailView):
     """
-    Chef page
+    shop page
     """
     model = User
-    template_name = 'chef/dashboard.html'
+    template_name = 'shop/dashboard.html'
     context_object_name = 'user'
     permission_denied_message = _(u'''You don't have access to this page''')
 
@@ -70,5 +70,5 @@ class DashboardView(SuperOrManagerPermissionsMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
-        context['items'] = Item.objects.filter(chef=self.object)
+        context['items'] = Item.objects.filter(shop=self.object)
         return context

@@ -21,7 +21,7 @@ class InformationForm(forms.Form):
     """
     Form for information page
     """
-    name = forms.CharField(max_length=30, label=_('Receiver'))
+    name = forms.CharField(max_length=30, label=_('Contact name'))
     email = forms.EmailField(label=_('Email'))
     phone = forms.CharField(max_length=16, label=_('Phone number'))
     address = forms.CharField(max_length=250, label=_('Address'))

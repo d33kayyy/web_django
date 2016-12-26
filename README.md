@@ -4,7 +4,7 @@
 
 Install required packages using [pip](https://pip.pypa.io/en/stable/) (install on [virtualenv](https://virtualenv.pypa.io/en/stable/) is recommended).
 
-In terminal, go to the project directory (eg: `cd PycharmProjects/web_django/`), run:
+In terminal, go to the project directory, run:
 
     pip install -r requirements.txt
 
@@ -14,66 +14,7 @@ In terminal, go to the project directory (eg: `cd PycharmProjects/web_django/`),
 
 ### Database ###
 
-* **Config**
-
-    Depend on which [database](https://docs.djangoproject.com/en/1.10/topics/install/#database-installation) used, in **web_django/settings.py**, change `DATABASES` accordingly. Example using SQLite:
-
-        DATABASES = {
-           'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-           }
-        }
-
-    or using Postgresql
-
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'postgres',
-                'USER': 'dk',
-                'PASSWORD': '1',
-                'HOST': '127.0.0.1',
-                'PORT': '5432',
-            }
-        }
-
-* **Migrate**
-
-    To migrate data, run:
-
-        python manage.py migrate
-
-
-### Extra configurations (for first time only) ###
-
-Create superuser (admin) in order to login to admin page, run:
-
-    python manage.py createsuperuser
-
-After create admin account, loginto admin page (eg: `localhost:8000/admin`):
-
-* Find **Sites**, go into that and change to **your domain name and display name**. For local testing only:
-
-        localhost:8000
-        DK
-
-* Back to admin homepage, find **Social applications** then add your Social App, more information can be found [here](http://django-allauth.readthedocs.io/en/latest/providers.html):
-
-        These are Kien's registered apps for local testing only, create new apps for deployment. Follow link above for more information
-
-        Google App:
-            * Provider: Google
-            * Client id = 30365204598-vsk8l9ebs3tes590tgn3lf37ji3vl2bb.apps.googleusercontent.com
-            * Secret key = aje8P3fL8BBENZqpGKAthSyK
-            * Add your site into "Chosen sites"
-
-
-        Facebook App
-            * Provider: Facebook
-            * Client id = 1735709893344808
-            * Secret key = a764d464bd8609806cf0d93275007bf0
-            * Add your site into "Chosen sites"
+Depend on which [database](https://docs.djangoproject.com/en/1.10/topics/install/#database-installation) used, in **web_django/settings.py**, change `DATABASES` accordingly.
 
 ### Note ###
 
@@ -104,14 +45,14 @@ After installation, when start server and the error below occurs, follow [this](
 * Handle user signup/login, populate UserProfile
 * Activity log (notification list)
 
-### Chef ###
+### Shop ###
 * **Model**: none
-* Dashboard for chef
+* Dashboard for Sgop
 
 ### Item ###
 * **Model**: Item
 * For product page
-* Add/edit/delete item (this should be move to Chef package since these actions are in the dashboard)
+* Add/edit/delete item (this should be move to Shop package since these actions are in the dashboard)
 
 ### Cart ###
 * **Model**: none

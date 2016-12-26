@@ -3,9 +3,10 @@
 {% load humanize %}
 {% load cart_tags %}
 {% load widget_tweaks %}
+{% load i18n %}
 
 {% block title %}
-    Xác nhận đơn hàng
+    {% trans 'Confirm your order' %}
 {% endblock %}
 
 {% block css %}
@@ -26,20 +27,20 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-6 info_form">
                 <div class="col-md-12">
-                    <h2>Xác nhận đơn hàng</h2>
+                    <h2>{% trans 'Confirm your order' %}</h2>
                     <hr>
                 </div>
                 <div class="card card-1">
-                    <h3>Sản Phẩm</h3>
+                    <h3>{% trans 'Product' %}</h3>
                     <div class="table-responsive">
                         <table class="table">
                             <thead align="center">
                             <tr id="first_row">
                                 <td class="col-md-1">&nbsp;</td>
-                                <td class="col-md-3"><h5>Product</h5></td>
-                                <td class="col-md-2"><h5>Price</h5></td>
-                                <td class="col-md-2"><h5>Quantity</h5></td>
-                                <td class="col-md-2"><h5>Total</h5></td>
+                                <td class="col-md-3"><h5>{% trans 'Product' %}</h5></td>
+                                <td class="col-md-2"><h5>{% trans 'Price' %}</h5></td>
+                                <td class="col-md-2"><h5>{% trans 'Quantity' %}</h5></td>
+                                <td class="col-md-2"><h5>{% trans 'Subtotal' %}</h5></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -100,35 +101,35 @@
 
                     <hr>
 
-                    <h3>Địa chỉ</h3>
+                    <h3>{% trans 'Shipping information' %}</h3>
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Tên người nhận</label>
+                            <label>{% trans 'Contact name' %}</label>
                             <p> {{ info.name }}</p>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Số điện thoại</label>
+                            <label>{% trans 'Phone number' %}</label>
                             <p> {{ info.phone }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Địa chỉ</label>
+                            <label>{% trans 'Address' %}</label>
                             <p>{{ info.address }}</p>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Email</label>
+                            <label>{% trans 'Email adress' %}</label>
                             <p> {{ info.email }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Tỉnh/Thành Phố</label>
+                            <label>{% trans 'City' %}</label>
                             <p> {{ info.city }}</p>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Quận</label>
+                            <label>{% trans 'District' %}</label>
                             <p> {{ info.district }}</p>
                         </div>
                     </div>
@@ -136,10 +137,10 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             {% if info.note %}
-                                <label for="id_note">Ghi chú</label>
+                                <label for="id_note">{% trans 'Note' %}</label>
                                 <p> {{ info.note }}</p>
                             {% else %}
-                                <p> Không có ghi chú nào</p>
+                                <p>{% trans 'No note attached' %}</p>
                             {% endif %}
                         </div>
                     </div>
@@ -148,7 +149,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Thành tiền</p>
+                            <p>{% trans 'Subtotal' %}</p>
                         </div>
                         <div class="col-md-6 text-right">
                             {% get_total_price as shipping %}
@@ -158,7 +159,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Tiền ship</p>
+                            <p>{% trans 'Shipping fee' %}</p>
                         </div>
                         <div class="col-md-6 text-right">
                             {% get_shipping as shipping %}
@@ -168,7 +169,7 @@
 
                     <div class="row">
                         <div class="col-md-6 item">
-                            <h4>Tổng số tiền</h4>
+                            <h4>{% trans 'Total' %}</h4>
                         </div>
                         <div class="col-md-6">
                             <div class="text-right">
@@ -191,8 +192,8 @@
                             <div class="col-md-6 col-md-offset-3 col-xs-6" style="text-align: center">
                                 <form action="{% url 'cart:confirm' %}" method="post">
                                     {% csrf_token %}
-                                    <button type="submit" class="next_button custom_btn">
-                                        Xác nhận
+                                    <button type="submit" class="btn btn-lg btn_color">
+                                        {% trans 'Place order' %}
                                     </button>
                                 </form>
                             </div>

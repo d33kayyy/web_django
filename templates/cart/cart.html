@@ -3,9 +3,10 @@
 {% load humanize %}
 {% load cart_tags %}
 {% load widget_tweaks %}
+{% load i18n %}
 
 {% block title %}
-    Giỏ hàng
+    {% trans 'Cart' %}
 {% endblock %}
 
 {% block css %}
@@ -20,13 +21,13 @@
         </div>
         {% if not cart %}
             <div class="alert alert-info">
-                Chưa có món ăn nào trong giỏ hàng
+                {% trans 'Your shopping cart is empty' %}
             </div>
         {% else %}
             <div class="row">
                 <div class="col-md-8">
                     <div class="card card-1">
-                        <h4>Đồ Thêm</h4>
+                        <h4>{% trans 'Additional product' %}</h4>
                         <div id="Carousel" class="carousel slide">
 
                             <!-- Carousel items -->
@@ -68,10 +69,10 @@
                                         <thead align="center">
                                         <tr>
                                             <td class="col-md-1 ">&nbsp;</td>
-                                            <td class="col-md-3"><h4>Sản phẩm</h4></td>
-                                            <td class="col-md-2"><h4>Đơn giá</h4></td>
-                                            <td class="col-md-2"><h4>Số lượng</h4></td>
-                                            <td class="col-md-2"><h4>Thành tiền</h4></td>
+                                            <td class="col-md-3"><h4>{% trans 'Product' %}</h4></td>
+                                            <td class="col-md-2"><h4>{% trans 'Price' %}</h4></td>
+                                            <td class="col-md-2"><h4>{% trans 'Quantity' %}</h4></td>
+                                            <td class="col-md-2"><h4>{% trans 'Subtotal' %}</h4></td>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -121,7 +122,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <input class="btn_color" name="update" value="Cập nhật giỏ hàng"
+                                    <input class="btn btn-lg btn_color" name="update" value="{% trans 'Update Cart' %}"
                                            type="submit">
                                 </form>
                             </div>
@@ -162,7 +163,7 @@
                         {% include "cart/price_panel.html" %}
                         <div class="row text-center margin_top_10">
                             <div class="col-md-12 col-xs-12">
-                                <input class="btn_color btn_wide" name="checkout" value="Tiếp tục"
+                                <input class="btn btn-lg btn_color btn-block" name="checkout" value="{% trans 'Proceed to checkout' %}"
                                        type="submit" form="cart_form">
                             </div>
                         </div>

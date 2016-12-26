@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 {#{% load notifications_tags %}#}
 {#{% load my_noti_tags %}#}
 
@@ -49,7 +50,7 @@ __/\\\\\\\\\\\\_____/\\\________/\\\_
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="{% url 'cart:cart' %}"><i class="fa fa-shopping-cart fa-lg"></i> <span
-                            class="visible-xs-inline">Cart</span> </a>
+                            class="visible-xs-inline">{% trans 'Cart' %}</span> </a>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="dropdown" id="aa">
@@ -67,28 +68,28 @@ __/\\\\\\\\\\\\_____/\\\________/\\\_
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="hidden-sm"><i class="fa fa-heart"></i> Pin </a></li>
+                            <li><a href="#" class="hidden-sm"><i class="fa fa-heart"></i> {% trans 'Pin' %} </a></li>
                             <li>
-                                {% if user.profile.is_chef %}
+                                {% if user.profile.is_shop %}
                                     <a href="{% url 'shop:dashboard' %}" class="hidden-sm"><i
-                                            class="fa fa-tachometer"></i> Dashboard </a>
+                                            class="fa fa-tachometer"></i> {% trans 'Dashboard' %} </a>
                                 {% else %}
                                     <a href="#" class="hidden-sm">
-                                        <i class="fa fa-star-o"></i> Work with us! </a>
+                                        <i class="fa fa-star-o"></i> {% trans 'Work with us!' %} </a>
                                 {% endif %}
                             </li>
                             <li>
                                 <a href='{% url 'profile' %}' class="hidden-sm">
-                                    <i class="fa fa-user"></i> Profile </a>
+                                    <i class="fa fa-user"></i> {% trans 'Profile' %} </a>
                             </li>
                             <li>
                                 <a href="{% url 'account_logout' %}" class="hidden-sm">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out </a>
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> {% trans 'Sign out ' %}</a>
                             </li>
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="{% url 'account_login' %}" class="hidden-sm"> Sign In </a></li>
+                    <li><a href="{% url 'account_login' %}" class="hidden-sm"> {% trans 'Sign In' %} </a></li>
                 {% endif %}
 
             </ul>

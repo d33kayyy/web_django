@@ -3,9 +3,10 @@
 {% load humanize %}
 {% load cart_tags %}
 {% load widget_tweaks %}
+{% load i18n %}
 
 {% block title %}
-    Thông tin giao hàng
+    {% trans 'Shipping information' %}
 {% endblock %}
 
 {% block css %}
@@ -29,7 +30,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card card-1">
-                    <h3>Thông tin giao hàng</h3>
+                    <h3>{% trans 'Shipping information' %}</h3>
                     <hr>
 
                     {% if form.errors %}
@@ -49,19 +50,6 @@
 
                     <form id="info_form" action="" method="POST">
                         {% csrf_token %}
-                        {#                        <div class="radio">#}
-                        {#                            <label>#}
-                        {#                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>#}
-                        {#                                Sử dụng địa chỉ có sẵn#}
-                        {#                            </label>#}
-                        {#                        </div>#}
-                        {#                        <hr>#}
-                        {#                        <div class="radio">#}
-                        {#                            <label>#}
-                        {#                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">#}
-                        {#                                Sử dụng địa chỉ khác#}
-                        {#                            </label>#}
-                        {#                        </div>#}
 
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -87,18 +75,18 @@
 
                         <div class="row">
                             <div class="form-group col-md-4">
-                                <label for="id_city">Tỉnh/ Thành Phố</label>
+                                <label for="id_city">{% trans 'City' %}</label>
                                 <select id="id_city" name="city" class="form-control" required>
                                     <option value=""></option>
-                                    <option value="Sài Gòn" selected>Sài Gòn</option>
-                                    {#                                    <option value="Hà Nội">Hà Nội</option>#}
-                                    {#                                    <option value="Đà Nẵng">Đà Nẵng</option>#}
-                                    {#                                    <option value="Hải Phòng">Hải Phòng</option>#}
-                                    {#                                    <option value="Nha Trang">Nha Trang</option>#}
+                                    <option value="Saigon" selected>{% trans 'Saigon' %}</option>
+                                    <option value="Hanoi">{% trans 'Hanoi' %}</option>
+                                    <option value="Da Nang">{% trans 'Da Nang' %}</option>
+                                    <option value="Hai Phong">{% trans 'Hai Phong' %}</option>
+                                    <option value="Nha Trang">{% trans 'Nha Trang' %}</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="id_district">Quận/ Huyện</label>
+                                <label for="id_district">{% trans 'District' %}</label>
                                 <select id="id_district" name="district" class="form-control" required>
                                     <option value=""></option>
                                     <option>1</option>
@@ -109,21 +97,18 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="id_ward">Phường/ Xã</label>
+                                <label for="id_ward">{% trans 'Ward' %}</label>
                                 <input id="id_ward" name="ward" class="form-control">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="id_note">Ghi chú</label>
+                                <label for="id_note">{% trans 'Note' %}</label>
                                 <textarea class="form-control" id="id_note" name="note" rows="5"></textarea>
-                                <p class="help-block">Vd: Không ớt, không hạt tiêu,.. hoặc các thành phần mà bạn bị
-                                    dị
-                                    ứng</p>
+                                <p class="help-block">{% trans 'eg: no chili, no pepper, etc.' %}</p>
                             </div>
                         </div>
-
 
                     </form>
                 </div>
@@ -135,11 +120,13 @@
                     <div class="row text-center margin_top_10">
                         <div class="col-md-6">
                             <form action="{% url 'cart:cart' %}">
-                                <input type="submit" value="Quay lại" class="custom_btn btn_wide">
+                                <input type="submit" value="{% trans 'Go back' %}"
+                                       class="btn btn-lg btn-block btn_color">
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <input type="submit" form="info_form" value="Tiếp tục" class="custom_btn btn_wide">
+                            <input type="submit" form="info_form" value="{% trans 'Save and next' %}"
+                                   class="btn btn-lg btn-block btn_color">
                         </div>
                     </div>
                 </div>
