@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
-from django.core.exceptions import PermissionDenied
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 
-from .models import Item, Images
 from .forms import ItemForm, ImageForm, ImageInlineFormSet
+from .models import Item, Images
 
 
 class HomePageView(ListView):
@@ -47,8 +47,12 @@ class ItemDetailDisplay(DetailView):
         return context
 
 
-def cook(request):
+def career(request):
     return render(template_name='work.html', request=request)
+
+
+def pin(request):
+    return render(template_name='pin.html', request=request)
 
 
 @login_required

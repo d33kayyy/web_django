@@ -27,7 +27,7 @@ __/\\\\\\\\\\\\_____/\\\________/\\\_
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'sticky-footer-navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'notifications/notification.css' %}">
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'notifications/notification.css' %}">#}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     {% block css %}{% endblock %}
@@ -68,13 +68,13 @@ __/\\\\\\\\\\\\_____/\\\________/\\\_
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="hidden-sm"><i class="fa fa-heart"></i> {% trans 'Pin' %} </a></li>
+                            <li><a href="{% url 'pin' %}" class="hidden-sm"><i class="fa fa-heart"></i> {% trans 'Pin' %} </a></li>
                             <li>
                                 {% if user.profile.is_shop %}
                                     <a href="{% url 'shop:dashboard' %}" class="hidden-sm"><i
                                             class="fa fa-tachometer"></i> {% trans 'Dashboard' %} </a>
                                 {% else %}
-                                    <a href="#" class="hidden-sm">
+                                    <a href="{% url 'career' %}" class="hidden-sm">
                                         <i class="fa fa-star-o"></i> {% trans 'Work with us!' %} </a>
                                 {% endif %}
                             </li>
@@ -105,7 +105,8 @@ __/\\\\\\\\\\\\_____/\\\________/\\\_
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">&copy; 2016 DK. All Rights Reserved.</p>
+        <hr>
+        <p class="text-muted text-center">&copy; 2016 DK. All Rights Reserved.</p>
     </div>
 </footer>
 

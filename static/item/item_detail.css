@@ -8,48 +8,44 @@
     margin: auto;
 }
 
-/*!* Product info *!*/
-
-.avatar {
-    height: 40px;
-    width: 40px;
-    box-shadow: none;
-}
-
-.cook_name {
-    font-family: 'Avenir Next', serif;
-    color: black;
-    font-size: medium;
-    margin-left: 15px;
-    margin-top: 10px;
-}
+/* Product info */
 
 .food_name {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-    color: black;
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 35px;
+    color: #656565;
 }
 
 .price {
-    font-weight: bold;
-    font-size: 20px;
+    color: #48cfad;
+    font-size: 22px;
+    font-weight: 600;
 }
 
-.description{
+.description {
     padding: 0 5px;
 }
 
 /* Review section */
 
-.title {
+.section-header {
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
     text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 30px;
 }
 
 .date {
     margin-top: 5px;
+    font-family: 'Lato', sans-serif;
+    font-style: oblique;
+    font-size: small;
+}
+
+.review-content {
+    font-family: 'Lato', sans-serif;
 }
 
 .user_img {
@@ -58,18 +54,5 @@
 }
 
 .user_name {
-    font-family: Avenir Next;
-    font-weight: bolder;
-    margin: 5px 0 30px 5px;
-    padding: 0;
-}
-
-.small_btn {
-    width: 85px;
-    height: 30px;
-    padding: 0;
-    font-size: 12px;
-    font-family: "roboto", sans-serif;
-    font-weight: lighter;
-    text-transform: uppercase;
+    font-weight: 600;
 }

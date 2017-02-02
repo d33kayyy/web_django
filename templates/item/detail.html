@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% load humanize %}
+{% load i18n %}
 
 {% block title %}
     {{ item.name }}
@@ -9,6 +10,9 @@
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'item/item_detail.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'item/rating.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Kalam:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -16,90 +20,75 @@
         <div class="row">
             <div class="col-md-7">
                 <!--banner-->
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        {% for i in item.images.all %}
-                            {% if i.image %}
-                                <div class="item {% if forloop.first %} active {% endif %}">
-                                    <img class="img-responsive center-block" src="{{ i.image.url }}" alt="image">
-                                </div>
-                            {% endif %}
-                        {% empty %}
-                            <p> No images available </p>
-                        {% endfor %}
+                {% if item.images.all.count == 1 %}
+                    <img class="img-responsive center-block" src="{{ item.images.all.0.image.url }}" alt="image">
+                {% else %}
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            {% for i in item.images.all %}
+                                {% if i.image %}
+                                    <div class="item {% if forloop.first %} active {% endif %}">
+                                        <img class="img-responsive center-block" src="{{ i.image.url }}" alt="image">
+                                    </div>
+                                {% endif %}
+                            {% empty %}
+                                <p> {% trans 'No images available' %} </p>
+                            {% endfor %}
+                        </div>
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"></a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
                     </div>
-                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"></a>
-                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
-                </div>
+                {% endif %}
             </div>
             <div class="col-md-5">
-                <div class="card card-1">
+                <div class="box box-shadow">
                     <div class="row">
                         <div class="col-md-12">
                             <p class="food_name">
                                 {{ item.name }}
                             </p>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-1 col-xs-2">
-                            <a href="{% url 'shop:detail' item.shop.profile.slug %}">
-                                {% if item.shop.profile.avatar %}
-                                    <img class="avatar img-circle" src="{{ item.shop.profile.avatar.url }}"
-                                         alt="avatar"/>
-                                {% else %}
-                                    <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}"
-                                         alt="avatar"/>
-                                {% endif %}
-                            </a>
-                        </div>
-                        <div class="col-md-11 col-xs-10">
-                            <a href="{% url 'shop:detail' item.shop.profile.slug %}">
-                                <div class="cook_name">{{ item.shop.profile.name }}</div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!--rating-->
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12 rate">
-                            {% for foo in rating %}
-                                <label></label>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <!--price-->
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12">
-                            <p class="price margin_top_10">{{ item.price|intcomma }} VND</p>
-                        </div>
-                    </div>
-
-                    <!--buy Button-->
-                    <div class="row">
                         <div class="col-md-12">
+                            {% trans 'By: ' %}
+                            <a href="{% url 'shop:detail' item.shop.profile.slug %}">
+                                {{ item.shop.profile.name }}
+                            </a>
+                        </div>
+                        <!--rating-->
+                        <div class="col-md-12">
+                            <span class="stars">
+                                <span style="width:{{ item.get_rating_int }}%"></span>
+                            </span>
+                            <a href="#reviews">  {{ item.reviews.count|intcomma }} {% trans 'customer reviews' %} </a>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-3">
+                            <p class="price">${{ item.price|intcomma }}</p>
+                        </div>
+
+                        <div class="col-md-9">
                             <form method="post" action="{% url 'cart:add' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="item_id" value="{{ item.id }}"/>
                                 <input type="hidden" name="quantity" value="1"/>
-                                <input type="submit" class="btn_color small_btn" value="Đặt ngay"/>
+                                <button type="submit" class="btn btn_color"><span
+                                        class="glyphicon glyphicon-shopping-cart"></span> {% trans 'Order now' %}
+                                </button>
                             </form>
                         </div>
-                    </div>
 
-                    <!--description/ingredient-->
-                    <div class="row margin_top_10">
+                        <!--description/ingredient-->
                         <div class="col-md-12">
+                            <hr>
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#home">Mô Tả</a></li>
-                                <li><a data-toggle="tab" href="#menu1">Thành phần</a></li>
+                                <li class="active"><a data-toggle="tab" href="#home">{% trans 'Description' %}</a></li>
+                                <li><a data-toggle="tab" href="#menu1">{% trans 'Ingredients' %}</a></li>
                             </ul>
 
                             <div class="tab-content">
@@ -115,50 +104,51 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div><!-- close row div-->
+                </div><!-- close box div-->
+            </div><!-- close col div-->
+        </div><!-- close row div-->
+    </div><!-- close container div-->
 
     <!--Review area //-->
     <div class="container">
-        <hr>
         <div class="row">
-            <div class="col-md-12 title">
-                <h4>Đánh Giá Sản Phẩm</h4>
+            <div class="col-md-12">
+                <h4 class="section-header">{% trans 'Related products' %}</h4>
             </div>
         </div>
         <div class="row">
-            {% for review in item.reviews.all|slice:":3" %}
+            <div class="col-md-12">
+                <h4 id="reviews" class="section-header">{% trans 'Reviews' %}</h4>
+            </div>
+        </div>
+        <div class="row">
+            {% for review in item.reviews.all|slice:":4" %}
                 {% include "layout/review_snippet.html" with review=review %}
             {% empty %}
-                <p>No reviews here yet :(</p>
+                <p>{% trans 'No reviews here yet :(' %}</p>
             {% endfor %}
         </div>
-        <div class="collapse" id="collapseReview">
-            <div class="row">
-                {% if item.reviews.count > 3 %}
-
-                    {% for review in item.reviews.all|slice:"3:" %}
-                        {% if forloop.counter|divisibleby:3 %}
+        {% if item.reviews.count > 4 %}
+            <div class="collapse" id="collapseReview">
+                <div class="row">
+                    {% for review in item.reviews.all|slice:"4:" %}
+                        {% include "layout/review_snippet.html" with review=review %}
+                        {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                            </div><br>
                             <div class="row">
                         {% endif %}
-                    {% include "layout/review_snippet.html" with review=review %}
-                    {% if forloop.counter|divisibleby:3 %}
-                        </div>
-                    {% endif %}
                     {% endfor %}
 
-                    <div class="row text-center" style="margin-top: 10px">
+                    <div class="row text-center">
                         <button class="btn_color small_btn" type="button" data-toggle="collapse"
                                 data-target="#collapseReview"
                                 aria-expanded="false" aria-controls="collapseReview">
-                            Xem thêm
+                            {% trans 'Load more reviews' %}
                         </button>
                     </div>
-                {% endif %}
+                    </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 {% endblock %}

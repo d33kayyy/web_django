@@ -8,9 +8,43 @@
     overflow: hidden;
     white-space: nowrap;
     font-size: 20px;
-    color: rgba(143, 0, 71, 1);
+    color: rgb(255, 209, 57);
 }
 
 .rate:not(:checked) > label:before {
     content: '★ ';
+}
+
+/* Test */
+.stars {
+    display: inline-block;
+    font-size: 20px;
+    position: relative;
+    text-align: left;
+    margin-top: 4px;
+    margin-right: 4px;
+    color: #ffd323;
+}
+
+.stars:after {
+    content: "☆☆☆☆☆";
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .stars--large {
+        width: 230px;
+    }
+}
+
+.stars span {
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.stars span:after {
+    content: "★★★★★";
 }

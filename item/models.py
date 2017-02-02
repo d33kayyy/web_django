@@ -82,6 +82,9 @@ class Item(models.Model):
 
         return float(total / reviews.count())
 
+    def get_rating_int(self):
+        return int(self.get_rating() * 100 / 5)
+
 
 class Images(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')

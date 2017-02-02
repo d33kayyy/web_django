@@ -13,7 +13,7 @@ class ShopView(DetailView):
     shop page
     '''
     model = User
-    template_name = 'shop/cook_page.html'
+    template_name = 'shop/shop_page.html'
     slug_field = 'slug'
     context_object_name = 'user'
 

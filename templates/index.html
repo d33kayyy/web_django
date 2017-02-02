@@ -5,8 +5,6 @@
 
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
-    <link href='http://fonts.googleapis.com/css?family=Buenard:700' rel='stylesheet' type='text/css'>
-
 {% endblock %}
 
 {% block content %}
@@ -14,158 +12,93 @@
     <div class="container">
 
         {% if list_items %}
-            <ul>
+            <div class="row">
                 {% for item in list_items %}
-                    <li><a href="{% url 'item:detail' item.slug %}">{{ item.name }}</a></li>
+                    <div class="col-md-4">
+                        <div class="product box-shadow">
+                            <div class="image-container">
+                                <img width="100%^" src="{{ item.images.all.0.image.url }}" alt=""/>
+                                <div class="overlay"></div>
+                                <div class="hover-button"><a href="{% url 'item:detail' item.slug %}"> View details </a>
+                                </div>
+
+                            </div>
+                            <div class="stats-container">
+                                <span class="product_price">${{ item.price|intcomma }}</span>
+                                <span class="product_name">{{ item.name }}</span>
+                                <p>C’mon… you gotta love original pepperoni!</p>
+                            </div>
+                            <div class="star-ratings-sprite">
+                                <span style="width:{{ item.get_rating_int }}%" class="star-ratings-sprite-rating">
+                                </span>
+                            </div>
+                            <span class="num-review">({{ item.reviews.count }})</span>
+                        </div>
+                    </div>
+                    <!-- if last column in row -->
+                    {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                        </div><br>
+                        <div class="row">
+                    {% endif %}
                 {% endfor %}
-            </ul>
+                </div><br>
         {% else %}
             <p>No items are available.</p>
         {% endif %}
-        {#        <div class="row">#}
-        {#            <div class="row">#}
-        {#                <div class="col-md-9">#}
-        {#                    <h3> Đồ ăn số một tuần này </h3>#}
-        {#                </div>#}
-        {#                <div class="col-md-3">#}
-        {#                    <!-- Controls -->#}
-        {#                    <div class="controls pull-right">#}
-        {#                        <a class="fa fa-chevron-left color" aria-hidden="true" href="#1"#}
-        {#                           data-slide="prev"></a>#}
-        {#                        <a class="fa fa-chevron-right color" aria-hidden="true" href="#1"#}
-        {#                           data-slide="next"></a>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#            <div id="1" class="carousel slide" data-ride="carousel">#}
-        {#                <!-- Wrapper for slides -->#}
-        {#                <div class="carousel-inner">#}
-        {#                    <div class="item active">#}
-        {#                        <div class="row">#}
-        {#                            <div class="col-sm-4">#}
-        {#                                <div class="col-item border-no">#}
-        {#                                    <div class="photo">#}
-        {#                                        <a href="item.html">#}
-        {#                                            <img src="img/lasagna1.jpg" class="img-responsive" alt="a"/>#}
-        {#                                        </a>#}
-        {#                                    </div>#}
-        {#                                    <div class="separator clear-left">#}
-        {#                                        <h5 class="color">Sample Product</h5>#}
-        {#                                        <h4 class="price-text-color">205,000 vnd</h4>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                            <div class="col-sm-4">#}
-        {#                                <div class="col-item border-no">#}
-        {#                                    <div class="photo">#}
-        {#                                        <a href="item.html">#}
-        {#                                            <img src="img/lasagna.jpg" class="img-responsive" alt="a"/>#}
-        {#                                        </a>#}
-        {#                                    </div>#}
-        {#                                    <div class="separator clear-left">#}
-        {#                                        <h5 class="color">Sample Product</h5>#}
-        {#                                        <h4 class="price-text-color">205,000 vnd</h4>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                            <div class="col-sm-4">#}
-        {#                                <div class="col-item border-no">#}
-        {#                                    <div class="photo">#}
-        {#                                        <a href="item.html">#}
-        {#                                            <img src="img/lasagna2.jpg" class="img-responsive" alt="a"/>#}
-        {#                                        </a>#}
-        {#                                    </div>#}
-        {#                                    <div class="separator clear-left">#}
-        {#                                        <h5 class="color">Sample Product</h5>#}
-        {#                                        <h4 class="price-text-color">205,000 vnd</h4>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                    <div class="item">#}
-        {#                        <div class="row">#}
-        {#                            <div class="col-sm-4">#}
-        {#                                <div class="col-item border-no">#}
-        {#                                    <div class="photo">#}
-        {#                                        <a href="item.html">#}
-        {#                                            <img src="img/lasagna1.jpg" class="img-responsive" alt="a"/>#}
-        {#                                        </a>#}
-        {#                                    </div>#}
-        {#                                    <div class="separator clear-left">#}
-        {#                                        <h5 class="color">Sample Product</h5>#}
-        {#                                        <h4 class="price-text-color">205,000 vnd</h4>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                            <div class="col-sm-4">#}
-        {#                                <div class="col-item border-no">#}
-        {#                                    <div class="photo">#}
-        {#                                        <a href="item.html">#}
-        {#                                            <img src="img/lasagna2.jpg" class="img-responsive" alt="a"/>#}
-        {#                                        </a>#}
-        {#                                    </div>#}
-        {#                                    <div class="separator clear-left">#}
-        {#                                        <h5 class="color">Sample Product</h5>#}
-        {#                                        <h4 class="price-text-color">205,000 vnd</h4>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                            <div class="col-sm-4">#}
-        {#                                <div class="col-item border-no">#}
-        {#                                    <div class="photo">#}
-        {#                                        <a href="item.html">#}
-        {#                                            <img src="img/lasagna.jpg" class="img-responsive" alt="a"/>#}
-        {#                                        </a>#}
-        {#                                    </div>#}
-        {#                                    <div class="separator clear-left">#}
-        {#                                        <h5 class="color">Sample Product</h5>#}
-        {#                                        <h4 class="price-text-color">205,000 vnd</h4>#}
-        {#                                    </div>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </div>#}
-        {#        <div class="row">#}
-        {#            <div class="row">#}
-        {#                <div class="col-md-9">#}
-        {#                    <h3> Những món mới </h3>#}
-        {#                </div>#}
-        {#                <div class="col-md-3">#}
-        {#                    <!-- Controls -->#}
-        {#                    <div class="controls pull-right">#}
-        {#                        <a class="fa fa-chevron-left color" aria-hidden="true" href="#2"#}
-        {#                           data-slide="prev"></a>#}
-        {#                        <a class="fa fa-chevron-right color" aria-hidden="true" href="#2"#}
-        {#                           data-slide="next"></a>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {##}
-        {#            </div>#}
-        {##}
-        {#            <div id="2" class="carousel slide" data-ride="carousel">#}
-        {#                <!-- Wrapper for slides -->#}
-        {#                <div class="carousel-inner">#}
-        {#                    <div class="item active">#}
-        {#                        <div class="row">#}
-        {#                            {% for item in new_items|slice:":3" %}#}
-        {#                                {% include "layout/item_snippet.html" with item=item %}#}
-        {#                            {% endfor %}#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {##}
-        {#                    <div class="item">#}
-        {#                        <div class="row">#}
-        {#                            {% for item in new_items|slice:"3:" %}#}
-        {#                                {% include "layout/item_snippet.html" with item=item %}#}
-        {#                            {% endfor %}#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </div>#}
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="product">
+                    <div class="image-container">
+                        <img width="100%^" src="https://hd.unsplash.com/photo-1467521335787-2f0fc0f0e9a0" alt=""/>
+                        <div class="overlay"></div>
+                        <div class="hover-button"><a href="#"> View details </a></div>
+
+                    </div>
+                    <div class="stats-container">
+                        <span class="product_price">$39</span>
+                        <span class="product_name">Adidas Originals</span>
+                        <p>Men's running shirt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product">
+                    <div class="image-container">
+                        <img width="100%^" src="https://farm2.staticflickr.com/1131/1473713101_1c1804182a_z.jpg?zz=1"
+                             alt=""/>
+                        <div class="overlay"></div>
+                        <div class="hover-button"><a href="#"> BUTTON </a></div>
+
+                    </div>
+                    <div class="stats-container">
+                        <span class="product_price">$39</span>
+                        <span class="product_name">Adidas Originals</span>
+                        <p>Men's running shirt</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product">
+                    <div class="image-container">
+                        <img width="100%^" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt.png"
+                             alt=""/>
+                        <div class="overlay"></div>
+                        <div class="hover-button"><a href="#"> BUTTON </a></div>
+
+                    </div>
+                    <div class="stats-container">
+                        <span class="product_price">$39</span>
+                        <span class="product_name">Adidas Originals</span>
+                        <p>Men's running shirt</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
+{% endblock %}
+
+{% block footer %}
 {% endblock %}

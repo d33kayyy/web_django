@@ -3,13 +3,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from users import views
-from item.views import HomePageView
+from item.views import HomePageView, career, pin
 
 # import notifications.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', HomePageView.as_view(), name='cook'),
+    url(r'^$', HomePageView.as_view(), name='index'),
+    url(r'^career/$', career, name='career'),
+    url(r'^pin/$', pin, name='pin'),
     url(r'^users/', include('users.urls')),
     url(r'^item/', include('item.urls')),
     url(r'^cart/', include('cart.urls')),
