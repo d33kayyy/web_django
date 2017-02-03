@@ -15,7 +15,7 @@
             <div class="row">
                 {% for item in list_items %}
                     <div class="col-md-4">
-                        <div class="product box-shadow">
+                        <div class="product box-hover">
                             <div class="image-container">
                                 <img width="100%^" src="{{ item.images.all.0.image.url }}" alt=""/>
                                 <div class="overlay"></div>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="stats-container">
                                 <span class="product_price">${{ item.price|intcomma }}</span>
-                                <span class="product_name">{{ item.name }}</span>
+                                <span class="product_name"><a href="{% url 'item:detail' item.slug %}">{{ item.name }}</a></span>
                                 <p>C’mon… you gotta love original pepperoni!</p>
                             </div>
                             <div class="star-ratings-sprite">

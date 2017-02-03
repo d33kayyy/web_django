@@ -78,6 +78,14 @@
     color: #393c45;
 }
 
+.stats-container .product_name a {
+    color: #393c45;
+}
+
+.stats-container .product_name a:hover {
+    color: #393c45;
+}
+
 .stats-container p {
     font-size: 16px;
     color: #b1b1b3;

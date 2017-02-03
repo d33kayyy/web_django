@@ -2,52 +2,59 @@
 {% load i18n %}
 
 <div class="col-md-3">
-    <div class="row text-center">
-        <div class="card card-1">
-            {% if user.profile.avatar %}
-                <img class="avatar img-circle" src="{{ user.profile.avatar.url }}" alt="avatar"/>
-            {% else %}
-                <img class="avatar img-circle" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
-            {% endif %}
+    <div class="profile-sidebar card">
 
-            <h4 id="user_name">{{ user.profile.name }}</h4>
-            <hr>
-            <div>
-                <a href="{% url 'order:list' %}">
-                    <button class="button_profile"><i class="fa fa-history"></i> {% trans 'Order history' %}</button>
-                </a>
+        <div class="profile-userpic">
+            {% if user.profile.avatar %}
+                <img class="img-responsive img-circle" src="{{ user.profile.avatar.url }}" alt="avatar"/>
+            {% else %}
+                <img class="img-responsive img-circle" src="{% static 'images/default-avatar.png' %}" alt="avatar"/>
+            {% endif %}
+        </div>
+
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+                {{ user.profile.name }}
             </div>
-            <div>
-                <a href="{% url 'profile' %}">
-                    <button class="button_profile"><i class="fa fa-user"></i> {% trans 'Profile' %}</button>
-                </a>
-            </div>
-            <div>
-                <a href="{% url 'account_change_password' %}">
-                    <button class="button_profile"><i class="fa fa-cog"></i>
-                        {% if user.password %}
+        </div>
+
+        <div class="profile-usermenu">
+            <ul class="nav">
+                {% url 'profile' as profile_url %}
+                {% url 'order:list' as order_url %}
+                {% url 'reviews:index' as review_url %}
+                {% url 'notification' as noti_url %}
+                {% url 'account_change_password' as pwd_url %}
+                {% url 'account_set_password' as pwd_set_url %}
+
+
+                <li {% if request.get_full_path == profile_url %}class="active"{% endif %}>
+                    <a href="{{ profile_url }}"> <i class="fa fa-home"></i> {% trans 'Overview' %}</a>
+                </li>
+                <li {% if request.get_full_path == order_url %}class="active"{% endif %}>
+                    <a href="{{ order_url }}"> <i class="fa fa-history"></i> {% trans 'Order history' %}</a>
+                </li>
+                <li {% if request.get_full_path == review_url %}class="active"{% endif %}>
+                    <a href="{{ review_url }}"><i class="fa fa-check"></i> {% trans 'Reviews' %}</a>
+                </li>
+
+                <li {% if request.get_full_path == noti_url %}class="active"{% endif %}>
+                    <a href="{{ noti_url }}"><i class="fa fa-comment-o"></i> {% trans 'Notifications' %}</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-money"></i> {% trans 'Food Coin' %}</a>
+                </li>
+                <li {% if request.get_full_path == pwd_url or request.get_full_path == pwd_set_url %}class="active"{% endif %}>
+                    <a href="{% url 'account_change_password' %}">
+                        <i class="fa fa-cog"></i>
+                        {% if user.has_usable_password %}
                             {% trans 'Change password' %}
                         {% else %}
                             {% trans 'Set password' %}
                         {% endif %}
-                    </button>
-                </a>
-            </div>
-            <div>
-                <a href="{% url 'notification' %}">
-                    <button class="button_profile"><i class="fa fa-comment-o"></i> {% trans 'Notifications' %}</button>
-                </a>
-            </div>
-            <div>
-                <a href="{% url 'reviews:index' %}">
-                    <button class="button_profile"><i class="fa fa-thumbs-up"></i> {% trans 'Reviews' %}</button>
-                </a>
-            </div>
-            <div>
-                <a href="#">
-                    <button class="button_profile"><i class="fa fa-money"></i> {% trans 'Food Coin' %}</button>
-                </a>
-            </div>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

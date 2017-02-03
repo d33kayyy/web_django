@@ -5,7 +5,7 @@ from item.models import Item
 
 register = template.Library()
 
-SHIPPING = 10000
+SHIPPING = 0
 
 
 @register.simple_tag

@@ -108,10 +108,8 @@
                 </div><!-- close box div-->
             </div><!-- close col div-->
         </div><!-- close row div-->
-    </div><!-- close container div-->
 
-    <!--Review area //-->
-    <div class="container">
+        <!-- Review area -->
         <div class="row">
             <div class="col-md-12">
                 <h4 class="section-header">{% trans 'Related products' %}</h4>
@@ -126,7 +124,7 @@
             {% for review in item.reviews.all|slice:":4" %}
                 {% include "layout/review_snippet.html" with review=review %}
             {% empty %}
-                <p>{% trans 'No reviews here yet :(' %}</p>
+                <div class="col-lg-12">{% trans 'No reviews here yet :(' %}</div>
             {% endfor %}
         </div>
         {% if item.reviews.count > 4 %}
@@ -150,5 +148,7 @@
                     </div>
             </div>
         {% endif %}
-    </div>
+
+    </div><!-- close container div-->
+
 {% endblock %}

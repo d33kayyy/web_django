@@ -100,7 +100,7 @@
                                                 </td>
 
                                                 <td class="col-md-2 vert-align">
-                                                    <span>{{ item.price|intcomma }}</span>
+                                                    <span>${{ item.price|intcomma }}</span>
                                                 </td>
 
                                                 <td class="col-md-2 vert-align">
@@ -113,7 +113,7 @@
                                                 </td>
 
                                                 <td class="col-md-2 vert-align">
-                                                    <span class="amount"><strong>{{ sub_total|intcomma }}</strong></span>
+                                                    <span class="amount"><strong>${{ sub_total|intcomma }}</strong></span>
                                                 </td>
                                             </tr>
                                         {% endfor %}

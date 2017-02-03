@@ -1,41 +1,19 @@
 .food_name {
-    font-family: Avenir Next;
-    font-weight: bold;
-    margin-left: 10px;
+    font-weight: 600;
     font-size: 15px;
-    color: black;
+    color: #393c45;
 }
-
-.cook_name {
-    font-family: 'Avenir Next';
-    color: black;
-    padding: 7px;
-    text-align: left;
-    margin-top: 1px;
-    margin-left: 15px;
-    /*width: 100%;*/
-}
-
-.finish_button {
-    padding: 0;
-    height: 30px;
-    font-size: 12px;
-}
-
-.user_img {
-    height: 35px;
-    width: 35px;
-}
-
-body {
-    font-weight: normal;
-    font-family: "roboto", sans-serif;
-}
-
-/*label{*/
-/*font-weight: lighter;*/
-/*}*/
 
 .food_img {
     max-height: 60px;
+}
+
+.full-width {
+    display: block;
+    width: 100%
+}
+
+#myHr {
+    margin-top: 5px;
+    margin-bottom: 10px;
 }

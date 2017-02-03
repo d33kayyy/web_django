@@ -9,7 +9,7 @@ from reviews.models import Review
 from .forms import ReviewForm
 
 
-class ReviewPageView(ListView,LoginRequiredMixin):
+class ReviewPageView(ListView, LoginRequiredMixin):
     '''
     Display all item order that is not reviewed
     '''
@@ -49,7 +49,6 @@ class ItemReview(FormView, LoginRequiredMixin):
         else:
             review.reviewer = reviewer
             review.save()
-
 
         # After the review is saved, mark the itemorder as reviewed
         # this is done in the save() of form (in forms.py)

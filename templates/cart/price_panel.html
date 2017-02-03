@@ -9,7 +9,7 @@
     <div class="col-md-6 col-xs-6">
         <div class="text-right">
             {% get_total_price as total %}
-            <h4 id="total"><strong>{{ total|intcomma }}</strong> vnd</h4>
+            <h4 id="total"><strong>${{ total|intcomma }}</strong></h4>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <div class="col-md-6 col-xs-6">
         <div class="text-right">
             {% get_shipping as shipping %}
-            <h4><strong>{{ shipping|intcomma }}</strong> vnd</h4>
+            <h4><strong>${{ shipping|intcomma }}</strong></h4>
         </div>
     </div>
 </div>
@@ -46,7 +46,7 @@
     <div class="col-md-6 col-xs-6">
         <div class="text-right">
             {% get_total_with_ship as total_w_ship %}
-            <h4><strong>{{ total_w_ship|intcomma }}</strong> vnd</h4>
+            <h4><strong>${{ total_w_ship|intcomma }}</strong></h4>
         </div>
     </div>
 </div>
