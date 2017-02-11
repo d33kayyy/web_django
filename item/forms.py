@@ -8,14 +8,7 @@ from .models import Item, Images
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = [
-            'name',
-            'price',
-            # 'image',
-            'description',
-            'ingredient',
-            'in_stock'
-        ]
+        fields = ['name', 'price', 'description', 'ingredient', 'in_stock']
         help_texts = {
             'ingredient': _("Separate by commas or new line")
         }
@@ -28,6 +21,7 @@ class ItemForm(forms.ModelForm):
             'in_stock': _('Stock'),
         }
 
+
 # Set of image forms for an item
 ImageInlineFormSet = inlineformset_factory(Item, Images, fields=('image',), extra=3, max_num=3)
 
@@ -38,7 +32,6 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Images
         fields = ('image',)
-
         labels = {
             'image': _('Image')
         }

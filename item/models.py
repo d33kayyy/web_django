@@ -1,15 +1,15 @@
-import os
 import itertools
+import os
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.dispatch import receiver
-from django.utils.text import slugify
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Item(models.Model):
-    shop = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shop')
+    shop = models.ForeignKey(User, on_delete=models.CASCADE, related_name='items')
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, max_length=100)
     price = models.PositiveIntegerField()
