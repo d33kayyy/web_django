@@ -1,7 +1,8 @@
 from django.db import models
+from django.dispatch import receiver
 
-from users.models import UserProfile
 from item.models import Item
+from users.models import UserProfile
 
 
 # Create your models here.
@@ -37,3 +38,13 @@ class Review(models.Model):
 
     def get_rating(self):
         return range(self.rating)
+
+
+@receiver(models.signals.post_save, sender=Review)
+def update_item_rating(sender, instance, **kwargs):
+    """
+    Update the rating of item reviewed
+    """
+    item = instance.item
+    item.rating = item.get_rating()
+    item.save()

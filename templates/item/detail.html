@@ -21,7 +21,7 @@
             <div class="col-md-7">
                 <!--banner-->
                 {% if item.images.all.count == 1 %}
-                    <img class="img-responsive center-block" src="{{ item.images.all.0.image.url }}" alt="image">
+                    <img class="img-responsive center-block" src="{{ item.get_primary_image }}" alt="image">
                 {% else %}
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">

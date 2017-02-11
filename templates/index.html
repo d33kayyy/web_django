@@ -17,7 +17,7 @@
                     <div class="col-md-4">
                         <div class="product box-hover">
                             <div class="image-container">
-                                <img width="100%^" src="{{ item.images.all.0.image.url }}" alt=""/>
+                                <img width="100%^" src="{{ item.get_primary_image }}" alt=""/>
                                 <div class="overlay"></div>
                                 <div class="hover-button"><a href="{% url 'item:detail' item.slug %}"> View details </a>
                                 </div>
@@ -45,57 +45,6 @@
         {% else %}
             <p>No items are available.</p>
         {% endif %}
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="product">
-                    <div class="image-container">
-                        <img width="100%^" src="https://hd.unsplash.com/photo-1467521335787-2f0fc0f0e9a0" alt=""/>
-                        <div class="overlay"></div>
-                        <div class="hover-button"><a href="#"> View details </a></div>
-
-                    </div>
-                    <div class="stats-container">
-                        <span class="product_price">$39</span>
-                        <span class="product_name">Adidas Originals</span>
-                        <p>Men's running shirt</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product">
-                    <div class="image-container">
-                        <img width="100%^" src="https://farm2.staticflickr.com/1131/1473713101_1c1804182a_z.jpg?zz=1"
-                             alt=""/>
-                        <div class="overlay"></div>
-                        <div class="hover-button"><a href="#"> BUTTON </a></div>
-
-                    </div>
-                    <div class="stats-container">
-                        <span class="product_price">$39</span>
-                        <span class="product_name">Adidas Originals</span>
-                        <p>Men's running shirt</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product">
-                    <div class="image-container">
-                        <img width="100%^" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt.png"
-                             alt=""/>
-                        <div class="overlay"></div>
-                        <div class="hover-button"><a href="#"> BUTTON </a></div>
-
-                    </div>
-                    <div class="stats-container">
-                        <span class="product_price">$39</span>
-                        <span class="product_name">Adidas Originals</span>
-                        <p>Men's running shirt</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
 
     </div>
 {% endblock %}

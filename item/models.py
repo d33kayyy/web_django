@@ -83,7 +83,7 @@ class Item(models.Model):
         return float(total / reviews.count())
 
     def get_rating_int(self):
-        return int(self.get_rating() * 100 / 5)
+        return int(self.get_rating() * 20)
 
 
 class Images(models.Model):

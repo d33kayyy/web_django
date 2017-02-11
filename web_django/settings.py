@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'reviews.apps.ReviewsConfig',
     'cart.apps.CartConfig',
-    'shop.apps.ChefConfig',
+    'shop.apps.ShopConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'bootstrapform',
     'actstream',
+    'rest_framework',
     # 'notifications'
 ]
 
