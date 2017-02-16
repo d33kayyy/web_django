@@ -11,3 +11,7 @@
     - Notification:
         - Bug: hover over the list in dropdown then when move mouse out, the list disappear
 
+- API:
+    - Create/Update Review
+    - Create Order (create ItemOrder)
+    - Update Profile
