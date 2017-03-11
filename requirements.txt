@@ -1,7 +1,7 @@
 defusedxml==0.5.0
 dj-database-url==0.4.2
 Django==1.10.1
-django-activity-stream==0.6.3
+git+https://github.com/justquick/django-activity-stream.git#egg=actstream
 django-allauth==0.31.0
 django-bootstrap-form==3.2.1
 django-jsonfield==1.0.1
