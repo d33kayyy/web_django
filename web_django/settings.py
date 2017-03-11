@@ -21,10 +21,33 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+ba=^6@(b)l^206-bvm195c76*93tu%z5!9v0vxsptgt)6!pjx'
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '+ba=^6@(b)l^206-bvm195c76*93tu%z5!9v0vxsptgt)6!pjx')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+
+# Allow all host headers
+ALLOWED_HOSTS = ['web-django.herokuapp.com','127.0.0.1', 'localhost']
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.
+CSRF_COOKIE_SECURE = True
+
+# HttpOnly CSRF cookie makes it more difficult for cross-site scripting attacks to steal the CSRF token.
+CSRF_COOKIE_HTTPONLY = True
+
+# Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.
+SESSION_COOKIE_SECURE = True
+
+# Activate the browser's XSS filtering and help prevent XSS attacks.
+SECURE_BROWSER_XSS_FILTER = True
+
+# Prevent the browser from identifying content types incorrectly.
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Application definition
 
@@ -114,6 +137,10 @@ DATABASES = {
     }
 }
 
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -144,16 +171,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# Update database configuration with $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
