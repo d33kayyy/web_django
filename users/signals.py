@@ -1,5 +1,3 @@
-import datetime
-
 import requests
 from django.core.files.base import ContentFile
 from django.dispatch import receiver
@@ -31,15 +29,15 @@ def populate_user_profile(**kwargs):
         url_image = account_uid[0].get_avatar_url()
         profile[0].name = account_uid[0].extra_data['name']
 
-        if account_uid[0].provider == 'facebook':
+        # if account_uid[0].provider == 'facebook':
+        #
+        #     # Update user profile image
+        #     new_img = get_img_from_url(url_image)
+        #     if new_img != profile[0].avatar:
+        #         file_name = account_uid[0].extra_data['id'] + '.jpg'
+        #         profile[0].avatar.save(file_name, new_img)
 
-            # Update user profile image
-            new_img = get_img_from_url(url_image)
-            if new_img != profile[0].avatar:
-                file_name = account_uid[0].extra_data['id'] + '.jpg'
-                profile[0].avatar.save(file_name, new_img)
-
-        elif account_uid[0].provider == 'google':
+        if account_uid[0].provider == 'google':
 
             # Update user profile image
             if url_image != profile[0].avatar_link:

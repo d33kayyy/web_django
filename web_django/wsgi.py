@@ -1,5 +1,5 @@
 """
-WSGI config for silisili project.
+WSGI config for web_django project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

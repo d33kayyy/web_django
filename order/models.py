@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from actstream import action
-from notifications.signals import notify
+# from notifications.signals import notify
 
 from users.models import UserProfile
 
