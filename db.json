@@ -1,0 +1,990 @@
+[
+  {
+    "model": "item.images",
+    "pk": 2,
+    "fields": {
+      "item": 2,
+      "image": ""
+    }
+  },
+  {
+    "model": "item.images",
+    "pk": 3,
+    "fields": {
+      "item": 3,
+      "image": ""
+    }
+  },
+  {
+    "model": "item.images",
+    "pk": 4,
+    "fields": {
+      "item": 4,
+      "image": "uploads/2017/03/11/379901.jpg"
+    }
+  },
+  {
+    "model": "item.images",
+    "pk": 5,
+    "fields": {
+      "item": 3,
+      "image": "uploads/2017/03/11/philly-cheese-steak-pizza-three-quarter.png"
+    }
+  },
+  {
+    "model": "item.images",
+    "pk": 6,
+    "fields": {
+      "item": 2,
+      "image": ""
+    }
+  },
+  {
+    "model": "item.images",
+    "pk": 7,
+    "fields": {
+      "item": 2,
+      "image": "uploads/2017/03/11/pizza_adven_zestypepperoni_GZrFeLV.png"
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 1,
+    "fields": {
+      "userprofile": 3,
+      "order_id": "5T8X1T31",
+      "receiver": "L\u00ea Ki\u00ean",
+      "order_date": "2016-12-26T09:05:18.378Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "PR",
+      "phone": "+840123456789",
+      "address": "123 Nguy\u1ec5n Th\u1ecb Minh Khai, Nguy\u1ec5n C\u01b0 Trinh",
+      "email": "dk1721996@yahoo.com.vn",
+      "note": "",
+      "city": "Saigon",
+      "district": "5",
+      "ward": null
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 2,
+    "fields": {
+      "userprofile": 7,
+      "order_id": "GXTM7572",
+      "receiver": "L\u00ea Ki\u00ean",
+      "order_date": "2017-02-01T18:42:58.372Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "FI",
+      "phone": "01675459251",
+      "address": "3213123",
+      "email": "dk1721996@gmail.com",
+      "note": "",
+      "city": "Saigon",
+      "district": "1",
+      "ward": ""
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 3,
+    "fields": {
+      "userprofile": 3,
+      "order_id": "T4C46P33",
+      "receiver": "L\u00ea Ki\u00ean",
+      "order_date": "2017-02-01T19:19:01.860Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "FI",
+      "phone": "+840123456789",
+      "address": "aa",
+      "email": "dk1721996@yahoo.com.vn",
+      "note": "",
+      "city": "Saigon",
+      "district": "1",
+      "ward": ""
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 4,
+    "fields": {
+      "userprofile": 8,
+      "order_id": "US79T684",
+      "receiver": "Jimmy Fallon",
+      "order_date": "2017-02-03T13:06:16.647Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "FI",
+      "phone": "+1 650-253-0000",
+      "address": "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
+      "email": "google@gmail.com",
+      "note": "",
+      "city": "Hanoi",
+      "district": "1",
+      "ward": ""
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 5,
+    "fields": {
+      "userprofile": 7,
+      "order_id": "GJLG1S75",
+      "receiver": "L\u00ea Ki\u00ean",
+      "order_date": "2017-02-03T13:25:12.948Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "FI",
+      "phone": "01675459251",
+      "address": "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
+      "email": "dk1721996@gmail.com",
+      "note": "",
+      "city": "Saigon",
+      "district": "2",
+      "ward": ""
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 6,
+    "fields": {
+      "userprofile": 3,
+      "order_id": "ERY23F36",
+      "receiver": "L\u00ea Ki\u00ean",
+      "order_date": "2017-02-10T07:44:58.843Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "FI",
+      "phone": "+840123456789",
+      "address": "123 ABC St.",
+      "email": "dk1721996@yahoo.com.vn",
+      "note": "",
+      "city": "Saigon",
+      "district": "2",
+      "ward": ""
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 7,
+    "fields": {
+      "userprofile": 3,
+      "order_id": "M7JJGS37",
+      "receiver": "L\u00ea Ki\u00ean",
+      "order_date": "2017-02-10T07:48:53.944Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "FI",
+      "phone": "+840123456789",
+      "address": "124 La Trobe St, Melbourne VIC 3000, Australia",
+      "email": "dk1721996@yahoo.com.vn",
+      "note": "",
+      "city": "Saigon",
+      "district": "5",
+      "ward": ""
+    }
+  },
+  {
+    "model": "order.order",
+    "pk": 8,
+    "fields": {
+      "userprofile": 3,
+      "order_id": "4DCA2Y38",
+      "receiver": "L\u00ea Ki\u00ean",
+      "order_date": "2017-02-10T07:53:32.821Z",
+      "total_price": 0,
+      "shipping": 0,
+      "status": "FI",
+      "phone": "+840123456789",
+      "address": "124 La Trobe St, Melbourne VIC 3000, Australia",
+      "email": "dk1721996@yahoo.com.vn",
+      "note": "",
+      "city": "Saigon",
+      "district": "3",
+      "ward": ""
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "item": 2,
+      "quantity": 2,
+      "is_reviewed": false
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 2,
+    "fields": {
+      "order": 2,
+      "item": 2,
+      "quantity": 1,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 3,
+    "fields": {
+      "order": 3,
+      "item": 2,
+      "quantity": 1,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 4,
+    "fields": {
+      "order": 4,
+      "item": 4,
+      "quantity": 1,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 5,
+    "fields": {
+      "order": 4,
+      "item": 3,
+      "quantity": 2,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 6,
+    "fields": {
+      "order": 4,
+      "item": 2,
+      "quantity": 1,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 7,
+    "fields": {
+      "order": 5,
+      "item": 4,
+      "quantity": 2,
+      "is_reviewed": false
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 8,
+    "fields": {
+      "order": 5,
+      "item": 3,
+      "quantity": 1,
+      "is_reviewed": false
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 9,
+    "fields": {
+      "order": 6,
+      "item": 2,
+      "quantity": 2,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 10,
+    "fields": {
+      "order": 7,
+      "item": 2,
+      "quantity": 2,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "order.itemorder",
+    "pk": 11,
+    "fields": {
+      "order": 8,
+      "item": 2,
+      "quantity": 1,
+      "is_reviewed": true
+    }
+  },
+  {
+    "model": "reviews.review",
+    "pk": 1,
+    "fields": {
+      "item": 2,
+      "reviewer": 7,
+      "content": "this shit is real",
+      "rating": 5,
+      "updated_time": "2017-02-01T18:44:26.761Z",
+      "approved_comment": false
+    }
+  },
+  {
+    "model": "reviews.review",
+    "pk": 2,
+    "fields": {
+      "item": 2,
+      "reviewer": 3,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "rating": 5,
+      "updated_time": "2017-02-10T07:54:00.927Z",
+      "approved_comment": false
+    }
+  },
+  {
+    "model": "reviews.review",
+    "pk": 3,
+    "fields": {
+      "item": 2,
+      "reviewer": 8,
+      "content": "A little bit greasy. hehe xd",
+      "rating": 4,
+      "updated_time": "2017-02-03T13:08:06.342Z",
+      "approved_comment": false
+    }
+  },
+  {
+    "model": "reviews.review",
+    "pk": 4,
+    "fields": {
+      "item": 3,
+      "reviewer": 8,
+      "content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "rating": 4,
+      "updated_time": "2017-02-03T13:10:12.100Z",
+      "approved_comment": false
+    }
+  },
+  {
+    "model": "reviews.review",
+    "pk": 5,
+    "fields": {
+      "item": 4,
+      "reviewer": 8,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "rating": 1,
+      "updated_time": "2017-02-03T13:10:29.097Z",
+      "approved_comment": false
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$kvwGxXsWBsxV$QZytKLransZQfkbXb1svyNxqoeRozegqn4S8Iu2jqA0=",
+      "last_login": "2017-03-18T06:07:15.406Z",
+      "is_superuser": true,
+      "username": "dk",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2016-12-04T17:35:47.938Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "!swQUEaJP7ycCeDxR12b4ob26DTGRYlWs9c2gAhU7",
+      "last_login": "2017-03-18T06:17:24.676Z",
+      "is_superuser": false,
+      "username": "L\u00ea Ki\u00ean",
+      "first_name": "Ki\u00ean",
+      "last_name": "L\u00ea",
+      "email": "dk1721996@yahoo.com.vn",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2016-12-05T08:35:03.834Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$NQL0oTJloQtu$uuofHMmfpIbVHmcLMANWwr/tzshIYX0ObRClTKz9ac8=",
+      "last_login": "2017-03-10T17:18:30.991Z",
+      "is_superuser": false,
+      "username": "lo",
+      "first_name": "Lo",
+      "last_name": "Lu",
+      "email": "dk1721996@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2016-12-18T14:53:50.778Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "!CQXL0soYtviVlLbTRex4XhhByx4Xeh5Zu8rz5iBM",
+      "last_login": "2017-03-10T17:58:28.312Z",
+      "is_superuser": false,
+      "username": "le",
+      "first_name": "Le",
+      "last_name": "Kien",
+      "email": "dk172196@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-03-10T17:58:27.530Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$XwLMPfciklAk$AeXbYytoN+KJcJ1+c041FZiPIBEcc2LaY4zOIPoxjNM=",
+      "last_login": "2017-03-11T09:55:14.857Z",
+      "is_superuser": true,
+      "username": "mac",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2017-03-11T09:55:07.981Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "1483xyksvx2b85qzylrr0bqxmw5pveuf",
+    "fields": {
+      "session_data": "YTE4MDkyOWQ3ZjI4ZDY3NDU5MmE2NTM4OThjNTAxZGViMzRkZTlmOTp7Il9hdXRoX3VzZXJfaWQiOiI0IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiYWxsYXV0aC5hY2NvdW50LmF1dGhfYmFja2VuZHMuQXV0aGVudGljYXRpb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZTQxOGUwYmFlYWQyZWJhMzNhZTQ2NmVlNzQ2ZWU2ZGE5MTYwZDQ1MyJ9",
+      "expire_date": "2017-04-01T06:17:24.695Z"
+    }
+  },
+  {
+    "model": "sites.site",
+    "pk": 2,
+    "fields": {
+      "domain": "example.com",
+      "name": "example.com"
+    }
+  },
+  {
+    "model": "sites.site",
+    "pk": 3,
+    "fields": {
+      "domain": "web-django.herokuapp.com",
+      "name": "DK"
+    }
+  },
+  {
+    "model": "sites.site",
+    "pk": 4,
+    "fields": {
+      "domain": "127.0.0.1",
+      "name": "local"
+    }
+  },
+  {
+    "model": "sites.site",
+    "pk": 5,
+    "fields": {
+      "domain": "localhost",
+      "name": "local2"
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 3,
+    "fields": {
+      "user": 4,
+      "email": "dk1721996@yahoo.com.vn",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 7,
+    "fields": {
+      "user": 8,
+      "email": "dk1721996@gmail.com",
+      "verified": false,
+      "primary": true
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 8,
+    "fields": {
+      "user": 9,
+      "email": "dk172196@gmail.com",
+      "verified": true,
+      "primary": true
+    }
+  },
+  {
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+      "provider": "google",
+      "name": "Google",
+      "client_id": "280154067537-hjmm1unh6j1u4amlka91hanibenhd2ev.apps.googleusercontent.com",
+      "secret": "ev4f-XC1taW84kVl3ZTDbYB5",
+      "key": "",
+      "sites": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "socialaccount.socialapp",
+    "pk": 2,
+    "fields": {
+      "provider": "facebook",
+      "name": "Facebook",
+      "client_id": "1735709893344808",
+      "secret": "a764d464bd8609806cf0d93275007bf0",
+      "key": "",
+      "sites": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "socialaccount.socialaccount",
+    "pk": 3,
+    "fields": {
+      "user": 4,
+      "provider": "facebook",
+      "uid": "1311572145550120",
+      "last_login": "2017-03-18T06:17:24.635Z",
+      "date_joined": "2016-12-05T08:35:03.894Z",
+      "extra_data": "{\"id\": \"1311572145550120\", \"email\": \"dk1721996@yahoo.com.vn\", \"name\": \"L\\u00ea Ki\\u00ean\", \"first_name\": \"Ki\\u00ean\", \"last_name\": \"L\\u00ea\", \"verified\": true, \"locale\": \"en_US\", \"timezone\": 7, \"link\": \"https://www.facebook.com/app_scoped_user_id/1311572145550120/\", \"gender\": \"male\", \"updated_time\": \"2017-03-15T16:36:03+0000\"}"
+    }
+  },
+  {
+    "model": "socialaccount.socialaccount",
+    "pk": 5,
+    "fields": {
+      "user": 8,
+      "provider": "facebook",
+      "uid": "1062904793825477",
+      "last_login": "2017-03-10T17:18:30.982Z",
+      "date_joined": "2017-02-01T18:37:17.276Z",
+      "extra_data": "{\"id\": \"1062904793825477\", \"email\": \"dk1721996@gmail.com\", \"name\": \"L\\u00ea Ki\\u00ean\", \"first_name\": \"Ki\\u00ean\", \"last_name\": \"L\\u00ea\", \"verified\": true, \"locale\": \"en_GB\", \"timezone\": 7, \"link\": \"https://www.facebook.com/app_scoped_user_id/1062904793825477/\", \"gender\": \"male\", \"updated_time\": \"2017-03-10T16:57:32+0000\"}"
+    }
+  },
+  {
+    "model": "socialaccount.socialaccount",
+    "pk": 6,
+    "fields": {
+      "user": 9,
+      "provider": "google",
+      "uid": "114555324763442694850",
+      "last_login": "2017-03-10T17:58:27.542Z",
+      "date_joined": "2017-03-10T17:58:27.542Z",
+      "extra_data": "{\"id\": \"114555324763442694850\", \"email\": \"dk172196@gmail.com\", \"verified_email\": true, \"name\": \"Le Kien\", \"given_name\": \"Le\", \"family_name\": \"Kien\", \"link\": \"https://plus.google.com/114555324763442694850\", \"picture\": \"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg\", \"gender\": \"male\", \"locale\": \"en-GB\"}"
+    }
+  },
+  {
+    "model": "socialaccount.socialtoken",
+    "pk": 3,
+    "fields": {
+      "app": 2,
+      "account": 3,
+      "token": "EAAYqnnOgPigBAKG6bcicCAasLLxlPnzdcgg34hmVQV2jBZC8BhamJRkpH9MBEijcOZBousttLSuKBfamAviCZC8ZBlOzCpMALxe1bPAoSlC3Pv4pXQ5bZBSDkaRWHk2OsImcob4D19XKakgXbVw8RI3v5RGg5i0BxEpTzuYEoogXEOUSiR5DA9OdcQjhYZAZCcZD",
+      "token_secret": "",
+      "expires_at": "2017-05-17T04:44:59.492Z"
+    }
+  },
+  {
+    "model": "socialaccount.socialtoken",
+    "pk": 5,
+    "fields": {
+      "app": 2,
+      "account": 5,
+      "token": "EAAYqnnOgPigBAKitWRKc3R6nCMZBoapmlJr2oiTxpXJAzS7I5ZBfRIqzw1Gd4naSRFIqgeBmDRIuNmD0ZBY8ZCzqOkaYowZBM0hrSRZAa6lODiuzKC5IFyhfWP8apP2EvWZChYfhUpVxfO4cwH3Mh4ZCWDML0KsM5ABoRUObt8ZAFiHfIpk7hvky89yJSKgCyEdUZD",
+      "token_secret": "",
+      "expires_at": "2017-05-09T16:56:59.441Z"
+    }
+  },
+  {
+    "model": "socialaccount.socialtoken",
+    "pk": 6,
+    "fields": {
+      "app": 1,
+      "account": 6,
+      "token": "ya29.GlsKBDaJub2Ny0fDLxuoqaCXOEkvWWpxA8ILyPnmIIGd0RJKs60oWa9tkkfWHSB-JS0FnVJHtsb0ESBKGdR8LXZdrY1lNzbxf6t1mvYLwpIGkNaR0hD_lbUrjr33",
+      "token_secret": "",
+      "expires_at": "2017-03-10T18:58:26.957Z"
+    }
+  },
+  {
+    "model": "actstream.action",
+    "pk": 2,
+    "fields": {
+      "actor_content_type": 5,
+      "actor_object_id": "2",
+      "verb": "is changed",
+      "description": null,
+      "target_content_type": 1,
+      "target_object_id": "7",
+      "action_object_content_type": 5,
+      "action_object_object_id": "2",
+      "timestamp": "2017-03-18T06:15:28.373Z",
+      "public": true,
+      "data": {
+        "status": "Finished"
+      }
+    }
+  },
+  {
+    "model": "actstream.action",
+    "pk": 3,
+    "fields": {
+      "actor_content_type": 5,
+      "actor_object_id": "3",
+      "verb": "is changed",
+      "description": null,
+      "target_content_type": 1,
+      "target_object_id": "3",
+      "action_object_content_type": 5,
+      "action_object_object_id": "3",
+      "timestamp": "2017-03-18T06:15:28.391Z",
+      "public": true,
+      "data": {
+        "status": "Finished"
+      }
+    }
+  },
+  {
+    "model": "actstream.action",
+    "pk": 4,
+    "fields": {
+      "actor_content_type": 5,
+      "actor_object_id": "4",
+      "verb": "is changed",
+      "description": null,
+      "target_content_type": 1,
+      "target_object_id": "8",
+      "action_object_content_type": 5,
+      "action_object_object_id": "4",
+      "timestamp": "2017-03-18T06:15:28.408Z",
+      "public": true,
+      "data": {
+        "status": "Finished"
+      }
+    }
+  },
+  {
+    "model": "actstream.action",
+    "pk": 5,
+    "fields": {
+      "actor_content_type": 5,
+      "actor_object_id": "5",
+      "verb": "is changed",
+      "description": null,
+      "target_content_type": 1,
+      "target_object_id": "7",
+      "action_object_content_type": 5,
+      "action_object_object_id": "5",
+      "timestamp": "2017-03-18T06:15:28.422Z",
+      "public": true,
+      "data": {
+        "status": "Finished"
+      }
+    }
+  },
+  {
+    "model": "actstream.action",
+    "pk": 6,
+    "fields": {
+      "actor_content_type": 5,
+      "actor_object_id": "6",
+      "verb": "is changed",
+      "description": null,
+      "target_content_type": 1,
+      "target_object_id": "3",
+      "action_object_content_type": 5,
+      "action_object_object_id": "6",
+      "timestamp": "2017-03-18T06:15:28.435Z",
+      "public": true,
+      "data": {
+        "status": "Finished"
+      }
+    }
+  },
+  {
+    "model": "actstream.action",
+    "pk": 7,
+    "fields": {
+      "actor_content_type": 5,
+      "actor_object_id": "7",
+      "verb": "is changed",
+      "description": null,
+      "target_content_type": 1,
+      "target_object_id": "3",
+      "action_object_content_type": 5,
+      "action_object_object_id": "7",
+      "timestamp": "2017-03-18T06:15:28.459Z",
+      "public": true,
+      "data": {
+        "status": "Finished"
+      }
+    }
+  },
+  {
+    "model": "actstream.action",
+    "pk": 8,
+    "fields": {
+      "actor_content_type": 5,
+      "actor_object_id": "8",
+      "verb": "is changed",
+      "description": null,
+      "target_content_type": 1,
+      "target_object_id": "3",
+      "action_object_content_type": 5,
+      "action_object_object_id": "8",
+      "timestamp": "2017-03-18T06:15:28.474Z",
+      "public": true,
+      "data": {
+        "status": "Finished"
+      }
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2017-03-11T09:57:56.259Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "3",
+      "object_repr": "web-django.herokuapp.com",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2017-03-11T09:58:18.120Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "4",
+      "object_repr": "127.0.0.1",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2017-03-11T09:58:29.082Z",
+      "user": 1,
+      "content_type": 13,
+      "object_id": "5",
+      "object_repr": "localhost",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2017-03-11T09:59:17.311Z",
+      "user": 1,
+      "content_type": 18,
+      "object_id": "1",
+      "object_repr": "Google",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2017-03-11T09:59:50.575Z",
+      "user": 1,
+      "content_type": 18,
+      "object_id": "2",
+      "object_repr": "Facebook",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2017-03-18T06:09:06.845Z",
+      "user": 1,
+      "content_type": 5,
+      "object_id": "1",
+      "object_repr": "1",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "item.item",
+    "pk": 2,
+    "fields": {
+      "shop": 4,
+      "name": "Pepperoni",
+      "slug": "pepperoni",
+      "price": 129,
+      "ingredient": "Pork and beef, salt, water, dextrose, spices, lactic acid starter culture, oleoresin of paprika, flavorings, sodium nitrate, BHA, BHT and citric acid.",
+      "description": "C\u2019mon\u2026 you gotta love original pepperoni! Nothing says pizza quite like thin slices of pepperoni, evenly shuffled across a spread of tomato sauce under delicious 100% real cheese surrounded by a traditional garlic buttery crust. I mean, this is what pizza\u2019s all about #amirite?",
+      "in_stock": 3,
+      "pub_date": "2016-12-26T08:30:51.489Z",
+      "modified_date": "2017-03-18T06:15:28.567Z",
+      "rating": 4.66666666666667
+    }
+  },
+  {
+    "model": "item.item",
+    "pk": 3,
+    "fields": {
+      "shop": 4,
+      "name": "Philly Cheesesteak",
+      "slug": "philly-cheesesteak",
+      "price": 119,
+      "ingredient": "pizza dough (enough for 1 pizza)\r\n    approx. \u00bd lb. sliced deli roast beef\r\n    1 TBSP olive oil (or coconut oil)\r\n    1 green bell pepper\r\n    \u00bd medium red onion\r\n    3 to 4 mushrooms\r\n    1 tsp black pepper\r\n    \u00bd C Ragu\u00ae Cheese Creations Classic Alfredo sauce\r\n    \u00bc C provolone\r\n    1 to 2 cups shredded mozzarella cheese (or Italian cheese blend)",
+      "description": "Yo, Philly! If there\u2019s one thing this city does best, it\u2019s bringing us one of the best sandwiches America has ever gotten its hands on. That\u2019s why we matched up this Philly icon with our fresh pizza dough to give you a delicious Philly Cheesesteak Pizza. 100% real shredded cheddar, green peppers, red onions, and seasoned steak, all melted in a flavorful cheese sauce. It\u2019s one of 3 Road Trip\u2019n Taste Tour flavors now on the Buffet. Get your hands on this knockout flavor before it\u2019s out of here!",
+      "in_stock": 123,
+      "pub_date": "2017-02-02T13:09:41.338Z",
+      "modified_date": "2017-03-18T06:15:28.582Z",
+      "rating": 4.0
+    }
+  },
+  {
+    "model": "item.item",
+    "pk": 4,
+    "fields": {
+      "shop": 4,
+      "name": "Tex-Mex Burger with Cajun Mayo",
+      "slug": "tex-mex-burger-with-cajun-mayo",
+      "price": 39,
+      "ingredient": "1/2 cup mayonnaise\r\n    1 teaspoon Cajun seasoning\r\n    1 1/3 pounds ground beef sirloin\r\n    1 jalape\u00f1o pepper, seeded and chopped\r\n    1/2 cup diced white onion\r\n    1 clove garlic, minced\r\n    1 tablespoon Cajun seasoning\r\n    1 teaspoon Worcestershire sauce\r\n    4 slices pepper-jack cheese\r\n    4 hamburger buns, split\r\n    4 leaves lettuce\r\n4 slices tomato",
+      "description": "A jazzy way to spice up the boring basic burger that will tantalize your taste buds! Cajun spiced mayonnaise is the perfect complement to these spicy beef burgers.",
+      "in_stock": 2,
+      "pub_date": "2017-02-02T13:18:17.140Z",
+      "modified_date": "2017-03-18T06:15:28.596Z",
+      "rating": 1.0
+    }
+  },
+  {
+    "model": "users.userprofile",
+    "pk": 3,
+    "fields": {
+      "user": 4,
+      "name": "L\u00ea Ki\u00ean",
+      "slug": "le-kien",
+      "avatar": "uploads/2017/03/11/1311572145550120_gNIZXHW.jpg",
+      "gender": "M",
+      "birthday": "1962-02-02",
+      "email": "dk1721996@yahoo.com.vn",
+      "phone": "+840123456789",
+      "allergy": "",
+      "point": 0,
+      "address": "",
+      "city": "SG",
+      "district": "Q1",
+      "ward": "",
+      "is_shop": true,
+      "info": "",
+      "avatar_link": "https://graph.facebook.com/v2.4/1311572145550120/picture?type=square&height=600&width=600&return_ssl_resources=1"
+    }
+  },
+  {
+    "model": "users.userprofile",
+    "pk": 7,
+    "fields": {
+      "user": 8,
+      "name": "L\u00ea Ki\u00ean",
+      "slug": "lu-lo",
+      "avatar": "uploads/2017/02/13/1062904793825477.jpg",
+      "gender": "M",
+      "birthday": "1996-02-17",
+      "email": "dk1721996@gmail.com",
+      "phone": "01675459251",
+      "allergy": "",
+      "point": 0,
+      "address": "",
+      "city": "SG",
+      "district": "Q1",
+      "ward": "",
+      "is_shop": false,
+      "info": "",
+      "avatar_link": ""
+    }
+  },
+  {
+    "model": "users.userprofile",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "name": "users",
+      "slug": "dk",
+      "avatar": "/static/images/default-avatar.png",
+      "gender": null,
+      "birthday": null,
+      "email": null,
+      "phone": null,
+      "allergy": null,
+      "point": 0,
+      "address": null,
+      "city": null,
+      "district": null,
+      "ward": null,
+      "is_shop": false,
+      "info": null,
+      "avatar_link": ""
+    }
+  },
+  {
+    "model": "users.userprofile",
+    "pk": 9,
+    "fields": {
+      "user": 9,
+      "name": "Le Kien",
+      "slug": "kien-le",
+      "avatar": "uploads/2017/03/11/114555324763442694850.jpg",
+      "gender": "M",
+      "birthday": "1996-02-17",
+      "email": "dk172196@gmail.com",
+      "phone": "",
+      "allergy": "",
+      "point": 0,
+      "address": "",
+      "city": "SG",
+      "district": "Q1",
+      "ward": "",
+      "is_shop": false,
+      "info": null,
+      "avatar_link": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"
+    }
+  }
+]

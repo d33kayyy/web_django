@@ -16,20 +16,19 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-import os
+
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '+ba=^6@(b)l^206-bvm195c76*93tu%z5!9v0vxsptgt)6!pjx')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 # Allow all host headers
-ALLOWED_HOSTS = ['web-django.herokuapp.com','127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['web-django.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -128,12 +127,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': 'postgres',
-        #'USER': 'dk',
-        #'PASSWORD': '1',
-        #'HOST': '127.0.0.1',
-        #'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'postgres',
+        # 'USER': 'dk',
+        # 'PASSWORD': '1',
+        # 'HOST': '127.0.0.1',
+        # 'PORT': '5432',
     }
 }
 
@@ -263,5 +262,8 @@ NOTIFICATIONS_USE_JSONFIELD = True
 
 # DjangoRestFramework
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
 }

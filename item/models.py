@@ -36,10 +36,10 @@ class Item(models.Model):
                                               })
 
     def get_ingredient(self):
-        '''
+        """
         Extract ingredients from the text paragraph
         :return: a list of ingredients
-        '''
+        """
         ingredient_str = self.ingredient
         ingredients = [line.split(',') for line in ingredient_str.splitlines()]
         return [j.strip() for i in ingredients for j in i if j]
@@ -58,18 +58,21 @@ class Item(models.Model):
         super(Item, self).save(*args, **kwargs)
 
     def get_primary_image(self):
-        '''
+        """
         Get the first image as primary
         :return: Image url
-        '''
-        images = Images.objects.filter(item=self).first()
-        return images.image.url
+        """
+        image = Images.objects.filter(item=self).first()
+        if image.image:
+            return image.image.url
+        else:
+            return None
 
     def get_rating(self):
-        '''
+        """
         Calculate the rating of the item
         :return: Float number represents the rating
-        '''
+        """
         from reviews.models import Review
         reviews = Review.objects.filter(item=self)
         if not reviews.count():
