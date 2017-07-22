@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% load i18n %}
 
-{% block title %}{% trans "Signup" %}{% endblock %}
+{% block title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">
@@ -17,8 +17,7 @@
                     <h2 class="text-center">{% trans "Sign Up" %}</h2>
 
                     <hr>
-                    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>
-                        .{% endblocktrans %}</p>
+                    <p>{% trans 'Already have an account? Then please' %}<a href="{{ login_url }}">{% trans "sign in" %}</a>.</p>
                     <hr>
 
                     {% if form.errors %}

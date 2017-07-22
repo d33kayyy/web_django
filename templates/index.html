@@ -1,4 +1,6 @@
 {% extends 'layout/base.html' %}
+
+{% load i18n %}
 {% load static %}
 {% load humanize %}
 {% load socialaccount %}
@@ -19,7 +21,7 @@
                             <div class="image-container">
                                 <img width="100%^" src="{{ item.get_primary_image }}" alt=""/>
                                 <div class="overlay"></div>
-                                <div class="hover-button"><a href="{% url 'item:detail' item.slug %}"> View details </a>
+                                <div class="hover-button"><a href="{% url 'item:detail' item.slug %}"> {% trans 'View details' %} </a>
                                 </div>
 
                             </div>

@@ -8,7 +8,7 @@
                     {% endfor %}
                 </div>
                 <div class="col-md-5 col-xs-5">
-                    <p class="date">{{ review.updated_time|date }}</p>
+                    <p class="date">{{ review.updated_time|date:"SHORT_DATE_FORMAT" }}</p>
                 </div>
                 <div class="col-md-12">
                     <p class="review-content">{{ review.content }}</p>

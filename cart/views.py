@@ -6,17 +6,19 @@ from django.views.generic.edit import FormView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
+from web_django.settings import CART_SESSION, INFO_SESSION
+
 from order.models import ItemOrder, Order
 from item.models import Item
 
-from .utils import get_session, CART_SESSION, INFO_SESSION
+from .utils import get_session
 from .forms import ItemOrderForm, ItemForm, InformationForm
 
 
 class CartView(FormView):
-    '''
+    """
     Display Cart page and handle cart update
-    '''
+    """
 
     template_name = 'cart/cart.html'
     form_class = formset_factory(ItemOrderForm, extra=0)
@@ -66,9 +68,9 @@ class CartView(FormView):
 
 
 class AddItemToCart(FormView):
-    '''
+    """
     Add new item to cart
-    '''
+    """
     form_class = ItemOrderForm
 
     def get(self, request, *args, **kwargs):
@@ -97,9 +99,9 @@ class AddItemToCart(FormView):
 
 
 class RemoveItemFromCart(FormView):
-    '''
+    """
     Delete item from cart
-    '''
+    """
     form_class = ItemForm
 
     def get(self, request, *args, **kwargs):
@@ -123,11 +125,11 @@ class RemoveItemFromCart(FormView):
 
 
 def information(request):
-    '''
+    """
     Information form when ordering
     :param request:
     :return:
-    '''
+    """
 
     cart = get_session(request, CART_SESSION)
     if not cart:
@@ -160,11 +162,11 @@ def information(request):
 
 
 def confirmation(request):
-    '''
+    """
     Confirmation page and create new order if transaction succeed
     :param request:
     :return:
-    '''
+    """
     cart = get_session(request, CART_SESSION)
     info = get_session(request, INFO_SESSION)
 
@@ -189,7 +191,7 @@ def confirmation(request):
         # Create item order
         for item_id, quantity in cart.items():
             item = Item.objects.get(id=item_id)
-            item_order = ItemOrder.objects.create(order=order, item=item, quantity=quantity)
+            ItemOrder.objects.create(order=order, item=item, quantity=quantity)
 
         # Clear the session
         cart.clear()

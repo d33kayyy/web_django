@@ -13,13 +13,13 @@ class Item(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, max_length=100)
     price = models.PositiveIntegerField()
-    # image = models.ImageField(upload_to='uploads/%Y/%m/%d', blank=True)
     ingredient = models.TextField(default='', blank=True)
     description = models.TextField(default='', blank=True)
     in_stock = models.PositiveSmallIntegerField(default=0)
-    pub_date = models.DateTimeField(auto_now_add=True)
-    modified_date = models.DateTimeField(auto_now=True)
     rating = models.FloatField(default=0)
+    available = models.BooleanField(default=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     # category
 
@@ -31,9 +31,7 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         # return reverse('item.views.ItemView', args=[str(self.id)])
-        return reverse('item:detail', kwargs={'slug': self.slug,
-                                              # 'pk': self.pk,
-                                              })
+        return reverse('item:detail', kwargs={'slug': self.slug})
 
     def get_ingredient(self):
         """

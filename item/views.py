@@ -11,21 +11,21 @@ from .models import Item, Images
 
 
 class HomePageView(ListView):
-    '''
+    """
     Homepage
-    '''
+    """
     template_name = 'index.html'
     context_object_name = 'list_items'
 
     def get_queryset(self):
         """Return all items"""
-        return Item.objects.order_by('-pub_date').all()
+        return Item.objects.order_by('-created_date').all()
 
 
 class IndexView(ListView):
-    '''
+    """
     List of all items (possibly for searching)
-    '''
+    """
     template_name = 'item/index.html'
     context_object_name = 'list_items'
 
@@ -35,9 +35,9 @@ class IndexView(ListView):
 
 
 class ItemDetailDisplay(DetailView):
-    '''
+    """
     Item detail page
-    '''
+    """
     model = Item
     template_name = 'item/detail.html'
 
@@ -57,9 +57,9 @@ def pin(request):
 
 @login_required
 def create_item(request):
-    '''
+    """
     Create item page for shop
-    '''
+    """
     if not request.user.profile.is_shop:
         raise PermissionDenied
 
@@ -94,9 +94,9 @@ def create_item(request):
 
 @login_required
 def edit_item(request, slug):
-    '''
+    """
     Edit item page
-    '''
+    """
     item = get_object_or_404(Item, slug=slug)
 
     if item.shop != request.user or not request.user.profile.is_shop:
@@ -127,9 +127,9 @@ def edit_item(request, slug):
 
 @login_required
 def delete_item(request, slug):
-    '''
+    """
     Delete item handler
-    '''
+    """
     item = get_object_or_404(Item, slug=slug)
 
     if item.shop != request.user or not request.user.profile.is_shop:

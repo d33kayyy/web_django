@@ -34,9 +34,9 @@ function gen_notification_list(data) {
             }
 
             // Produce message
-            if (verb == 'đã bị hủy') {
+            if (verb == 'is canceled') {
                 message = '<p>' + 'Đơn hàng #' + '<strong>' + order_id + '</strong>' + ' ' + '<strong>' + verb + '</strong>' + '</p>';
-            } else if (verb == 'đã được thay đổi') {
+            } else if (verb == 'is changed') {
                 message = '<p>' + 'Trạng thái của đơn hàng #' + '<strong>' + order_id + '</strong>' + ' ' + verb + ' sang ' +
                     '<strong>' + status + '</strong>' + '</p>';
             }

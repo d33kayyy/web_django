@@ -1,7 +1,3 @@
-CART_SESSION = 'cart'
-INFO_SESSION = 'info'
-
-
 def get_session(request, session_name):
     """
     Get session or create an empty session if not exist.

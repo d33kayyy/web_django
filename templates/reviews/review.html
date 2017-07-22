@@ -3,6 +3,10 @@
 {% load widget_tweaks %}
 {% load i18n %}
 
+{% block title %}
+    {% trans 'Reviews' %}
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'reviews/review.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'profile_panel.css' %}">
@@ -54,20 +58,23 @@
                                             {% csrf_token %}
                                             <input type="hidden" name="item" value="{{ i.item_id }}">
                                             <input type="hidden" name="item_order_id" value="{{ i.id }}">
-                                            <p>How much do you rate this product?</p>
+                                            <p>{% trans 'How much do you rate this product?' %}</p>
                                             <div class="rating">
                                                 <input type="radio" id="star5" name="rating" value="5"/>
-                                                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                <label class="full" for="star5"
+                                                       title="{% trans 'Awesome' %}!"></label>
                                                 <input type="radio" id="star4" name="rating" value="4" checked/>
                                                 <label class="full" for="star4"
-                                                       title="Pretty good - 4 stars"></label>
+                                                       title="{% trans 'Pretty good' %}"></label>
                                                 <input type="radio" id="star3" name="rating" value="3"/>
-                                                <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                                <label class="full" for="star3"
+                                                       title="{% trans 'Meh' %}"></label>
                                                 <input type="radio" id="star2" name="rating" value="2"/>
-                                                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                <label class="full" for="star2"
+                                                       title="{% trans 'Not good' %}"></label>
                                                 <input type="radio" id="star1" name="rating" value="1"/>
                                                 <label class="full" for="star1"
-                                                       title="Sucks big time - 1 star"></label>
+                                                       title="{% trans 'Really bad' %}"></label>
                                             </div>
                                             <div class="full-width pull-left">
                                                 <p>{% trans 'What are your comments?' %}</p>

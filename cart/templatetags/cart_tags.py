@@ -1,6 +1,7 @@
 from django import template
 
-from cart.utils import get_session, CART_SESSION
+from web_django.settings import CART_SESSION
+from cart.utils import get_session
 from item.models import Item
 
 register = template.Library()

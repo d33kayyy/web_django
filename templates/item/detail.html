@@ -64,7 +64,13 @@
                             <span class="stars">
                                 <span style="width:{{ item.get_rating_int }}%"></span>
                             </span>
-                            <a href="#reviews">  {{ item.reviews.count|intcomma }} {% trans 'customer reviews' %} </a>
+                            <a href="#reviews">
+                                {% blocktrans count counter=item.reviews.count %}
+                                    {{ counter }} customer review
+                                {% plural %}
+                                    {{ counter }} customer reviews
+                                {% endblocktrans %}
+                            </a>
                             <hr>
                         </div>
 
