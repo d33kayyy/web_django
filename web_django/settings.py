@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ['web-django.herokuapp.com', '127.0.0.1', 'localhost']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = not bool(os.environ.get('CSRF_COOKIE_SECURE', True))
 
 # HttpOnly CSRF cookie makes it more difficult for cross-site scripting attacks to steal the CSRF token.
 CSRF_COOKIE_HTTPONLY = True

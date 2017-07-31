@@ -108,7 +108,7 @@ __/\\\\\\\\\\\\_____/\\\________/\\\_
                         {% for language in languages %}
                             <option value="{{ language.code }}"
                                     {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
-                                {{ language.name_local }}
+                                {{ language.code|upper }}
                             </option>
                         {% endfor %}
                     </select>
